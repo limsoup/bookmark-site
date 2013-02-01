@@ -1,0 +1,2 @@
+class BookmarkUrlsController < ApplicationController
+end

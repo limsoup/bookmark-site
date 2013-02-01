@@ -1,0 +1,23 @@
+<%= form_for @playlist, :url => [@playlist, @user_bookmark] , :method => :post do |f|%>
+  <% if @playlist.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @playlist.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<%= f.fields_for :user_bookmark do |f_ub|%>
+		<%= f_ub.label :bookmark_name %><br />
+		<%= f_ub.text_field :bookmark_name %><br /><br />
+		<%= f_ub.fields_for :bookmark_url do |f_ub_bu| %>
+			<%= f_ub_bu.label :url %><br />
+			<%= f_ub_bu.text_field :url %>
+		<% end %>
+	<% end %>
+	<div class="actions">
+		<%= f.submit 'Create New Bookmark' %>
+	</div>
+<% end %>

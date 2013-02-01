@@ -1,0 +1,11 @@
+<h1><%= @playlist.playlist_name %></h1>
+<ul>
+	<% @playlist.user_bookmarks.each do |ub| %>
+		<li><%= ub.bookmark_name %></li>
+	<% end %>
+</ul>
+<p>
+<%= link_to 'Create New Playlist', new_playlist_path%> | 
+<%= link_to 'Playlist Index', playlists_url%> |
+<%= link_to 'Edit Playlist', edit_playlist_path(@playlist)%>
+</p>

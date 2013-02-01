@@ -1,0 +1,31 @@
+<h1>Editing Playlist</h1>
+<%= form_for @playlist do |f| %>
+  <% if @playlist.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% @playlist.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :playlist_name %><br />
+    <%= f.text_field :playlist_name %>
+  </div>
+	<%= f.fields_for :user_bookmarks do |builder| %>
+		<%= render 'bookmark_fields', f:builder %>
+	<% end %>
+  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/user_bookmarks/new/', id:"add_bookmark" %>
+  <!-- 
+  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/new_bookmark/', id:"add_bookmark_html" %>
+  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/new_bookmark/', id:"add_bookmark_js", :remote => true %> -->
+  <div class="actions"><%= f.submit "Save" %></div>
+<% end %>
+
+<p>
+<%= link_to 'Playlist', @playlist%> |
+<%= link_to 'Create New Playlist', new_playlist_path%> | 
+<%= link_to 'Playlist Index', playlists_path%>
+</p>

@@ -1,0 +1,5 @@
+<ul>
+<% @users.each do |usr|%>
+	<li><%= link_to usr.username, usr %></li>
+<% end %>
+</ul>

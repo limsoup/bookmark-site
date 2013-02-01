@@ -1,0 +1,19 @@
+<div class="bookmark">
+	<div class ="show_bookmark">
+		<%= "bookmark name: "+((f.object.bookmark_name.nil?) ? "": f.object.bookmark_name )+" bookmark url: "+((f.object.bookmark_url.url.nil?) ? "": f.object.bookmark_url.url )%>
+		<%= link_to 'edit', '#', class: 'edit_bookmark_button' %>
+	</div>
+	<div class="edit_bookmark">
+	  <fieldset>
+		 	<%= link_to 'done editing', '#', class: 'show_bookmark_button' %>
+			<%= f.label :bookmark_name%><br />
+			<%= f.text_field :bookmark_name, {'data-remote' => true} %><br /><br />
+			<%= f.fields_for :bookmark_url do |f_ub_bu| %>
+				<%= f_ub_bu.label :url%><br />
+				<%= f_ub_bu.text_field :url , {'data-remote' => true}%><br /><br />
+			<% end %>
+			<%= link_to "Remove Bookmark", '/playlists/'+@playlist.id.to_s+'/destroy_bookmark/'+f.object.id.to_s, :confirm => "Are you sure you want to delete this bookmark?", class: "remove_bookmark", :remote => true%>
+		</fieldset>
+	</div>
+	<%= f.hidden_field :id %>
+</div>

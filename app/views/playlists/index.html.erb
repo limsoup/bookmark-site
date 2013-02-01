@@ -1,0 +1,7 @@
+<h1>Playlist index</h1>
+<% @playlists.each do |playlist| %>
+  <p><%= link_to playlist.playlist_name, playlist %></p>
+<% end %>
+
+
+<%= link_to 'Create New Playlist', new_playlist_path%>

@@ -1,0 +1,9 @@
+<fieldset>
+		<%= f.label :bookmark_name %><br />
+		<%= f.text_field :bookmark_name %><br /><br />
+		<%= f.fields_for :bookmark_url do |f_ub_bu| %>
+			<%= f_ub_bu.label :url %><br />
+			<%= f_ub_bu.text_field :url %>
+		<% end %>
+	<% end %>
+</fieldset>
