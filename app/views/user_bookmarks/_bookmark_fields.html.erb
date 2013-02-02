@@ -1,0 +1,23 @@
+<div class="bookmark">
+	<div class ="show_bookmark">
+		<%= "bookmark name: "+((user_bookmark.bookmark_name.nil?) ? "": user_bookmark.bookmark_name )+" bookmark url: "+((user_bookmark.bookmark_url.url.nil?) ? "": user_bookmark.bookmark_url.url )%>
+		<%= link_to 'edit', edit_playlist_user_bookmark_path(user_bookmark, @playlist), class: 'edit_bookmark_button' %>
+	</div>
+	<div class="edit_bookmark">
+	<%= form_for user_bookmark, :url => [@playlist, user_bookmark] , :html => {:method => :put, "data-type" => "html"}, :remote => :true do |f| %>
+	  <fieldset>
+	  	<%= link_to 'collapse', '#', class: 'show_bookmark_button' %>
+	  	<%= link_to 'revert',  edit_playlist_user_bookmark_path(user_bookmark, @playlist) , class: 'reload_edit_bookmark_button', :html =>{"data-type" => "html"}, :remote => true %>
+	  	<%= link_to 'save', '#', class: 'update_bookmark_button' %>
+			<%= f.label :bookmark_name%><br />
+			<%= f.text_field :bookmark_name %><br /><br />
+			<%= f.fields_for :bookmark_url do |f_ub_bu| %>
+				<%= f_ub_bu.label :url%><br />
+				<%= f_ub_bu.text_field :url %><br /><br />
+			<% end %>
+			<%= link_to "Remove Bookmark", [@playlist, f.object], :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this bookmark?", class: "remove_bookmark" %> <br />
+			<%= f.hidden_field :id %>
+		</fieldset>
+	<% end %>
+	</div>
+</div>

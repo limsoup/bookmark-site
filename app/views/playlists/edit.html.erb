@@ -14,15 +14,12 @@
     <%= f.label :playlist_name %><br />
     <%= f.text_field :playlist_name %>
   </div>
-	<%= f.fields_for :user_bookmarks do |builder| %>
-		<%= render 'bookmark_fields', f:builder %>
-	<% end %>
-  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/user_bookmarks/new/', id:"add_bookmark" %>
-  <!-- 
-  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/new_bookmark/', id:"add_bookmark_html" %>
-  <%= link_to "Add Bookmark", '/playlists/'+@playlist.id.to_s+'/new_bookmark/', id:"add_bookmark_js", :remote => true %> -->
   <div class="actions"><%= f.submit "Save" %></div>
 <% end %>
+<% @playlist.user_bookmarks.each do |user_bookmark| %>
+	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+<% end %>
+<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
 
 <p>
 <%= link_to 'Playlist', @playlist%> |

@@ -42,6 +42,15 @@ class UserBookmarksController < ApplicationController
 		@playlist = current_user.playlists.find params[:playlist_id]
 		@user_bookmark = @playlist.user_bookmarks.find(params[:id])
 		@bookmark_url = @user_bookmark.bookmark_url
+		respond_to do |format|
+			format.html {
+				if request.xhr?
+					render :partial =>'bookmark_fields', :layout => false, :locals => {:user_bookmark => @user_bookmark}  
+				else
+					render 'edit'
+				end
+			 }
+		end
 	end
 
 	def update
@@ -72,8 +81,15 @@ class UserBookmarksController < ApplicationController
 			#create something about kind of error for when it's blank
 		end
 		respond_to do |format|
-			format.html {redirect_to edit_playlist_path(@playlist)} #this should already handle errors
-			format.js {render 'update.js.erb'} #this needs to handle errors
+			format.html {
+				if request.xhr?
+					render :partial =>'bookmark_fields', :layout => false, :locals => {:user_bookmark => @user_bookmark} 
+				else
+					redirect_to edit_playlist_path(@playlist) #this should already handle errors
+				end
+			}
+			# format.js {render :partial => 'update.js.erb'} #this needs to handle errors
+			# format.js {j render :partial =>'bookmark_fields', :layout => false, :locals => {:user_bookmark => @user_bookmark} } #this needs to handle errors
 		end
 	end 
 

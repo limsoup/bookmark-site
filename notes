@@ -1,0 +1,79 @@
+
+questions for jesse:
+	should I use multiple forms?
+	concerns: bandwidth from sending lots of POST data
+	motivation: i want to finish this right and not let it go too long bc of the competition
+------------------------------------------------------------------
+features:
+	users trying it out
+		null password
+		-and/or-
+		shopping cart type
+			prove you're human to save
+	save where people are in videos
+	playlist
+		-send bookmarks to other playlists
+------------------------------------------------------------------
+fixes:
+	playlist:
+		controller:
+			[ ]create/update: mass assign problem
+			(FIX? Don't try and create bookmark_urls through the user_bookmarks)
+		view:
+			edit:
+				[x]change edit link to have link to 'edit' in user_bookmarks
+	user_bookmark:
+		[x]controller:
+			[x]make a 'destroy' method
+			[x]make an 'edit/update' method
+		view:
+			[x]make an 'edit' view
+------------------------------------------------------------------
+Do now:
+	[x]update user_bookmarks 
+		[x]change controller
+		[x]edit button: prevent default, send to html
+		[ ]discard changes button
+			[x]render bookmark
+			[x]submit button
+		[x]return js reply
+			[x]hidden_id's and where the divs go
+			[x]replace node
+			[x]set event listeners
+		[x]remote submit
+		[x]delete 
+			[x]controller
+			[x]partial
+		---------	
+	[ ]notification about blank bookmark_url
+	[ ]notification about blank bookmark_name
+	[ ]handling errors
+	[ ]playlist edit page submit button
+------------------------------------------------------------------
+potential changes:
+	bookmark urls model
+		indexing
+		adding a counter
+		storing when different URLs go to the same page
+------------------------------------------------------------------
+I don't know what this means for it:
+	user_bookmarks are not destroyed when they're removed from bookmark_urls
+
+------------------------------------------------------------------
+
+change bookmark connections, not it's 
+add separate methods for all the stuff
+
+
+---open as possible w/o compromising---
+
+
+users following users:
+	"self join has many thing"
+	has_many :followers, :class_name => "Employee",
+    :foreign_key => "follower_id"
+  has_many :manager, :class_name => "Employee"
+
+users following playlists
+
+bookmarks having playlists and users

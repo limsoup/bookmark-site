@@ -2,6 +2,8 @@
 
 <ul>
 <% @playlists.each do |pl| %>
-	<li><%= link_to pl.playlist_name, pl %></li>
+	<li><%= link_to pl.playlist_name, pl %>&#160;&#160;&#160;<%= link_to "edit", edit_playlist_path(pl) %></li>
 <% end %>
 </ul>
+
+<%= link_to "New Playlist", new_playlist_path %>

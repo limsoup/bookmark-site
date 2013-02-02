@@ -12,12 +12,7 @@
 	border-width:1px;
 	margin:3px
 }
-.edit_bookmark_button {
-	float:right;
-}
-.show_bookmark_button {
-	float:right;
-}
+
 .edit_bookmark{
 	display:none;
 	fieldset {
@@ -25,10 +20,22 @@
 	}
 }
 
-#add_bookmark_html {
+.edit_bookmark_button {
+	float:right;
+	margin: 5px;
 }
-
-#add_bookmark_js {
+.show_bookmark_button {
+	float:right;
+	margin: 10px;
+}
+.update_bookmark_button{
+	float:right;
 	display:none;
+	margin: 10px;
+}
+.reload_edit_bookmark_button {
+	float:right;
+	display:none;
+	margin: 10px;
 }
 
