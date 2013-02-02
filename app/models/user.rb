@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	has_secure_password
   attr_accessible :username, :password, :password_confirmation
-  has_many :playlists
+  has_many :playlists, :dependent => :destroy
   before_save :create_remember_token
 
   validates_uniqueness_of :username
