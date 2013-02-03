@@ -31,7 +31,7 @@ class UserBookmarksController < ApplicationController
 				render 'new'
 			end
 		else
-			# give error message about it url being required
+			# give error message about the url being required
 			@user_bookmark = @playlist.user_bookmarks.build
 			@bookmark_url = BookmarkUrl.new 	#this is because i'm doing the 'new' form differently
 			render 'new'
@@ -62,9 +62,9 @@ class UserBookmarksController < ApplicationController
 			#if it's the same url update the user_bookmark, else switch the url or create a new one
 			@bookmark_url = BookmarkUrl.find_by_url(params[:user_bookmark][:bookmark_url_attributes][:url])
 			if @bookmark_url.nil?
-				@bookmark_url = BookmarkUrl.new(params[:user_bookmark][:bookmark_url_attributes]) #bookmark_url
-				@bookmark_url.save
+				@bookmark_url = BookmarkUrl.new(params[:user_bookmark][:bookmark_url_attributes]) #
 				@bookmark_url.user_bookmarks << @user_bookmark
+				@bookmark_url.save 	#need to save so UB can store the BU.id
 				@user_bookmark.bookmark_url_id = @bookmark_url.id #user_bookmark side
 			else
 				if @bookmark_url.url !=  @user_bookmark.bookmark_url.url
@@ -78,14 +78,14 @@ class UserBookmarksController < ApplicationController
 			@user_bookmark.save
 			@playlist.save
 		else
-			#create something about kind of error for when it's blank
+			# give error message about the url being required
 		end
 		respond_to do |format|
 			format.html {
 				if request.xhr?
 					render :partial =>'bookmark_fields', :layout => false, :locals => {:user_bookmark => @user_bookmark} 
 				else
-					redirect_to edit_playlist_path(@playlist) #this should already handle errors
+					redirect_to edit_playlist_path(@playlist) #need to make this show errors
 				end
 			}
 			# format.js {render :partial => 'update.js.erb'} #this needs to handle errors
@@ -98,7 +98,7 @@ class UserBookmarksController < ApplicationController
 		@user_bookmark = @playlist.user_bookmarks.find(params[:id])
 		@user_bookmark.bookmark_url.user_bookmarks.delete @user_bookmark #detach old bookmark_url
 		@playlist.user_bookmarks.delete @user_bookmark
-		@user_bookmark.delete
+		@user_bookmark.delete 	#is this necessary?(I think so if i don't make ) is it even okay?
 		#save?
 		respond_to do |format|
 			format.html {redirect_to edit_playlist_path(@playlist)}

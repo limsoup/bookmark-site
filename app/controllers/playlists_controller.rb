@@ -8,18 +8,11 @@ class PlaylistsController < ApplicationController
 
 	def create
 		@playlist = current_user.playlists.build(params[:playlist])
-		# respond_to do |format|
-		# 	format.html {
-				if(@playlist.save)
-					redirect_to @playlist, :notice => "Playlist Created Successfully"
-				else
-					render 'new'
-				end
-		# 	}
-		# 	format.js {
-		# 		render 'create'
-		# 	}
-		# end
+		if(@playlist.save)
+			redirect_to @playlist, :notice => "Playlist Created Successfully"
+		else
+			render 'new'
+		end
 	end
 
 	def show
@@ -32,7 +25,6 @@ class PlaylistsController < ApplicationController
 	
 	def update
 		@playlist = current_user.playlists.find(params[:id])
-		logger.ap params
 		@playlist.update_attributes(params[:playlist])
 		respond_to do |format|
 			format.html {
@@ -50,35 +42,6 @@ class PlaylistsController < ApplicationController
 
 	def index
 		@playlists = Playlist.all
-	end
-
-	def new_bookmark
-		# a new bookmark can only be made in a playlist for now
-		respond_to do |format|
-			format.html { render 'new_bookmark'}
-			format.js {
-				@playlist = current_user.playlists.find(params[:id])
-				@playlist.update_attributes(
-		      "bookmarks_attributes" => {
-		          @playlist.bookmarks.count => {
-		              "bookmark_name" => ""
-		          }
-		      })
-				render 'new_bookmark.js.erb'
-			}
-		end
-	end
-
-	def destroy_bookmark
-		# a bookmark can only be deleted from a playlist for now
-		# logger.ap params
-		@playlist = current_user.playlists.find(params[:id])
-		@user_bookmark = User_bookmark.find(params[:user_bookmark_id])
-		@user_bookmark.delete
-		respond_to do |format|
-			format.html {redirect_to edit_playlist_path(@playlist)}
-			format.js {render 'destroy_bookmark'}
-		end
 	end
 	
 	private

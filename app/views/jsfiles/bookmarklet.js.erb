@@ -1,5 +1,5 @@
 $(function (){
-	var newSS, styles='#bookmarklet {background: white;border-radius: 10px;border: 1px solid;width: 200px;height: 100px;top: 10px;right: 30%;position:fixed;z-index:3;}';
+	var newSS, styles='#bookmarklet * {margin:4px;} #bookmarklet {background: #A6FFAD;font-size:10px;border-radius: 10px;border: 1px solid;width: 300px;top: 5px;right: 30%;position:fixed;z-index:999998;} #bookmarklet  .floatright {float:right;}';
 	if(document.createStyleSheet) { 
 		document.createStyleSheet("javascript:'"+styles+"'");
 	}
@@ -9,7 +9,14 @@ $(function (){
 		newSS.href='data:text/css,'+escape(styles);
 		document.getElementsByTagName("head")[0].appendChild(newSS);
 	}
-	$('body').first().append('<div id="bookmarklet"><p>lol</p></div>');
-	//display name
-	
+	$('body').append('<div id="bookmarklet"><div>');
+	$('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
+	$('#bookmarklet').on('click', 'a.submit_link', function(){
+		$(this).parents('#bookmarklet form').submit();
+	}).on('ajax:success', '#bookmarklet a.submit_link', function(event, data, status, xhr){
+			$(this).parents('#bookmarklet').remove();
+	});
+	$('#bookmarklet').on('click', 'a.floatright', function(){
+		$(this).parents('#bookmarklet').remove();
+	});
 });

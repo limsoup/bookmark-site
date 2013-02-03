@@ -12,6 +12,7 @@ features:
 			prove you're human to save
 	save where people are in videos
 	playlist
+		-default and regular playlist
 		-send bookmarks to other playlists
 ------------------------------------------------------------------
 fixes:
@@ -22,6 +23,9 @@ fixes:
 		view:
 			edit:
 				[x]change edit link to have link to 'edit' in user_bookmarks
+	user:
+		model/controller
+			[ ]user has two kinds of playlists, a default playlist and regular actual playlists
 	user_bookmark:
 		[x]controller:
 			[x]make a 'destroy' method
@@ -45,6 +49,17 @@ Do now:
 			[x]controller
 			[x]partial
 		---------	
+	[ ]default playlist
+		[ ]model
+		[ ]controller
+		[ ]view
+	[ ]moving items between playlists
+		[ ]model (hopefully nothing)
+		[ ]controller (in playlists controller? shouldn't be that hard)
+		[ ]routing
+		[ ]ajax method to playlist controller
+	[ ]handle bookmarklets
+	
 	[ ]notification about blank bookmark_url
 	[ ]notification about blank bookmark_name
 	[ ]handling errors

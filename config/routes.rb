@@ -6,7 +6,7 @@ Pp5::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
-
+  match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 
