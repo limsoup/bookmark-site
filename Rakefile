@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Pp5::Application.load_tasks
+BookmarkSite::Application.load_tasks

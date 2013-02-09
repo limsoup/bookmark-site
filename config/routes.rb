@@ -1,4 +1,4 @@
-Pp5::Application.routes.draw do
+BookmarkSite::Application.routes.draw do
   root to:'users#index'
 
   get 'signup', to: 'users#new', as: 'signup'
