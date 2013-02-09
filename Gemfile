@@ -10,6 +10,7 @@ gem 'sqlite3'
 gem 'quiet_assets', :group => :development
 gem "awesome_print", :group => :development
 gem "haml", :group => :development
+gem 'thin', :group => :development
 
 gem 'sqlite3'
 gem 'validates_existence', '>= 0.4'

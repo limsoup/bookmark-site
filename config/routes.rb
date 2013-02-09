@@ -7,8 +7,10 @@ Pp5::Application.routes.draw do
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
-  get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
-  get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
+  
+  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :post
+  # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
+  # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 
   resources :playlists do
     resources :user_bookmarks

@@ -9,6 +9,10 @@ javascript:(function(){
 	darken.type='text/javascript';
 	darken.src='http://localhost:3000/jsfiles/bookmarklet.js';
 	document.getElementsByTagName('head')[0].appendChild(darken);
+	ujs=document.createElement('SCRIPT');
+	ujs.type='text/javascript';
+	ujs.src='http://localhost:3000/assets/jquery_ujs.js';
+	document.getElementsByTagName('head')[0].appendChild(ujs);
 })();
 
 ?x='+(Math.random())

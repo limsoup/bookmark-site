@@ -11,10 +11,31 @@ class JsfilesController < ApplicationController
 	end
 
 	def process_bookmarklet
-		logger.ap params
-		logger.ap request.env
+		# logger.ap params
+		# logger.ap request.env
+		# add to default playlist if no playlist is selected
+		if(params[:playlist_id].empty?)
+			@user_bookmark = current_user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+		else
+			@user_bookmark = current_user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+		end
+		# @user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
+		url = request.env["HTTP_REFERER"]	#something from request
+		@bookmark_url = BookmarkUrl.find_by_url(url)
+		#if bookmark_url doesn't exist submit new bookmark and bookmark url
+		#else if it does exist add connection
+		if @bookmark_url.nil?
+			@bookmark_url = BookmarkUrl.new(:url => url)
+			@user_bookmark.bookmark_url_id = @bookmark_url.id
+			@bookmark_url.user_bookmarks << @user_bookmark
+		else
+			@user_bookmark.bookmark_url_id = @bookmark_url.id
+			@bookmark_url.user_bookmarks << @user_bookmark
+		end
+		@bookmark_url.save
+		@user_bookmark.save
 		respond_to do |format|
-			format.js { render :nothing => true }	
+			format.json { render :json => {"successful"=> true} }
 		end
 	end
 end

@@ -1,7 +1,8 @@
 
 questions for jesse:
-	should I use multiple forms?
-	concerns: bandwidth from sending lots of POST data
+	should i disable all my AJAXy things on 'ajax:beforeSend' and re-enable them on 'ajax:success'
+	is it possible to crash/burn things byallowing them to do stuff on multiple tabs?
+	question for jesse: does my default-playlist scheme have implications for the has_many through for bookmark_urls?
 	motivation: i want to finish this right and not let it go too long bc of the competition
 ------------------------------------------------------------------
 features:
@@ -27,6 +28,7 @@ fixes:
 		model/controller
 			[ ]user has two kinds of playlists, a default playlist and regular actual playlists
 	user_bookmark:
+		[ ]local variables?
 		[x]controller:
 			[x]make a 'destroy' method
 			[x]make an 'edit/update' method
@@ -49,21 +51,35 @@ Do now:
 			[x]controller
 			[x]partial
 		---------	
-	[ ]default playlist
-		[ ]model
-		[ ]controller
-		[ ]view
-	[ ]moving items between playlists
-		[ ]model (hopefully nothing)
-		[ ]controller (in playlists controller? shouldn't be that hard)
-		[ ]routing
-		[ ]ajax method to playlist controller
+	[x]default playlist
+		[x]model
+		[x]controller
+		[x]view
+	[x]user bookmarks
+		[x]change new/edit to show which playlist
+	[x]moving items between playlists
+		[x]controller (in playlists controller? shouldn't be that hard)
+		[x]routing
+		[x]ajax method to playlist controller
 	[ ]handle bookmarklets
+		[x]submit
+		[ ]jquery check bookmarklet link, change second clause
+		[x]prevent redirect
+		[ ]notification
+		[ ]cross site xhr
+	[ ]drag and drop
+	[ ]thumbnails
 	
+	[ ]get rid of ajax playlist deletion
+	[x]redirect create bookmark to user when it's for default playlist
+	[ ]dirty, require refresh
+	[ ]ttps
+	[ ]better edit-view mode switch and better delete link placement
+	[ ]back-and-authenticate
+	[ ]disable multiple ajax submits
 	[ ]notification about blank bookmark_url
 	[ ]notification about blank bookmark_name
 	[ ]handling errors
-	[ ]playlist edit page submit button
 ------------------------------------------------------------------
 potential changes:
 	bookmark urls model

@@ -6,7 +6,6 @@ class UserBookmarksController < ApplicationController
 	end
 
 	def create
-		logger.ap params
 		@playlist = current_user.playlists.find params[:playlist_id]
 		# if no url is given, 
 		if(!params[:user_bookmark][:bookmark_url_attributes][:url].nil?)
@@ -18,7 +17,7 @@ class UserBookmarksController < ApplicationController
 				@user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 				@bookmark_url = BookmarkUrl.new(params[:user_bookmark][:bookmark_url_attributes])
 				@user_bookmark.bookmark_url_id = @bookmark_url
-				@bookmark_url.user_bookmarks << @user_bookmark
+				@bookmark_url.user_bookmarks<< @user_bookmark
 			else
 				params[:user_bookmark].delete(:bookmark_url_attributes)
 				@user_bookmark = @playlist.user_bookmarks.build(params[:user_bookmark])
@@ -26,7 +25,11 @@ class UserBookmarksController < ApplicationController
 				@bookmark_url.user_bookmarks << @user_bookmark
 			end
 			if(@bookmark_url.save and @user_bookmark.save and @playlist.save)
-				redirect_to @playlist
+				if(current_user.default_list == @playlist)
+					redirect_to current_user
+				else
+					redirect_to @playlist
+				end
 			else
 				render 'new'
 			end
@@ -91,7 +94,34 @@ class UserBookmarksController < ApplicationController
 			# format.js {render :partial => 'update.js.erb'} #this needs to handle errors
 			# format.js {j render :partial =>'bookmark_fields', :layout => false, :locals => {:user_bookmark => @user_bookmark} } #this needs to handle errors
 		end
-	end 
+	end
+
+	def move
+		# logger.ap request.env
+		@source_playlist = current_user.playlists.find(params[:playlist_id])
+		@dest_playlist = Playlist.find(params[:destination])
+		@user_bookmark = @source_playlist.user_bookmarks.find(params[:id])
+		@bookmark_url = @user_bookmark.bookmark_url
+		@new_bookmark = @dest_playlist.user_bookmarks.build(:bookmark_name => @user_bookmark.bookmark_name)
+		@dest_playlist.user_bookmarks<<@new_bookmark
+		@bookmark_url.user_bookmarks<<@new_bookmark
+		@dest_playlist.save
+		@bookmark_url.save
+		if(params[:moveType]=='cut')
+			@user_bookmark.delete
+		end
+		respond_to do |format|
+			format.html { redirect_to user_path(current_user) }
+			format.json { 
+				# if(params[:moveType]=='cut')
+				resp = {"delete" => (params[:moveType]=='cut')}
+				render :json => resp
+				# else
+				# 	render :nothing => true
+				# end
+			}
+		end			
+	end
 
 	def destroy
 		@playlist = current_user.playlists.find params[:playlist_id]

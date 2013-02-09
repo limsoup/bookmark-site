@@ -3,15 +3,15 @@
 	Hi <%= current_user.username %><br />
 <% end %>
 </div>
-<%= form_for @user_bookmark, :url => 'http://localhost:3000/jsfiles/process_bookmarklet', :method => :post, :remote => true do |f| %> 
+<%= form_for @user_bookmark, :url => 'http://localhost:3000/jsfiles/process_bookmarklet', :html => { "data-type" => :json, :method => :post, :remote => true} do |f| %> 
 <table><th></th><th></th>
 <tr><td>
 <%= f.label :bookmark_name, 'Title' %></td><td>
 	<%= f.text_field :bookmark_name %><br /></td></tr>
-	<% if current_user.playlists.count > 0 %>
+	<% if current_user.lists.count > 0 %>
 		<tr><td>
 <%= label_tag 'playlist_id', 'Playlist' %></td><td>
-		<%= select_tag 'playlist_id', options_from_collection_for_select(current_user.playlists, "id","playlist_name"), :include_blank => true %>
+		<%= select_tag 'playlist_id', options_from_collection_for_select(current_user.lists, "id","playlist_name"), :include_blank => true %>
 	<% end %><br /></td></tr></table>
 	<%= link_to 'Book It!', '#', class: 'submit_link' %>
 	<%= link_to 'Cancel', '#', class: 'floatright' %>

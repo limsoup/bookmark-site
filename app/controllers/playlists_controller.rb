@@ -16,7 +16,7 @@ class PlaylistsController < ApplicationController
 	end
 
 	def show
-		@playlist = Playlist.find(params[:id])
+		@playlist = current_user.playlists.find(params[:id])
 	end
 
 	def edit
@@ -41,13 +41,33 @@ class PlaylistsController < ApplicationController
 	end
 
 	def index
-		@playlists = Playlist.all
+		@lists = current_user.lists 
 	end
 	
+	def destroy
+		@playlist = current_user.lists.find(params[:id])
+		users_list_ids = current_user.lists.pluck(:id)
+		@playlist.user_bookmarks.each do |ub|
+			other_playlists_with_url = UserBookmark.find_all_by_bookmark_url_id(ub.bookmark_url_id).pluck(:playlist_id)
+			if (users_list_ids & other_playlists_with_url).empty?	#later, I should write a function that aborts as soon as a match is found
+				current_user.default_list.user_bookmarks << ub;
+			else
+				ub.delete
+			end
+		end
+		@playlist.delete
+	end
+
+	def destroy_with_contents
+		@playlist = current_user.lists.find(params[:id])
+		@playlist.user_bookmarks.each {|ub| ub.delete }
+		@playlist.delete
+	end
+
 	private
 		def authorize_owner
 			@user = current_user
-			playlist = Playlist.find(params[:id])
+			playlist = @user.playlists.find(params[:id])
 			if(@user.nil?)
 				redirect_to login_path, :notice => "You have to be logged in as the owner of the playlist to access this funcationality"
 			else

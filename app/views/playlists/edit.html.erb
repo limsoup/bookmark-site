@@ -15,11 +15,11 @@
     <%= f.text_field :playlist_name %>
   </div>
   <div class="actions"><%= f.submit "Save" %></div>
+<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
 <% end %>
 <% @playlist.user_bookmarks.each do |user_bookmark| %>
 	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
 <% end %>
-<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
 
 <p>
 <%= link_to 'Playlist', @playlist%> |

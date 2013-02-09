@@ -11,10 +11,18 @@ $(function (){
 	}
 	$('body').append('<div id="bookmarklet"><div>');
 	$('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
+	$.ajaxSetup({
+	  headers: {'Origin': "*"}
+	});
 	$('#bookmarklet').on('click', 'a.submit_link', function(){
 		$(this).parents('#bookmarklet form').submit();
-	}).on('ajax:success', '#bookmarklet a.submit_link', function(event, data, status, xhr){
+	}).on('ajax:beforeSubmit', '#bookmarklet a.submit_link', function(event, data, status, xhr){
+			console.log(xhr.getRequestHeader('origin'));
+			// xhr.setRequestHeader('origin','http://localhost:3000');
+	}).on('ajax:success', '#bookmarklet a.submit_link', function(event, xhr, settings){
+			event.preventDefault()
 			$(this).parents('#bookmarklet').remove();
+			console.log(data);
 	});
 	$('#bookmarklet').on('click', 'a.floatright', function(){
 		$(this).parents('#bookmarklet').remove();

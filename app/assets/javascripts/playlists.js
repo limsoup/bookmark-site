@@ -17,12 +17,17 @@
 			$(this).parents('.bookmark').first().remove();
 		});
 		this.find('form').on('ajax:success', function(event, data, status, xhr){
-			$(this).parents('.bookmark').first().html(data).bookmarkSetup();
+			if($(this).is(event.target))
+			{
+				$(this).parents('.bookmark').first().html(data).bookmarkSetup();
+			}
 		});
-		//when input changes
-		this.find('input').on('change', function (){
-			$(this).siblings().first().hide().next().show().next().show();
+		//when edit fields input changes
+		this.find('input.edit_bookmark_fields').on('change', function (){
+			$(this).parent().siblings().first().hide().next().show().next().show().next('.move_bookmark').hide(); 
+			//hides the 'collapse', shows the 'reveal' and 'save', and hides the 'move'
 		});
+		//revert (show) or save (update)
 		this.find('.reload_edit_bookmark_button').on('ajax:success', function(event, data, status, xhr){
 			$(this).parents('.bookmark').first().html(data).bookmarkSetup();
 		});
@@ -31,17 +36,39 @@
 		}).on('ajax:success', function(event, data, status, xhr){
 			$(this).parents('.bookmark').first().html(data).bookmarkSetup();
 		});
-		//revert (show) or save (update)
-		//
+		//move bookmark
+		this.find('.move_bookmark_submit').on('ajax:before', function(event){
+			var sendBack = {};
+			sendBack.moveType = $(this).siblings('[name=user_bookmark_move]:checked').first().val();
+			sendBack.destination = $(this).siblings('[name=user_bookmark_move_paste]').first().val();
+			$(this).data('params',jQuery.param(sendBack));
+		}).on('ajax:success', function(event, data, status, xhr){
+			console.log('lol');
+			console.log(data);
+			if(data["delete"] == true)
+			{
+				console.log('data');
+				console.log(data);
+				$(this).parents('.bookmark').first().remove();
+			}
+			return false;
+		});
 	};
 })( jQuery );
 
+
+
+
 $(function() {
+	//--applies to edit playlist pages--
 	//hide HTML-Request New Bookmark Links
 	$('#add_bookmark_html').hide();
 	//unhide Javascript-Request New Bookmark Links
 	$('#add_bookmark_js').show();
-
 	//replaces bookmark div after update is successful on server's side
 	$('.bookmark').bookmarkSetup();
+	//--applies to pages where playlists can be edited--
+	$('.remove_playlist').on('ajax:success', function (event, data, status, xhr){
+		this.parents('.playlist_link').first().remove();
+	});
 });
