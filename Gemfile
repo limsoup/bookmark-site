@@ -5,17 +5,17 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+gem 'thin'
+gem 'validates_existence', '>= 0.4' #i'm not sure i need this anymore. i should probably find out exactly what it does
+gem "awesome_print" #will it work in heroku?
+gem 'jquery-rails'
 
 group :development do
 	gem 'sqlite3'
 	gem 'quiet_assets'
-	gem "awesome_print"
 	gem "haml"
-	gem 'thin'
 end
 
-gem 'validates_existence', '>= 0.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,7 +33,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
