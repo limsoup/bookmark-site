@@ -4,6 +4,13 @@
 		<li><%= ub.bookmark_name %></li>
 	<% end %>
 </ul>
+
+<div id="linkDrop">
+	<%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
+		<%= f.hidden_field :url %>
+		<%= f.hidden_field 'playlist_id', :value => @playlist.id %>
+	<% end %>
+</div>
 <p>
 <%= link_to 'Create New Playlist', new_playlist_path%> | 
 <%= link_to 'Playlist Index', playlists_path%> |

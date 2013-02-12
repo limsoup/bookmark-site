@@ -21,12 +21,13 @@ fixes:
 		controller:
 			[ ]create/update: mass assign problem
 			(FIX? Don't try and create bookmark_urls through the user_bookmarks)
+			(neverind =())
 		view:
 			edit:
 				[x]change edit link to have link to 'edit' in user_bookmarks
 	user:
 		model/controller
-			[ ]user has two kinds of playlists, a default playlist and regular actual playlists
+			[x]user has two kinds of playlists, a default playlist and regular actual playlists
 	user_bookmark:
 		[ ]local variables?
 		[x]controller:
@@ -39,7 +40,7 @@ Do now:
 	[x]update user_bookmarks 
 		[x]change controller
 		[x]edit button: prevent default, send to html
-		[ ]discard changes button
+		[x]discard changes button
 			[x]render bookmark
 			[x]submit button
 		[x]return js reply
@@ -50,7 +51,6 @@ Do now:
 		[x]delete 
 			[x]controller
 			[x]partial
-		---------	
 	[x]default playlist
 		[x]model
 		[x]controller
@@ -61,25 +61,41 @@ Do now:
 		[x]controller (in playlists controller? shouldn't be that hard)
 		[x]routing
 		[x]ajax method to playlist controller
+	[x]redirect create bookmark to user when it's for default playlist
+	[x]drag and drop
+		--controller--
+		[x]make controller
+		[x]create bookmark_url action (redirect_to new? or edit? user_bookmark)
+		[x]make sure that the user_bookmark create/update can handle this properly
+		--view--
+		[x]under playlist, create a large div
+			[x]form, hidden element, listeners
+	------------------		
 	[ ]handle bookmarklets
 		[x]submit
 		[ ]jquery check bookmarklet link, change second clause
+			[ ]add namespace to added jquery 	http://stackoverflow.com/questions/5978515/how-do-i-use-two-different-versions-of-jquery-side-by-side
 		[x]prevent redirect
 		[ ]notification
 		[ ]cross site xhr
-	[ ]drag and drop
-	[ ]thumbnails
-	
-	[ ]get rid of ajax playlist deletion
-	[x]redirect create bookmark to user when it's for default playlist
-	[ ]dirty, require refresh
-	[ ]ttps
-	[ ]better edit-view mode switch and better delete link placement
+	[ ]test moving items between playlists
+	[ ]https
 	[ ]back-and-authenticate
 	[ ]disable multiple ajax submits
-	[ ]notification about blank bookmark_url
-	[ ]notification about blank bookmark_name
-	[ ]handling errors
+	[ ]thumbnails
+	[ ]notification (use noty?)
+		[ ]ajax errors
+		[ ]html errors
+		[ ]warnings before submitting invalid data
+	[ ]better edit-view mode switch and better delete link placement
+	[ ]worries about ajax on invalid stuff
+		[ ]disable multiple submits
+		[ ]get rid of ajax playlist deletion
+		[ ]when data is dirty (from another tab or something), require refresh
+	[ ]embed players
+
+	9:58
+	10:34
 ------------------------------------------------------------------
 potential changes:
 	bookmark urls model
@@ -92,19 +108,13 @@ I don't know what this means for it:
 
 ------------------------------------------------------------------
 
-change bookmark connections, not it's 
-add separate methods for all the stuff
+connections to allow:
 
-
----open as possible w/o compromising---
-
+multiple-degree connections
 
 users following users:
-	"self join has many thing"
-	has_many :followers, :class_name => "Employee",
-    :foreign_key => "follower_id"
-  has_many :manager, :class_name => "Employee"
 
 users following playlists
 
-bookmarks having playlists and users
+bookmarks showing who has  playlists and users
+

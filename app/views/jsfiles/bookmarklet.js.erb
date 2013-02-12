@@ -12,13 +12,12 @@ $(function (){
 	$('body').append('<div id="bookmarklet"><div>');
 	$('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
 	$.ajaxSetup({
-	  headers: {'Origin': "*"}
+		crossDomain: true,
 	});
 	$('#bookmarklet').on('click', 'a.submit_link', function(){
 		$(this).parents('#bookmarklet form').submit();
 	}).on('ajax:beforeSubmit', '#bookmarklet a.submit_link', function(event, data, status, xhr){
-			console.log(xhr.getRequestHeader('origin'));
-			// xhr.setRequestHeader('origin','http://localhost:3000');
+    xhr.setRequestHeader('X-CSRF-Token', $('#bookmarklet meta[name="csrf-token"]').attr('content'));
 	}).on('ajax:success', '#bookmarklet a.submit_link', function(event, xhr, settings){
 			event.preventDefault()
 			$(this).parents('#bookmarklet').remove();

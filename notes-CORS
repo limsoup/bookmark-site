@@ -1,0 +1,33 @@
+$.ajaxSetup({
+	crossDomain:true;
+});
+
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true 					#this is required, we use cookies
+
+1. preflight request
+	headers:
+		HTTP Verb: OPTIONS
+
+		-Request-
+		Access-Control-Request-Method: PUT  (because we're going to submit a form)
+		Access-Control-Request-Headers: credentials,... (i thought this was where credentials went)
+			any others? examine a GET, POST, GET xhr, and POST xhr to find out what should be in them
+		
+		-Allow-
+		Access-Control-Allow-Origin (required): *
+		Access-Control-Allow-Methods (required): GET, POST (may need get, but not sure for what since it already loads the bookmarklet without this. maybe test by removing ACH already in Application Controller)
+		Access-Control-Allow-Headers (i thought this included credentials)
+		Access-Control-Allow-Credentials (optional)
+
+recieve
+
+2. actual request
+simple request
+
+
+steps:
+
+1. setup response headers in ApplicationController
+
+i think it's okay if we accept from any site since we have csrf-protection

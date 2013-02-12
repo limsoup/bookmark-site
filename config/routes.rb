@@ -6,6 +6,7 @@ BookmarkSite::Application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
+  get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   
   match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :post
@@ -15,6 +16,8 @@ BookmarkSite::Application.routes.draw do
   resources :playlists do
     resources :user_bookmarks
   end
+
+  resources :bookmark_urls, :only => [:create]
 
   resources :users
   resources :sessions
