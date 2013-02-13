@@ -1,0 +1,4 @@
+problems that include routing, the asset pipeline, config, the model, or the database require a restart of the rails application
+
+jquery: test problems and assumptions call-by-call.
+	.find() doesn't do what you think it does

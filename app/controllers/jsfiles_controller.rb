@@ -4,17 +4,18 @@ class JsfilesController < ApplicationController
 		@user_bookmark = UserBookmark.new
 		respond_to do |format|
 			format.js {logger.ap "Requesting JS"
-				render 'bookmarklet.js.erb'}
+				render 'bookmarklet'}
 			format.html {logger.ap "Requesting HTML"
-				render 'bookmarklet_content.html.erb'}
+				render 'bookmarklet_content'}
 		end
 	end
 
 	def process_bookmarklet
-		# logger.ap params
-		# logger.ap request.env
+		if request.xhr?
+			logger.ap "request was xhr type"
+		end
 		# add to default playlist if no playlist is selected
-		if(params[:playlist_id].empty?)
+		if(params[:playlist_id] == "")
 			@user_bookmark = current_user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		else
 			@user_bookmark = current_user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
@@ -36,6 +37,20 @@ class JsfilesController < ApplicationController
 		@user_bookmark.save
 		respond_to do |format|
 			format.json { render :json => {"successful"=> true} }
+			format.html { 
+				logger.ap "html bookmarklet request"
+				render :json => {"successful"=> true} 
+			}
+		end
+	end
+
+	def preflight
+		respond_to do |format|
+			format.json { render :json => {"pre-preflight successful"=> true} }
+			format.html { 
+				logger.ap "html pre pre flight request"
+				render :json => {"pre-preflight successful"=> true}
+			}
 		end
 	end
 end

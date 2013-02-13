@@ -4,10 +4,14 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 
 	def set_access_control_headers
-	  headers['Access-Control-Allow-Origin'] = '*'
+		#can i access the currentUser here?
+		logger.ap current_user.username
+	  headers['Access-Control-Allow-Origin'] = 'http://arnab-deka.com'
+	  headers['Access-Control-Request-Method'] = 'POST, OPTIONS'
     headers['Access-Control-Expose-Headers'] = 'ETag'
     headers['Access-Control-Allow-Methods'] = 'GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD'
-    headers['Access-Control-Allow-Headers'] = '*,x-requested-with,Content-Type,If-Modified-Since,If-None-Match'
+    headers['Access-Control-Allow-Credentials'] = 'true'
+    headers['Access-Control-Allow-Headers'] = '*,X-CSRF-Token,x-requested-with,Content-Type,If-Modified-Since,If-None-Match'
     headers['Access-Control-Max-Age'] = '86400'
 	end
 	

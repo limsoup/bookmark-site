@@ -8,8 +8,9 @@ BookmarkSite::Application.routes.draw do
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
   get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
+  match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
   
-  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :post
+  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => [:post, :options]
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 

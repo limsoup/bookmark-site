@@ -61,6 +61,6 @@ module BookmarkSite
     # to prevent the problem with rails trying to connect to the database on precompile
     # http://blog.nathanhumbert.com/2012/01/rails-32-on-heroku-tip.html
     config.assets.initialize_on_precompile = false
-
+    config.middleware.insert_before ActionDispatch::Static, Rack::SSL, :exclude => proc { |env| env['HTTPS'] != 'on' }
   end
 end

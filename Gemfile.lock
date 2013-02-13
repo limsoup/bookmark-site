@@ -124,6 +124,7 @@ DEPENDENCIES
   jquery-rails
   pg
   quiet_assets
+  rack-ssl
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
   sqlite3

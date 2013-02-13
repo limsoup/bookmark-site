@@ -4,6 +4,8 @@ gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rack-ssl', :require => 'rack/ssl'
+
 
 gem 'thin'
 gem 'validates_existence', '>= 0.4' #i'm not sure i need this anymore. i should probably find out exactly what it does

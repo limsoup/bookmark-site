@@ -1,4 +1,4 @@
-$(function (){
+$bookmarklet(function (){
 	var newSS, styles='#bookmarklet * {margin:4px;} #bookmarklet {background: #A6FFAD;font-size:10px;border-radius: 10px;border: 1px solid;width: 300px;top: 5px;right: 30%;position:fixed;z-index:999998;} #bookmarklet  .floatright {float:right;}';
 	if(document.createStyleSheet) { 
 		document.createStyleSheet("javascript:'"+styles+"'");
@@ -9,21 +9,58 @@ $(function (){
 		newSS.href='data:text/css,'+escape(styles);
 		document.getElementsByTagName("head")[0].appendChild(newSS);
 	}
-	$('body').append('<div id="bookmarklet"><div>');
-	$('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
-	$.ajaxSetup({
-		crossDomain: true,
+	$bookmarklet('body').append('<div id="bookmarklet"><div>');
+	$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
+	//preflight
+	$bookmarklet.ajax({
+			url: $bookmarklet('#bookmarklet form').attr('action'),
+			type: 'OPTIONS',
+			dataType:'json',
+			success: function(data, textStatus, xhr){
+				console.log('preflight success');
+				console.log(data);
+			},
+			// beforeSend: function(xhr, settings){
+			// 	xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
+			// },
+			// xhrFields: {
+			// 	withCredentials: true
+			// },
+			crossDomain: true
 	});
-	$('#bookmarklet').on('click', 'a.submit_link', function(){
-		$(this).parents('#bookmarklet form').submit();
-	}).on('ajax:beforeSubmit', '#bookmarklet a.submit_link', function(event, data, status, xhr){
-    xhr.setRequestHeader('X-CSRF-Token', $('#bookmarklet meta[name="csrf-token"]').attr('content'));
-	}).on('ajax:success', '#bookmarklet a.submit_link', function(event, xhr, settings){
-			event.preventDefault()
-			$(this).parents('#bookmarklet').remove();
-			console.log(data);
+	//actual
+	$bookmarklet('#bookmarklet').on('click', 'a.submit_link', function(){
+		// $bookmarklet(this).parents('#bookmarklet form').submit();
+		var postData = $bookmarklet('#bookmarklet form').serialize();
+		$bookmarklet.ajax({
+			url: $bookmarklet('#bookmarklet form').attr('action'),
+			type: 'POST',
+			data: postData,
+			dataType:'json',
+			success: function(data, textStatus, xhr){
+				$bookmarklet('#bookmarklet table').html("<h2>Success</h2>");
+				$bookmarklet('#bookmarklet .submit_link').remove();
+				$bookmarklet('#bookmarklet').children().last().prev().remove();
+			},
+			beforeSend: function(xhr, settings){
+				xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
+			},
+			crossDomain: true,
+			xhrFields: {
+				withCredentials: true
+			}
+		});
 	});
-	$('#bookmarklet').on('click', 'a.floatright', function(){
-		$(this).parents('#bookmarklet').remove();
+
+	// .on('ajax:beforeSubmit', '#bookmarklet a.submit_link', function(event, data, status, xhr){
+ //    xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
+	// }).on('ajax:success', '#bookmarklet a.submit_link', function(event, xhr, settings){
+	// 		event.preventDefault()
+	// 		$bookmarklet(this).parents('#bookmarklet').remove();
+	// 		console.log('complete');
+	// 		console.log(data);
+	// });
+	$bookmarklet('#bookmarklet').on('click', 'a.floatright', function(){
+		$bookmarklet(this).parents('#bookmarklet').remove();
 	});
 });

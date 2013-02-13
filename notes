@@ -78,6 +78,7 @@ Do now:
 		[x]prevent redirect
 		[ ]notification
 		[ ]cross site xhr
+	[ ]troubleshoot editing
 	[ ]test moving items between playlists
 	[ ]https
 	[ ]back-and-authenticate
@@ -93,7 +94,7 @@ Do now:
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh
 	[ ]embed players
-
+	[ ]try http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
 	9:58
 	10:34
 ------------------------------------------------------------------
