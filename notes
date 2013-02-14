@@ -71,14 +71,13 @@ Do now:
 		[x]under playlist, create a large div
 			[x]form, hidden element, listeners
 	------------------		
-	[ ]handle bookmarklets
+	[x]handle bookmarklets
 		[x]submit
-		[ ]jquery check bookmarklet link, change second clause
-			[ ]add namespace to added jquery 	http://stackoverflow.com/questions/5978515/how-do-i-use-two-different-versions-of-jquery-side-by-side
 		[x]prevent redirect
-		[ ]notification
-		[ ]cross site xhr
-	[ ]troubleshoot editing
+		[x]notification
+		[x]cross site xhr
+	[x]troubleshoot editing
+	[ ]embed players
 	[ ]test moving items between playlists
 	[ ]https
 	[ ]back-and-authenticate
@@ -93,7 +92,6 @@ Do now:
 		[ ]disable multiple submits
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh
-	[ ]embed players
 	[ ]try http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
 	9:58
 	10:34

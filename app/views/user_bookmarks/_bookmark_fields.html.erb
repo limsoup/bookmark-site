@@ -29,6 +29,7 @@
 				<%= link_to "Remove Bookmark", [@playlist, user_bookmark], :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this bookmark?", class: "remove_bookmark" %> <br />
 				<%= f.hidden_field :id %>
 			</div>
+			<%= embedVideo user_bookmark.bookmark_url.url %>
 		</fieldset>
 	<% end %>
 	</div>

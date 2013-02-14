@@ -11,14 +11,15 @@ class JsfilesController < ApplicationController
 	end
 
 	def process_bookmarklet
-		if request.xhr?
-			logger.ap "request was xhr type"
-		end
+		# logger.ap request.env['Bookmarklet-User-key']
+		@current_user = User.find_by_bookmarklet_user_key(params['bookmarklet_user_key']);
+		@current_user.reset_bookmarklet_user_key
+		@current_user.save
 		# add to default playlist if no playlist is selected
 		if(params[:playlist_id] == "")
-			@user_bookmark = current_user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+			@user_bookmark = @current_user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		else
-			@user_bookmark = current_user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+			@user_bookmark = @current_user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		end
 		# @user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 		url = request.env["HTTP_REFERER"]	#something from request

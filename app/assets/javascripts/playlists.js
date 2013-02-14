@@ -23,7 +23,7 @@
 			}
 		});
 		//when edit fields input changes
-		this.find('input.edit_bookmark_fields').on('change', function (){
+		this.find('.edit_bookmark_fields input').on('change', function (){
 			$(this).parent().siblings().first().hide().next().show().next().show().next('.move_bookmark').hide(); 
 			//hides the 'collapse', shows the 'reveal' and 'save', and hides the 'move'
 		});

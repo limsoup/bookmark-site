@@ -2,3 +2,5 @@ problems that include routing, the asset pipeline, config, the model, or the dat
 
 jquery: test problems and assumptions call-by-call.
 	.find() doesn't do what you think it does
+
+cross site xhr is fine as long as withCredentials isn't involved. still have to do CORS

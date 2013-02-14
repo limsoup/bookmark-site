@@ -10,7 +10,7 @@ BookmarkSite::Application.routes.draw do
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
   
-  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => [:post, :options]
+  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :options
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 

@@ -13,6 +13,8 @@
 <% end %>
 <h2>Uncategorized Bookmarks</h2>
 <%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@default_list)  %>
+<%= label_tag '#', 'filter'%>
+<%= search_field(:user, :name) %>
 <% @default_list.user_bookmarks.each do |user_bookmark| %>
 	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark, :@playlist => @default_list} %>
 <% end %>

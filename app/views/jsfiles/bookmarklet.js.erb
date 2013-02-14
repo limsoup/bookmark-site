@@ -11,23 +11,23 @@ $bookmarklet(function (){
 	}
 	$bookmarklet('body').append('<div id="bookmarklet"><div>');
 	$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
-	//preflight
-	$bookmarklet.ajax({
-			url: $bookmarklet('#bookmarklet form').attr('action'),
-			type: 'OPTIONS',
-			dataType:'json',
-			success: function(data, textStatus, xhr){
-				console.log('preflight success');
-				console.log(data);
-			},
-			// beforeSend: function(xhr, settings){
-			// 	xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
-			// },
-			// xhrFields: {
-			// 	withCredentials: true
-			// },
-			crossDomain: true
-	});
+	//pre-preflight
+	// $bookmarklet.ajax({
+	// 		url: $bookmarklet('#bookmarklet form').attr('action'),
+	// 		type: 'OPTIONS',
+	// 		dataType:'json',
+	// 		success: function(data, textStatus, xhr){
+	// 			console.log('preflight success');
+	// 			console.log(data);
+	// 		},
+	// 		// beforeSend: function(xhr, settings){
+	// 		// 	xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
+	// 		// },
+	// 		// xhrFields: {
+	// 		// 	withCredentials: true
+	// 		// },
+	// 		crossDomain: true
+	// });
 	//actual
 	$bookmarklet('#bookmarklet').on('click', 'a.submit_link', function(){
 		// $bookmarklet(this).parents('#bookmarklet form').submit();
@@ -46,9 +46,9 @@ $bookmarklet(function (){
 				xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
 			},
 			crossDomain: true,
-			xhrFields: {
-				withCredentials: true
-			}
+			// xhrFields: {
+			// 	withCredentials: true
+			// }
 		});
 	});
 
