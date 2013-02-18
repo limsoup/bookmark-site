@@ -12,28 +12,23 @@ class JsfilesController < ApplicationController
 
 	def process_bookmarklet
 		# logger.ap request.env['Bookmarklet-User-key']
-		@current_user = User.find_by_bookmarklet_user_key(params['bookmarklet_user_key']);
-		@current_user.reset_bookmarklet_user_key
-		@current_user.save
+		@user = User.find_by_bookmarklet_user_key(params['bookmarklet_user_key']);
+		@user.reset_bookmarklet_user_key
+		@user.save
 		# add to default playlist if no playlist is selected
-		if(params[:playlist_id] == "")
-			@user_bookmark = @current_user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+		if (params[:playlist_id].nil? or params[:playlist] == '')
+			@user_bookmark = @user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		else
-			@user_bookmark = @current_user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+			@user_bookmark = @user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		end
 		# @user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 		url = request.env["HTTP_REFERER"]	#something from request
 		@bookmark_url = BookmarkUrl.find_by_url(url)
 		#if bookmark_url doesn't exist submit new bookmark and bookmark url
 		#else if it does exist add connection
-		if @bookmark_url.nil?
-			@bookmark_url = BookmarkUrl.new(:url => url)
-			@user_bookmark.bookmark_url_id = @bookmark_url.id
-			@bookmark_url.user_bookmarks << @user_bookmark
-		else
-			@user_bookmark.bookmark_url_id = @bookmark_url.id
-			@bookmark_url.user_bookmarks << @user_bookmark
-		end
+		@bookmark_url = BookmarkUrl.create(:url => url) if @bookmark_url.nil?
+		@user_bookmark.bookmark_url_id = @bookmark_url.id
+		@bookmark_url.user_bookmarks << @user_bookmark
 		@bookmark_url.save
 		@user_bookmark.save
 		respond_to do |format|

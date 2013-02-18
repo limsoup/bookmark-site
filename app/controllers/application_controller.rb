@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	after_filter :set_access_control_headers
+	before_filter :set_access_control_headers
 	
 	protect_from_forgery
 

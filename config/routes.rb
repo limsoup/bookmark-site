@@ -20,6 +20,9 @@ BookmarkSite::Application.routes.draw do
 
   resources :bookmark_urls, :only => [:create]
 
+  match 'users/temp(.:format)' => 'users#temp', :as => :temp_users, :via => :get
+  match 'users/create_temp(.:format)' => 'users#create_temp', :as => :create_temp_users, :via => :get
+  
   resources :users
   resources :sessions
   # The priority is based upon order of creation:

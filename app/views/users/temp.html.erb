@@ -1,0 +1,22 @@
+<% unless @user.nil? %>
+	<% if @user.errors.any? %>
+	  <div class="error_messages">
+	    <h2>Form is invalid</h2>
+	    <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+<% end %>
+
+<h1>save your changes</h1>
+
+<p>you can save your changes without making an actual account. we do have to use a cookie for that but of course it doesn't store anything personal and we won't share it so anybody so that someone could use it to track you. it's just a random sequence of letters and numbers. </p>
+
+<p>just finish the task below to prove you're a human. then, as long as you don't clear your cookies, you'll be able to add and access your changes on this computer. later, if you want, you can make yourself a username and password so you can access and add links anywhere, as well as log in and out, (and maybe more if we figure out more stuff for users to be able to do) </p>
+
+<h3>Task:</h3>
+<%= link_to 'Click Me', create_temp_users_path, :id => 'create_temp_link' %><!-- 
+<%= link_to 'Click Me', create_temp_users_path, :method => :post, :remote => true, :id => 'create_temp_link' %> -->

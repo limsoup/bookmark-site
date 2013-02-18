@@ -9,9 +9,9 @@
 <tr><td>
 	<%= f.label :bookmark_name, 'Title' %></td><td>
 	<%= f.text_field :bookmark_name %><br /></td></tr>
+	<%= hidden_field_tag 'bookmarklet_user_key', current_user.bookmarklet_user_key %>
 	<% if current_user.lists.count > 0 %>
 		<tr><td>
-	<%= hidden_field_tag 'bookmarklet_user_key', current_user.bookmarklet_user_key %>
 	<%= label_tag 'playlist_id', 'Playlist' %></td><td>
 		<%= select_tag 'playlist_id', options_from_collection_for_select(current_user.lists, "id","playlist_name"), :include_blank => true %>
 	<% end %><br /></td></tr></table>

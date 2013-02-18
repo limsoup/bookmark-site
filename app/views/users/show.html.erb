@@ -11,13 +11,15 @@
     </div>
   <% end %>
 <% end %>
+<div id="uncategorized">
 <h2>Uncategorized Bookmarks</h2>
-<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@default_list)  %>
-<%= label_tag '#', 'filter'%>
-<%= search_field(:user, :name) %>
+<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@default_list)  %><br />
+<%= label_tag 'filter_uncategorized', 'Filter Uncategorized Bookmarks'%><br />
+<%= search_field_tag 'filter_uncategorized' %>
 <% @default_list.user_bookmarks.each do |user_bookmark| %>
 	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark, :@playlist => @default_list} %>
 <% end %>
+</div>
 <br /><br />
 <h2>Playlists</h2>
 <ul>

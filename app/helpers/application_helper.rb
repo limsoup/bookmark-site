@@ -10,8 +10,8 @@ module ApplicationHelper
 				embed="<iframe src=\"http://flashservice.xvideos.com/embedframe/REPLACEME\"frameborder=0 width=510 height=400 scrolling=no></iframe>"
 				return embed.sub(/REPLACEME/, parts[5].match(/[0-9]+/).to_s).html_safe
 			when 'www.redtube.com', 'redtube.com'
-				embed="<object height=\"344\" width=\"434\"><param name=\"allowfullscreen\" value=\"true\"><param name=\"AllowScriptAccess\" value=\"always\"><param name=\"movie\" value=\"http://embed.redtube.com/player/\"><param name=\"FlashVars\" value=\"id=REPLACEME&style=redtube&autostart=false\"><embed src=\"http://embed.redtube.com/player/?id=308196&style=redtube\" allowfullscreen=\"true\" AllowScriptAccess=\"always\" flashvars=\"autostart=false\" pluginspage=\"http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash\" type=\"application/x-shockwave-flash\" height=\"344\" width=\"434\" /></object>"
-				return embed.sub(/REPLACEME/, parts[5].match(/[0-9]+/).to_s).html_safe
+				embed="<object height=\"344\" width=\"434\"><param name=\"allowfullscreen\" value=\"true\"><param name=\"movie\" value=\"http://embed.redtube.com/player/\"><param name=\"FlashVars\" value=\"id=REPLACEME&style=redtube&autostart=false\"><embed src=\"http://embed.redtube.com/player/?id=REPLACEME&style=redtube\" allowfullscreen=\"true\" AllowScriptAccess=\"always\" flashvars=\"autostart=false\" pluginspage=\"http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash\" type=\"application/x-shockwave-flash\" height=\"344\" width=\"434\" /></object>"
+				return embed.gsub(/REPLACEME/, parts[5].match(/[0-9]+/).to_s).html_safe
 			when 'www.xhamster.com', 'xhamster.com'
 				embed="<iframe width=\"510\" height=\"400\" src=\"http://xhamster.com/xembed.php?video=REPLACEME\" frameborder=\"0\" scrolling=\"no\"></iframe>"
 				return embed.sub(/REPLACEME/, parts[5].match(/[0-9]+/).to_s).html_safe
@@ -20,4 +20,4 @@ module ApplicationHelper
 		return nil
 	end
 end
-URI.split("http://xhamster.com/movies/218308/gameday_lesbians_scissor.html")
+#<param name=\"AllowScriptAccess\" value=\"always\">

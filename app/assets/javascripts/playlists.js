@@ -69,6 +69,21 @@ $(function() {
 	$('.remove_playlist').on('ajax:success', function (event, data, status, xhr){
 		this.parents('.playlist_link').first().remove();
 	});
+	//--applies to filter
+	$('#filter_uncategorized').on('change', function(){
+			//keep visible
+			if($('#filter_uncategorized').val() == ''){
+				$('.bookmark').show();
+			}
+			else{
+				console.log('filtering');
+				$('.bookmark').filter( function(index){
+					if ($(this).find('a').first().text().toLowerCase().search($('#filter_uncategorized').val().toLowerCase()) == -1){
+						$(this).hide();
+					}
+				});
+			}
+		});
 	//--applies to playlist#show which has linkDrop
 
 	$('#linkDrop').on('dragover dragenter', function (e) {
@@ -82,19 +97,8 @@ $(function() {
 				if(type == 'text/uri-list'){
 					console.log( e.originalEvent.dataTransfer.getData(type).toString());
 					gUrl = e.originalEvent.dataTransfer.getData(type).toString();
-					// var buData = {bookmark_url: e.originalEvent.dataTransfer.getData(type)};
 					$('#linkDrop input[name="bookmark_url[url]"]').attr('value', e.originalEvent.dataTransfer.getData(type).toString());
-					//console.log(e.originalEvent.dataTransfer.getData(type));
 					$('#linkDrop form').submit();
-					// var n = document.URL.match(/playlists\/[0-9]+/);
-					// if (n != null)
-					// 	buData['playlist_id'] = (n[0].match(/[0-9]+/))[0];
-					// $.ajax({
-					// 	type: 'POST',
-					// 	url: '/bookmark_urls',
-					// 	data: $.param(buData),
-					// 	dataType: 'html' 
-					// });
 				}
 			});
 		}
