@@ -1,25 +1,9 @@
-
-automatic-user
-	routing
-	controller
-	form in new user
-	save user
-	display remember_token
-test
+remove reddit logo
 
 read
 	session expiry
 
-automatic-user
-	converting a temp user to a full user
-
-upload
-
-test
-
 can't confirm CSRF token validity
-
-validation for user: password can be blank if username is blank
 
 sharing cookies
 ensuring remember tokens are unique

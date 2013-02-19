@@ -12,8 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require_tree .
-
-//create new global directory and move to it
-//debug statement
-//test playlist.js

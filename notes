@@ -18,10 +18,6 @@ features:
 ------------------------------------------------------------------
 fixes:
 	playlist:
-		controller:
-			[ ]create/update: mass assign problem
-			(FIX? Don't try and create bookmark_urls through the user_bookmarks)
-			(neverind =())
 		view:
 			edit:
 				[x]change edit link to have link to 'edit' in user_bookmarks
@@ -70,18 +66,26 @@ Do now:
 		--view--
 		[x]under playlist, create a large div
 			[x]form, hidden element, listeners
-	------------------		
 	[x]handle bookmarklets
 		[x]submit
 		[x]prevent redirect
 		[x]notification
 		[x]cross site xhr
 	[x]troubleshoot editing
-	[ ]embed players
-	[ ]test moving items between playlists
+	[x]embed players
+	[x]test moving items between playlists
+		------------------		
+	[ ]styling
+		[ ]playlist - 3 column
+	[ ]read about session expiry
+	[ ]embedding
+		[ ]lazy embedding
+		[ ]iframe for objects
+	[ ]ensuring remember tokens & bookmarklet keys are unique
+	[ ]sharing cookies/privacy
+	[ ]csrf validity
 	[ ]https
 	[ ]back-and-authenticate
-	[ ]disable multiple ajax submits
 	[ ]thumbnails
 	[ ]notification (use noty?)
 		[ ]ajax errors
@@ -92,12 +96,11 @@ Do now:
 		[ ]disable multiple submits
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh
-	[ ]try http://collectiveidea.com/blog/archives/2010/11/29/ssl-with-rails/
-	9:58
-	10:34
+
 ------------------------------------------------------------------
 potential changes:
 	bookmark urls model
+		adding a playlist_url model
 		indexing
 		adding a counter
 		storing when different URLs go to the same page

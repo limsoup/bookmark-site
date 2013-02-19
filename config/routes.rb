@@ -14,6 +14,12 @@ BookmarkSite::Application.routes.draw do
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 
+  get 'home', to: 'static_pages#home', as: 'home'
+  get 'about', to: 'static_pages#about', as: 'about'
+  get 'how', to: 'static_pages#how', as: 'how'
+  get 'privacy', to: 'static_pages#privacy', as: 'privacy'
+  get 'contact', to: 'static_pages#contact', as: 'contact'
+
   resources :playlists do
     resources :user_bookmarks
   end
