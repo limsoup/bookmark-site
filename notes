@@ -25,7 +25,6 @@ fixes:
 		model/controller
 			[x]user has two kinds of playlists, a default playlist and regular actual playlists
 	user_bookmark:
-		[ ]local variables?
 		[x]controller:
 			[x]make a 'destroy' method
 			[x]make an 'edit/update' method
@@ -76,23 +75,38 @@ Do now:
 	[x]test moving items between playlists
 		------------------		
 	[ ]styling
-		[ ]playlist - 3 column
-	[ ]read about session expiry
+		[x]detail
+			[x]on to update and revert
+				[x]revert
+				[x]update
+			[x]get those funcitons out of bookmarkSetup
+		[ ]sidebar
+			[ ]read about layout and yield and shit
+			[ ]changes
+		[ ]login
+		[ ]pages
+			[ ]bookmarklet/how-to page
+			[ ]new bookmark
+			[ ]drag and drop modal window
 	[ ]embedding
 		[ ]lazy embedding
 		[ ]iframe for objects
 	[ ]ensuring remember tokens & bookmarklet keys are unique
-	[ ]sharing cookies/privacy
-	[ ]csrf validity
-	[ ]https
-	[ ]back-and-authenticate
 	[ ]thumbnails
+		[ ]pulling
+		[ ]container
+		[ ]optional display
+	[ ]read
+		[ ]sharing cookies/privacy
+		[ ]csrf validity
+		[ ]read about session expiry
+		[ ]https
+	[ ]back-and-authenticate
 	[ ]notification (use noty?)
 		[ ]ajax errors
 		[ ]html errors
 		[ ]warnings before submitting invalid data
-	[ ]better edit-view mode switch and better delete link placement
-	[ ]worries about ajax on invalid stuff
+	[ ]ajax on invalid things
 		[ ]disable multiple submits
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh

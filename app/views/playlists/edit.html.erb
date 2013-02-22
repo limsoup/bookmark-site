@@ -1,28 +1,32 @@
 <h1>Editing Playlist</h1>
-<%= form_for @playlist do |f| %>
-  <% if @playlist.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @playlist.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="row-fluid">
+  <div class="span6" id="bookmark_list_view">
+    <%= form_for @playlist do |f| %>
+      <% if @playlist.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% @playlist.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.label :playlist_name %><br />
+        <%= f.text_field :playlist_name %>
+      <div class="actions"><%= f.submit "Save" %></div>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :playlist_name %><br />
-    <%= f.text_field :playlist_name %>
+    <% end %>
+    <%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
+    <%= label_tag 'filter_bookmarks', 'Filter Bookmarks'%>
+    <%= search_field_tag 'filter_bookmarks' %>
+    <% @playlist.user_bookmarks.each do |user_bookmark| %>
+    	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+    <% end %>
   </div>
-  <div class="actions"><%= f.submit "Save" %></div>
-<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
-<% end %>
-<% @playlist.user_bookmarks.each do |user_bookmark| %>
-	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
-<% end %>
-
-<p>
-<%= link_to 'Playlist', @playlist%> |
-<%= link_to 'Create New Playlist', new_playlist_path%> | 
-<%= link_to 'Playlist Index', playlists_path%>
-</p>
+  <div class="span6" id="detail_bookmark_view_container">
+    <div id="detail_bookmark_view">
+    </div>
+  </div>
+</div>

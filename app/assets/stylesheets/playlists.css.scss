@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+//list classes
 
 .show_bookmark {
 	height:30px;
@@ -13,38 +14,84 @@
 	margin:3px
 }
 
-.edit_bookmark{
+.edit_bookmark_button {
+	margin:5px;
+	float: right;
+}
+//detail classes
+#detail_bookmark_view {
+	margin:10px;
+	border:4px;
+}
+
+#detail_bookmark_view_container{
+	height:100%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.detail_container_color{
+	background:#A6FFAD;
+}
+
+.detail_bookmark{
 	display:none;
-	fieldset {
-		background:#A6FFAD;
+}
+
+//detail action classes
+.show_bookmark_detail, .edit_bookmark_fields, .watch_bookmark, .move_bookmark {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #86DF8D;
+  border: 1px solid #96EF9D;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.show_bookmark_detail {
+}
+
+.edit_bookmark_fields {
+	display:none;
+	label {
+		display:inline;
+	}
+	input {
+		position:relative;
+		left: 20px;
 	}
 }
 
-.edit_bookmark_button {
-	float:right;
-	margin: 5px;
-}
-.show_bookmark_button {
-	float:right;
-	margin: 10px;
-}
-
-.update_bookmark_button{
-	float:right;
+.watch_bookmark {
 	display:none;
-	margin: 10px;
-}
-.reload_edit_bookmark_button {
-	float:right;
-	display:none;
-	margin: 10px;
 }
 
 .move_bookmark {
-	position:relative;
-	right:40%;
-	float:right;
+	display:none;
 }
+
+
+//action buttons
+
+.edit_link, .collapse_link, .move_link, .remove_link {
+	float:right;
+	margin: 10px;
+	//border-radius:10px;
+}
+
+.save_link, .revert_link{
+	float:right;
+	display:none;
+	margin: 10px;
+}
+
+//playlist list
 
 .playlist_link_indent {
 	float:right;

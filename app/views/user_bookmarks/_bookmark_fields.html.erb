@@ -3,34 +3,55 @@
 		<%= link_to ((user_bookmark.bookmark_name.nil?) ? user_bookmark.bookmark_url.url : user_bookmark.bookmark_name ),user_bookmark.bookmark_url.url%>
 		<%= link_to 'edit', edit_playlist_user_bookmark_path(@playlist, user_bookmark), class: 'edit_bookmark_button' %>
 	</div>
-	<div class="edit_bookmark">
-	<%= form_for user_bookmark, :url => [@playlist, user_bookmark] , :html => {:method => :put, "data-type" => "html"}, :remote => :true do |f| %>
+	<div class="detail_bookmark">
 	  <fieldset>
-	  	<%= link_to 'collapse', '#', class: 'show_bookmark_button' %>
-	  	<%= link_to 'revert',  edit_playlist_user_bookmark_path(@playlist, user_bookmark) , class: 'reload_edit_bookmark_button', :html =>{"data-type" => "html"}, :remote => true %>
-	  	<%= link_to 'save', '#', class: 'update_bookmark_button' %>
-	  	<% if current_user.lists.count > 1 %>
-	  	<div class="move_bookmark">
-	  		<br />
-	  		<%= radio_button_tag 'user_bookmark_move', 'copy' %><%= label_tag 'user_bookmark_move_copy', 'copy'%> <br />
-	  		<%= radio_button_tag 'user_bookmark_move', 'cut' %><%= label_tag 'user_bookmark_move_cut', 'cut' %> <br />
-	  		<%= label_tag 'user_bookmark_move_paste', 'and paste to'%><br />
-	  		<%= select_tag 'user_bookmark_move_paste', options_from_collection_for_select((current_user.lists-[user_bookmark.playlist,current_user.default_list]), "id","playlist_name") %>
-	  		<%= link_to "move bookmark", '/playlists/'+@playlist.id.to_s+'/user_bookmarks/'+user_bookmark.id.to_s+'/move', class:"move_bookmark_submit", :remote => true, :method => :post, "data-type" => "json" %>
+	  	<%= link_to 'collapse', '#', class: 'collapse_link btn btn-mini btn-primary', "data-toggle" =>"button", "type"=>"button" %>
+			<%= link_to('edit', '#', class: 'edit_link btn btn-mini btn-primary', "data-toggle" =>"button", "type"=>"button") if user_bookmark.playlist.user == current_user %>
+			<%= link_to 'move', '#', class: 'move_link btn btn-mini btn-primary', "data-toggle" =>"button", "type"=>"button" %>
+			<%= link_to('watch', '#', class: 'watch_link btn btn-mini btn-primary', "data-toggle" =>"button", "type"=>"button") if !embedVideo(user_bookmark.bookmark_url.url).nil? %>
+	  	<div class="show_bookmark_detail well">
+	  		<br /><br />
+	  		<p><b>Title: </b>
+		  		<% if user_bookmark.bookmark_name %>
+		  			<%= user_bookmark.bookmark_name %>
+		  		<% end %>
+	  		</p>
+				<p><b>Link: </b>
+		  		<% if user_bookmark.bookmark_url.url %>
+		  			<%= link_to user_bookmark.bookmark_url.url %>
+		  		<% end %>
+	  		</p>
+				<%= link_to "Remove Bookmark", [@playlist, user_bookmark], :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this bookmark?" , class: "remove_link btn btn-mini btn-primary" %> <br />
 	  	</div>
-	  	<% end %>
-	  	<div class="edit_bookmark_fields"%>
-				<%= f.label :bookmark_name%><br />
-				<%= f.text_field :bookmark_name %><br /><br />
-				<%= f.fields_for :bookmark_url do |f_ub_bu| %>
-					<%= f_ub_bu.label :url%><br />
-					<%= f_ub_bu.text_field :url %><br /><br />
-				<% end %>
-				<%= link_to "Remove Bookmark", [@playlist, user_bookmark], :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this bookmark?", class: "remove_bookmark" %> <br />
+	  	<div class="edit_bookmark_fields well"%>
+	  		<br />
+	  		<br />
+		  	<%= form_for user_bookmark, :url => [@playlist, user_bookmark] , :html => {:method => :put, "data-type" => "html"}, :remote => :true do |f| %>
+					<%= f.label :bookmark_name, "Title " %> 
+					<%= f.text_field :bookmark_name %><br />
+					<%= f.fields_for :bookmark_url do |f_ub_bu| %>
+						<%= f_ub_bu.label :url, "Link  " %>  
+						<%= f_ub_bu.text_field :url %><br />
+				  	<%= link_to 'revert', '#', class: 'revert_link  btn btn-mini btn-primary'%>
+				  	<%= link_to 'save', '#', class: 'save_link btn btn-mini btn-primary' %>
+					<% end %>
 				<%= f.hidden_field :id %>
+				<% end %>
 			</div>
-			<%= embedVideo user_bookmark.bookmark_url.url %>
+	  	<% if current_user.lists.count > 1 %>
+		  	<div class="move_bookmark well">
+		  		<div class="btn-group" data-toggle="buttons-radio">
+					  <button type="button" class="btn btn-primary">Cut</button>
+					  <button type="button" class="btn btn-primary">Copy</button>
+					</div><br /><br />
+		  		and Paste to<br /><br />
+		  		<%= select_tag 'user_bookmark_move_paste', options_from_collection_for_select((current_user.lists-[user_bookmark.playlist,current_user.default_list]), "id","playlist_name") %><br />
+		  		<%= link_to "move bookmark", '/playlists/'+@playlist.id.to_s+'/user_bookmarks/'+user_bookmark.id.to_s+'/move', class:"move_bookmark_submit", :remote => true, :method => :post, "data-type" => "json" %>
+		  	</div>
+	  	<% end %>
+			<div class="watch_bookmark well">
+				<%= embedVideo user_bookmark.bookmark_url.url %>
+			</div>
 		</fieldset>
-	<% end %>
 	</div>
 </div>
