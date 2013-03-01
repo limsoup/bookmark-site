@@ -1,0 +1,103 @@
+	<div class="span10 offset1">
+		<div class="hero-unit home">
+		  <h1>Welcome to VRepo!</h1>
+		  <h3>It's an online utility I made to bookmark my porn. You can explore by trying some stuff out.</h3>
+		  <br/>
+			<div class="row-fluid options">
+			  <div class="span3 offset1">
+			  	<div class="center-button-table"><div class="center-button-cell">
+			  		<a href="#" class="btn btn-primary btn-large">Sign Up &raquo;</a><br />
+			  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover or click for more info.</a>
+			  	</div></div>
+			  </div>
+			  <div class="span4">
+			  	<div class="center-button-table"><div class="center-button-cell">
+			  		<a href="#" class="btn btn-primary btn-large">Browse &raquo;</a><br />
+			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover for more info.</a>
+			  	</div></div>
+			  </div>
+			  <div class="span3">
+			  	<div class="center-button-table"><div class="center-button-cell">
+			  		<a href="#" class="btn btn-primary btn-large">Add a Link &raquo;</a><br />
+			  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover or click for more info.</a>
+			  	</div></div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid info">
+
+	<div class="span4 offset1" id="signup-container">
+		<a id="signing-up"></a><h2>Signing Up</h2>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>What it lets you do:</h4>
+				<p>Having an account lets you<p>
+				<ul>
+					<li>keep your bookmarks and playlists saved for good after you've left the site</li>
+					<li>use the bookmarklet to bookmark pages when you're on other sites.</li>
+					<li>bookmark more than three links.</li>
+					<li>upload an avatar.</li>
+				</ul>
+				<p>So you can still <i>try out</i> the site without actually joining, but there's less you can do, and joining is really easy!</p>
+			</div>
+		</div>
+		<hr>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>As simple as proving you're a human</h4>
+				<p>Just by playing through a super-simple PlayThrough™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
+				<div class="center-button-table"><div class="center-button-cell">
+		  		<a href="#" class="btn btn-primary">Sign Up &raquo;</a><br />
+			  </div></div>
+			</div>
+		</div>
+		<hr>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>Your Privacy</h4>
+				<p>I'm <strong>not asking for your email address.</strong> If I ever do want it then I'll ask ya'll nicely, and it'll be entirely optional. I don't collect/share any kind of personal data. Here is a link to the site's privacy policy, and here's a link to frequently asked questions. I take your privacy seriously: I realize that's kind of the entire point of using this.</p>
+<br />
+				<p>As for the bookmarks and playlists you make, they'll be public by default so that we can work on recommending things to people based on things they have in common. <strong>However</strong>, you have the option of making any of your individual playlists or all the bookmarks and playlists in your account private. You just have to create a profile and change the settings on your profile page.</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="span4 offset2" id="add-links-container">
+		<a id="adding-links"></a><h2>Adding Links</h2>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>Bookmarklet</h4>
+				<p class="contains_bookmarklet">To use it, drag this <a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//localhost:3000/assets/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your <a href="---this will hover-show where it's supposed to go---">bookmark bar</a></p>
+				<br />
+				<p>When you're logged in here and click it, and something like this image below will show up near the top of your website.</p><br />
+				<%= image_tag 'Bookmarklet Example.png' %><br /><br />
+				<p>Keep in mind that this only works if you have an account and are logged in.</p>
+			</div>
+		</div>
+		<hr>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>Drag-and-Drop</h4>
+				<p>Just drag a the URL off the address bar from another site and drop it on the window of this page like this:</p>
+				---image of someone dragging url from address bar---
+			 	<p>A modal window will come up and let you set the title and submit the link.</p>
+			 	<p>From there, it'll take you to the page containing your links.</p>
+			</div>
+		</div>
+		<hr>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>Form</h4>
+				<p>Similar to the drag-and-drop way: Click the button below (there'll be a button like this on your standard home page), and a modal window will come up and let you set the title and submit the link.</p>
+			 	<p>From there, it'll take you to the page containing your links.</p>
+			 	<div class="center-button-table"><div class="center-button-cell">
+		  		<a href="#" class="btn btn-primary">Add a Link &raquo;</a><br />
+			  </div></div>
+			</div>
+		</div>
+	</div>
+	<!-- last row-fluid gets closed in application.erb.html -->
+

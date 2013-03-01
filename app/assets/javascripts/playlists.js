@@ -4,26 +4,44 @@
 
 
 (function( $ ) {
+
+	ubNameSel='input[name="user_bookmark[bookmark_url_attributes][id]"]';
+	detail = $('#detail_bookmark_view');
   $.fn.bookmarkSetup = function (){
   	this.on('click', function(event){
+			event.preventDefault();
   		if($(this).find(ubNameSel).val() != detail.find(ubNameSel).val() ){
   			if(detail.children().length > 0) {
   				detail.children().replaceWith($(this).find('.detail_bookmark').clone().show());
   			} else{
 					detail.append($(this).find('.detail_bookmark').clone().show());
-  				detail.parent().addClass('detail_container_color');
   			}
   		}
+  	}).on('click','a.watch',function(event){
+  		event.preventDefault();
+  		console.log($(this).parents('.bookmark').find('.modal'));
+			$(this).parents('.bookmark').find('.modal').clone().appendTo('#modalHolder');
+			$('#modalHolder').find('.modal').on('shown', function(){
+				$(this).find('.modal-body').html($(this).find('.modal-body').data('embedcode'));
+			}).on('hide', function(){
+				$(this).find('.modal-body').children().remove();
+			}).on('hidden',function(){
+				$(this).children().remove();
+			});
+			$('#modalHolder').find('.modal').modal('show');
+			return false;
   	});
 	};
+	$.fn.cycle = function() {
+		this.data('thumbindex', (this.data('thumbindex') % this.data('numthumbs'))  + 1);
+		this.attr('src', this.data('thumb' + this.data('thumbindex')) );
+	};
+
 })( jQuery );
 
 
 $(function() {
 	//--applies to edit bookmark pages--
-
-	$('#add_bookmark_html').hide();
-	$('#add_bookmark_js').show();
 
 	//set event handlers for bookmarks
 
@@ -57,12 +75,14 @@ $(function() {
 
 	//detail actions
 
-	detail.on('click', 'a.collapse_link', function(){
+	detail.on('click', 'a.collapse_link', function(event){
+		event.preventDefault();
 		detail.children().remove();
-		detail.parent().removeClass('detail_container_color');
+		//detail.parent().removeClass('detail_container_color');
 	});
 
-	detail.on('click', 'a.edit_link', function(){
+	detail.on('click', 'a.edit_link', function(event){
+		event.preventDefault();
 		if($(this).hasClass('active')){
 			detail.find('.edit_bookmark_fields').hide();
 		} else{
@@ -73,36 +93,50 @@ $(function() {
 		}
 	});
 
-	detail.on('click', 'a.move_link', function(){
+	detail.on('click', 'a.move_link', function(event){
+		event.preventDefault();
 		if($(this).hasClass('active')){
 			detail.find('.move_bookmark').hide();
 		} else{
 			detail.find('.move_bookmark').show();
 		}
+		if(detail.find('a.edit_link').hasClass('active')){
+			$(detail.find('a.edit_link')).trigger('click');
+		}
+	});
+
+	detail.on('click', 'a.watch_link', function(event){
+		event.preventDefault();
+		detail.find('.modal').clone().appendTo('#modalHolder');
+		$('#modalHolder').find('.modal').on('shown', function(){
+			$(this).find('.modal-body').html($(this).find('.modal-body').data('embedcode'));
+		}).on('hide', function(){
+			$('#modalHolder').find('.modal-body').children().remove();
+		}).on('hidden',function(){
+			$('#modalHolder').children().remove();
+		});
+		$('#modalHolder').find('.modal').modal('show');
 	});
 
 	detail.on('keyup','.edit_bookmark_fields input', function (){
 		//hides the 'collapse', shows the 'reload' and 'save', and hides the 'move'
-		detail.find('a.collapse_link').addClass('disabled');
 		detail.find('a.revert_link').show();
 		detail.find('a.save_link').show();
-		detail.find('a.move_link').addClass('disabled');
 		if(detail.find('a.move_link').hasClass('active')){
 			$(detail.find('a.move_link')).trigger('click');
 		}
 		detail.find('a.edit_link').addClass('disabled');
 	});
 
-	detail.on('click', 'a.revert_link', function(){
+	detail.on('click', 'a.revert_link', function(event){
+		event.preventDefault();
 		detail.find('.edit_bookmark_fields').replaceWith($(findBookmarkInList()).find('.edit_bookmark_fields').clone().show());
-		detail.find('a.collapse_link').removeClass('disabled');
-		detail.find('a.move_link').removeClass('disabled');
-		detail.find('a.edit_link').removeClass('disabled');
 		detail.find('a.revert_link').hide();
 		detail.find('a.save_link').hide();
 	});
 
 	detail.on('click', 'a.save_link', function(){
+		event.preventDefault();
 		detail.find('form').submit();
 	}).on('ajax:success', 'form', function(event, data, status, xhr){
 		source = $(findBookmarkInList());
@@ -112,20 +146,18 @@ $(function() {
 		detail.find('.edit_bookmark_fields').html(source.find('.edit_bookmark_fields').clone().children());
 		detail.find('.move_bookmark').html(source.find('.move_bookmark').clone().children());
 		//set the links right
-		detail.find('a.collapse_link').removeClass('disabled');
-		detail.find('a.move_link').removeClass('disabled');
-		detail.find('a.edit_link').removeClass('disabled');
 		detail.find('a.revert_link').hide();
 		detail.find('a.save_link').hide();
 	});
 
-	detail.on('ajax:success','a.remove_link', function(){
+	detail.on('ajax:success','a.remove_link', function(event){
+		event.preventDefault();
 		$(findBookmarkInList()).remove();
 		detail.children().remove();
 		detail.parent().removeClass('detail_container_color');
 	});
 	
-	detail.on('ajax:before', '.move_bookmark_submit' function(event){
+	detail.on('ajax:before', '.move_bookmark_submit', function(event){
 		var sendBack = {};
 		sendBack.moveType = $(this).siblings('[name=user_bookmark_move]:checked').first().val();
 		sendBack.destination = $(this).siblings('[name=user_bookmark_move_paste]').first().val();
@@ -146,13 +178,31 @@ $(function() {
 	});
 	
 	//--applies to playlist#show which has linkDrop
+	
 
-	$('#linkDrop').on('dragover dragenter', function (e) {
-	  if (e.preventDefault) e.preventDefault(); // required by FF + Safari
-		  e.originalEvent.dataTransfer.dropEffect = 'copy'; // tells the browser what drop effect is allowed here
-		  return false; // required by IE
-		}).on('drop', function (e){
-		if (e.preventDefault) e.preventDefault();
+	$('.container-fluid').on('dragover dragenter', function(e) {
+		//raise zindex on enter main view
+		$('#linkDrop').css('z-index','0');
+	  $('#linkDrop').css('opacity','0.25');
+		$(this).css('z-index','-1');
+	  console.log('lol');
+	});
+
+	$('#linkDrop').on('dragover dragenter', function (e) {		
+	  if (e.preventDefault){
+	  	e.preventDefault(); // required by FF + Safari
+	  }
+		e.originalEvent.dataTransfer.dropEffect = 'copy'; // tells the browser what drop effect is allowed here
+		return false; // required by IE
+	}).on('dragleave', function (e){
+	  $(this).css('opacity','0.0');
+		$(this).css('z-index','-1');
+		$('.container-fluid').css('z-index','-1');
+	}).on('drop', function (e){
+	  $(this).css('opacity','0.0');
+		if (e.preventDefault){
+			e.preventDefault();
+		}
 		if (e.originalEvent.dataTransfer.types) {
 			[].forEach.call(e.originalEvent.dataTransfer.types, function(type) {
 				if(type == 'text/uri-list'){
@@ -164,4 +214,15 @@ $(function() {
 			});
 		}
 	});
+	
+	var thumbnailIntervalId;
+	$('#bookmark_list_view').on('mouseover', '.cycle' , function() {
+		var tn = $(this);
+		thumbnailIntervalId = setInterval(function(){
+			tn.cycle();
+		},1000); 
+	}).on('mouseout', '.cycle', function() {
+		clearInterval(thumbnailIntervalId);
+	});
+
 });

@@ -10,33 +10,33 @@
         </ul>
         <ul class="nav pull-right">
         	<% if current_user.nil? %>
-	            	<li><a href="#">1 Click Save</a></li>
-	              <li><a href="/users/sign_up">Sign Up</a></li>
-	              <li class="divider-vertical"></li>
-	              <li class="dropdown">
-	                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
-	                <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
-	                  <form>
-	                    <input type="text" placeholder="Username">
-	                    <input type="password" placeholder="Password">
-	                    <button type="submit" class="btn">Sign in</button>
-	                  </form>
-	                </div>
-	              </li>
+          	<li><a href="#">1 Click Save</a></li>
+            <li><a href="/users/sign_up">Sign Up</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+              <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+                <%= form_tag sessions_path do %>
+							    <%= text_field_tag :username, params[:username], :placeholder => 'Username' %>
+							    <%= password_field_tag :password,'', :placeholder=>'Password' %>
+                  <button type="submit" class="btn">Sign in</button>
+								<% end %>
+              </div>
+            </li>
           <% else %>
             <% if current_user.username.nil? #temp user %>
-		            	<li><%= link_to 'Upgrade to a full account', edit_user_path(current_user),"		tabindex" => "-1" %></li>
-		            	<li><%= link_to 'Log Out', logout_path , "tabindex" => "-1"%></li> <!-- some kind of notice that temp users can't get shit back if they close this -->
+            	<li><%= link_to 'Upgrade to a full account', edit_user_path(current_user),"		tabindex" => "-1" %></li>
+            	<li><%= link_to 'Log Out', logout_path , "tabindex" => "-1"%></li> <!-- some kind of notice that temp users can't get shit back if they close this -->
             <% else %>
-		              <li class="dropdown">
-		                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
-		                <ul class="dropdown-menu">
-				            	<li><%=link_to "Bookmarks Home", current_user , "tabindex" => "-1"%></li>
-											<li><%=link_to "Customize Profile", '#', "tabindex" => "-1"%></li>
-		                  <li class="divider"></li>
-											<li><%= link_to 'Log Out', logout_path , "tabindex" => "-1"%></li>
-		                </ul>
-		              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.username %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+		            	<li><%=link_to "Bookmarks Home", current_user , "tabindex" => "-1"%></li>
+									<li><%=link_to "Customize Profile", '#', "tabindex" => "-1"%></li>
+                  <li class="divider"></li>
+									<li><%= link_to 'Log Out', logout_path , "tabindex" => "-1"%></li>
+                </ul>
+              </li>
             <% end %>
           <% end %>
         </ul>

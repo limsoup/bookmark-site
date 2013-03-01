@@ -10,16 +10,20 @@ class JsfilesController < ApplicationController
 		end
 	end
 
+	def embed
+		render 'embed'
+	end
+
 	def process_bookmarklet
 		# logger.ap request.env['Bookmarklet-User-key']
 		@user = User.find_by_bookmarklet_user_key(params['bookmarklet_user_key']);
 		@user.reset_bookmarklet_user_key
 		@user.save
 		# add to default playlist if no playlist is selected
-		if (params[:playlist_id].nil? or params[:playlist] == '')
+		if (params[:playlist_id].nil? or params[:playlist_id] == '')
 			@user_bookmark = @user.default_list.user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		else
-			@user_bookmark = @user.lists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
+			@user_bookmark = @user.playlists.find(params[:playlist_id]).user_bookmarks.build(:bookmark_name => params[:user_bookmark][:bookmark_name])
 		end
 		# @user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 		url = request.env["HTTP_REFERER"]	#something from request

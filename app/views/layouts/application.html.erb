@@ -15,14 +15,11 @@
     <%= render '/layouts/header' %>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <%= render '/layouts/sidebar' %>
-        </div>
-        <div class="span9">
-          <%= render '/layouts/messages' %>
-          <%= yield %>
-        </div>
+        <%= render '/layouts/messages' %>
+        <%= yield %>
       </div>
-    </div> <!--! end of .container -->
+    </div> <!-- end of .container -->
+    <div id="modalHolder">
+    </div>
   </body>
 </html>

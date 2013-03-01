@@ -1,12 +1,25 @@
-<h1>Playlist index</h1>
-<ul>
-<% @lists.each do |pl| %>
-	<li class="playlist_link"><%= link_to pl.playlist_name, pl %>&#160;&#160;&#160;&#160;&#160;
-    <%= link_to "edit", edit_playlist_path(pl) %> | 
-    <%= link_to "delete", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists but puts the otherwise un-playlisted videos in that section" %> | 
-    <%= link_to "delete list with bookmarks", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists and gets rid of all the bookmarks inside." %>
-  </li>
-<% end %>
-</ul>
-
-<%= link_to 'Create New Playlist', new_playlist_path%>
+	<%= render '/layouts/sidebar' %>
+	<div class="span5">
+	<h1>Playlist index</h1><br />
+		<div class="row-fluid">
+	<div class="span5" %>
+		<% @lists.each do |pl| %>
+			<div class="playlist_links">
+				<%= link_to pl.playlist_name, pl %>
+			</div>
+		<% end %>
+		<br /><br />
+		<%= link_to 'Create New Playlist', new_playlist_path%>
+	</div>
+	<div class="span7"%>
+		<% @lists.each do |pl| %>
+			<div class="playlist_links">
+			  <%= link_to "edit", edit_playlist_path(pl) %> | 
+			  <%= link_to "delete", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists but puts the otherwise un-playlisted videos in that section" %> | 
+			  <%= link_to "delete list with bookmarks", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists and gets rid of all the bookmarks inside." %>
+			</div>
+		<% end %>
+	</div>
+</div>
+</div>
+</div>

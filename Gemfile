@@ -12,7 +12,7 @@ gem 'validates_existence', '>= 0.4' #i'm not sure i need this anymore. i should 
 gem "awesome_print" #will it work in heroku?
 gem 'jquery-rails'
 gem 'bootstrap-sass'
-
+gem 'nokogiri'
 
 group :development do
 	gem 'sqlite3'

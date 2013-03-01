@@ -1,39 +1,27 @@
-<h1><%= @user.username %></h1>
-<%= form_for @default_list do |f| %>
-  <% if @default_list.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @default_list.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+<%= render '/layouts/sidebar' %>
+<div class="span5" id="bookmark_list_view">
+  <div id='linkDrop'><!-- drag and drop    -->
+    <h1>Bookmark</h1>
+    <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
+      <%= f.hidden_field :url %>
+      <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
+    <% end %>
+  </div><!-- drag and drop end -->
+  <h2>Bookmarks </h2>
+  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%>
+  <%= search_field_tag 'filter_uncategorized' %>
+  <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
+    <% if i == 0 %>
+      <hr class="hrspacer"> 
+    <% else %>
+      <hr>
+    <% end %>
+      <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
   <% end %>
-<% end %>
-<div id="uncategorized">
-<h2>Uncategorized Bookmarks</h2>
-<%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@default_list)  %><br />
-<%= label_tag 'filter_uncategorized', 'Filter Uncategorized Bookmarks'%><br />
-<%= search_field_tag 'filter_uncategorized' %>
-<% @default_list.user_bookmarks.each do |user_bookmark| %>
-	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark, :@playlist => @default_list} %>
-<% end %>
 </div>
-<br /><br />
-<h2>Playlists</h2>
-<ul>
-<% @lists.each do |pl| %>
-	<li class="playlist_link">
-    <%= link_to pl.playlist_name, pl %>
-    <div class="playlist_link_indent"%>
-      <%= link_to "edit", edit_playlist_path(pl) %> | 
-      <%= link_to "delete", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists but puts the otherwise un-playlisted videos in that section" %> | 
-      <%= link_to "delete list with bookmarks", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists and gets rid of all the bookmarks inside." %>
+<div class="span4">
+  <div id="detail_bookmark_view_container">
+    <div id="detail_bookmark_view">
     </div>
-  </li>
-<% end %>
-</ul>
-
-
-<%= link_to "New Playlist", new_playlist_path %>
+  </div>
+</div>

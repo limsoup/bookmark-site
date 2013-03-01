@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@default_list = @user.default_list
+		@playlist = @user.default_list
 		@lists = @user.lists
 	end
 

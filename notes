@@ -73,36 +73,115 @@ Do now:
 	[x]troubleshoot editing
 	[x]embed players
 	[x]test moving items between playlists
-		------------------		
+		------------------
+	[ ]features
+		[x]login
+		[x]drag and drop
+		[ ]new bookmark
+			[ ]make indented action, highlight active on sidebar
+			[?]js new, ajax create
+
 	[ ]styling
 		[x]detail
 			[x]on to update and revert
 				[x]revert
 				[x]update
 			[x]get those funcitons out of bookmarkSetup
+		[x]sidebar
+			[x]read about layout and yield and shit
+			[x]changes
+		[x]#link navigation
+		[x]login
+		[x]playlist name
+		
+		[x]edit/move
+			[x]revert (no-ajax)
+			[x]radiofy edit/move
+				[x]buttons
+				[x]panes
+					[x]only one pane available at a time
+				[x]revert when
+					[x]move, expand, collapse
+			[ ]move
+				[ ]uncategorized option
+				[x]check: only user's own playlists
+				[x]call move - "grab" when it's not the user's playlist
+		
+		[ ]landing page
+			[x]hero
+				[x]positioning and buttons
+				[x]background
+				[x]tooltips
+			[x]info
+				[x]text info and layout
+				[x]bookmarklet
+					[x]actual bookmarklet
+					[x]screenshot
+						-magic wand -delete -trim -png
+				[ ]drag and drop
+					[ ]screenshot
+				[x]effects
+					[x]anchors (with hero links)
+					[x]highlight when going to anchor
+					[ ]tooltips
+						[ ]bookmarklet?
+						[ ]user profile
+							-when you're logged into your account, hovering over this will show a link to your profile
+			[ ]feature
+				[+]Playthrough Create User
+				[ ]Instant Account
+				[ ]New Bookmark
+			[ ]spacer
+
+
+		[ ]icons
+			[ ]remove
+			[ ]user
+			[ ]info 'how'
+			[ ]about
+			[ ]sidebar
 		[ ]sidebar
-			[ ]read about layout and yield and shit
-			[ ]changes
-		[ ]login
+			[ ]home page
 		[ ]pages
 			[ ]bookmarklet/how-to page
 			[ ]new bookmark
 			[ ]drag and drop modal window
+
+	[ ]save state
+
+	[ ]modal window on delete
+	[ ]pages
+		[ ]bookmarklet/how-to page
+		[ ]new bookmark
+		[ ]drag and drop modal window
 	[ ]embedding
-		[ ]lazy embedding
+		[x]lazy embedding
 		[ ]iframe for objects
 	[ ]ensuring remember tokens & bookmarklet keys are unique
 	[ ]thumbnails
 		[ ]pulling
+			[ ]easy
+				-xvideos
+					;url_bigthumb=.*?.jpg
+				-fapdu
+				-xhamster +
+				-slutload +
+				-redtube
+				-tube8
+				-pornhub
+				-youporn
+				-beeg
 		[ ]container
 		[ ]optional display
+
+
 	[ ]read
 		[ ]sharing cookies/privacy
 		[ ]csrf validity
 		[ ]read about session expiry
 		[ ]https
 	[ ]back-and-authenticate
-	[ ]notification (use noty?)
+	[ ]notification (use noty or bootstrap?)
 		[ ]ajax errors
 		[ ]html errors
 		[ ]warnings before submitting invalid data
@@ -110,7 +189,9 @@ Do now:
 		[ ]disable multiple submits
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh
-
+	[ ]temp user ids
+		[ ]random word sequences
+		[ ]pick from categories
 ------------------------------------------------------------------
 potential changes:
 	bookmark urls model
@@ -134,3 +215,20 @@ users following playlists
 
 bookmarks showing who has  playlists and users
 
+
+Recommendations
+	pros:
+		[ ]site is alive
+			[ ]something to do there
+			[ ]stuff is going on
+
+		[ ]get fetish-users
+		[ ]humans are better at it
+	
+	negative:
+		[ ] does it look non-utility?
+			[ ] do we eschew the utility goodwill
+
+	thoughts:
+		[ ] might just be a matter of timing
+			[ ] can't do 

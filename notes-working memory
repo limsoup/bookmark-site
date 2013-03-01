@@ -1,13 +1,26 @@
-read
-	session expiry
+rewrite uncategorized
 
-can't confirm CSRF token validity
+xvideos
+	pull bigthumb with nokogiri
+	data-tnprefix
+	data-tnindex
 
-sharing cookies
-ensuring remember tokens are unique
+redtube
+	using url
 
-disable embed iframe js
-optional embed
-iframe around redtube
+	<img title="Veronica Rodriguez" id="0308196" class="te" src="http://img02.redtubefiles.com/_thumbs/0000308/0308196/0308196_007m.jpg" alt="Veronica Rodriguez" style="border: 1px solid rgb(160, 160, 160);">
 
-recommendations 
+
+
+
+drop
+	modal box
+		show url
+		dismiss x
+		add
+	ajax run helper - show url
+	dismiss - same as leavedrag
+	add
+		ajax send
+		add html to it
+		replace 'add,cancel' with done button

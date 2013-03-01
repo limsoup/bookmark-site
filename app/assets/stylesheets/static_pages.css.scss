@@ -1,0 +1,47 @@
+.home, .info {
+	h1, h2, h3, h4, a{
+		text-align: center;
+	}
+}
+.info {
+	//this is because the navbar was obscuring the anchor
+	h2 {
+		padding-top: 40px;
+		margin-top: -40px;
+	}
+	p.contains_bookmarklet {
+		display:inline-block;
+		img {
+			vertical-align:middle;
+		}
+	}
+	p {
+		text-align:justify;
+		color:#666666;
+	}
+	li {
+		color:#666666;
+	}
+}
+
+.hero-unit{
+	background: url('forest2.png') no-repeat 50% 50%;
+	//filter: alpha(opacity=30);  
+  //-moz-opacity: 0.3;  
+  //-khtml-opacity: 0.3;  
+  //opacity: 0.3; 
+}
+
+.options {
+}
+
+//to horizontall center a button in a block element
+.center-button-table {
+  display: table;
+  width: 100%;
+	.center-button-cell {
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+}

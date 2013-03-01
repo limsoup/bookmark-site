@@ -1,16 +1,22 @@
-<div class="well sidebar-nav">
-  <ul class="nav nav-list">
-    <li class="nav-header">Playlists</li>
-    <li><a href="#">Link</a></li>
-    <li><a href="#">Link</a></li>
-    <li><a href="#">Link</a></li>
-    <li class="nav-header">Actions</li>
-    <li><%= link_to 'Playlist', @playlist%></li>
-    <li><%= link_to 'Create New Playlist', new_playlist_path%></li>
-    <li><%= link_to 'Playlist Index', playlists_path%></li>
-    <li class="nav-header">Sidebar</li>
-    <li><a href="#">Link</a></li>
-    <li><a href="#">Link</a></li>
-    <li><a href="#">Link</a></li>
-  </ul>
+<div class="span3">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Bookmarklet</li>
+        <li><%= image_tag 'bookmarklet.png' %><li>
+        <li class="nav-header">Playlist Pages</li>
+        <li><%= link_to "Add a Bookmark to this List", new_playlist_user_bookmark_path(@playlist)  %></li>
+        <li><%= link_to 'Create New Playlist', new_playlist_path%></li>
+        <li><%= link_to 'Index of all Playlists', playlists_path%></li>
+        <li class="nav-header">Playlists</li>
+        <% @lists.each do |pl|%>
+            <% if pl == @playlist %>
+                <li class="active">
+            <% else %>
+                <li>
+            <% end %>
+                <%=link_to pl.playlist_name, pl %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
 </div>
