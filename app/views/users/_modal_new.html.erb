@@ -1,0 +1,35 @@
+<div class="modal hide fade" id="signup-modal" tabindex="-1">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h2>Sign Up</h2>
+  </div>
+  <%= form_for @user, :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
+    <div class="modal-body">
+      <%= f.text_field :username, :placeholder=>"Username" %>
+      <br />
+      <%= f.password_field :password, :placeholder=>"Password" %>
+      <br />
+      <%= f.password_field :password_confirmation, :placeholder=>"Password Confirmation" %>
+    </div>
+    <div class="modal-footer">
+      <div class = "form-buttons">
+        <button type="submit" class="btn btn-primary">Create Account</button>
+        <button class="btn" data-dismiss="modal">Close</button>
+        <!-- <button class="btn" data-dismiss="modal">Add Another</button> -->
+      </div>
+      <div class = "alert-container-success">
+        <div class = "alert alert-success">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          Your account was successfully created.
+        </div>
+      </div>
+      <div class = "alert-container-error">
+        <div class = "alert alert-error alert-block">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          You had the following errors:
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

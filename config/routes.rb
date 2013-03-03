@@ -1,10 +1,11 @@
 BookmarkSite::Application.routes.draw do
   root to:'users#index'
 
+  resources :sessions, :only => [:create]
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  match '/sessions(.:format)' => 'sessions#create', :via => :post
+  #match '/sessions(.:format)' => 'sessions#create', :via => :post
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
   get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground

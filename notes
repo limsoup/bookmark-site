@@ -128,10 +128,24 @@ Do now:
 						[ ]user profile
 							-when you're logged into your account, hovering over this will show a link to your profile
 			[ ]feature
-				[+]Playthrough Create User
+				[ ]Playthrough Create User
+					[ ]modal new/create
+					[ ]playthrough integration
 				[ ]Instant Account
-				[ ]New Bookmark
+				[*]New Bookmark
+					[-]form
+					[ ]js
+						[ ]modal
+						[ ]submit
+						[ ]
+					[ ]errors/notices
 			[ ]spacer
+			[ ]grab
+
+			[*]access
+			[x]merge new and show
+			[ ]edit <-> show
+			[x]index
 
 
 		[ ]icons
@@ -173,7 +187,7 @@ Do now:
 				-beeg
 		[ ]container
 		[ ]optional display
-
+	[ ]validations
 
 	[ ]read
 		[ ]sharing cookies/privacy

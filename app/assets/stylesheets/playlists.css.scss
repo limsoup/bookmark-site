@@ -23,6 +23,23 @@
 		border:none;
 	}
 }
+
+#new-bookmark-modal {
+	.alert-container-success, .alert-container-error {
+		display:none;
+		margin-top:15px;
+	}
+	.alert-success, .alert-error {
+		margin-bottom:0px;
+	}
+	.form-buttons {
+		margin: 0 0 0 0;
+	}
+	form {
+		margin:0px
+	}
+}
+
 .show_bookmark {
 
 	border-radius:4px;

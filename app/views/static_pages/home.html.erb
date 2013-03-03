@@ -6,20 +6,23 @@
 			<div class="row-fluid options">
 			  <div class="span3 offset1">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<a href="#" class="btn btn-primary btn-large">Sign Up &raquo;</a><br />
-			  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover or click for more info.</a>
+			  		<a href="#" class="btn btn-primary btn-large signup-modal-link">Sign Up &raquo;</a><br />
+			  		<div id="signup-modal-holder">
+					    <%= render '/users/modal_new' %>
+					  </div>
+			  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span4">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<a href="#" class="btn btn-primary btn-large">Browse &raquo;</a><br />
-			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover for more info.</a>
+			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<a href="#" class="btn btn-primary btn-large">Add a Link &raquo;</a><br />
-			  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;">Hover or click for more info.</a>
+			  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			</div>
@@ -48,9 +51,10 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>As simple as proving you're a human</h4>
-				<p>Just by playing through a super-simple PlayThrough™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
+				<p>Just by playing through a super-simple PlayThru™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
+				<p>One thing: for this site to work, you do need cookies and javascript enabled, and it works best in up-to-date versions of Chrome, Firefox, Safari, and IE 7+. </p>
 				<div class="center-button-table"><div class="center-button-cell">
-		  		<a href="#" class="btn btn-primary">Sign Up &raquo;</a><br />
+		  		<a href="#" class="btn btn-primary signup-modal-link">Sign Up &raquo;</a><br />
 			  </div></div>
 			</div>
 		</div>

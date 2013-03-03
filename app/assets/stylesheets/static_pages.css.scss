@@ -45,3 +45,19 @@
 		vertical-align: middle;
 	}
 }
+
+#signup-modal {
+	.form-buttons {
+		margin: 0 0 0 0;
+	}
+	.alert-container-success, .alert-container-error {
+		display:none;
+		margin-top:15px;
+	}
+	.alert-success, .alert-error {
+		margin-bottom:0px;
+	}
+	form {
+		margin:0px
+	}
+}

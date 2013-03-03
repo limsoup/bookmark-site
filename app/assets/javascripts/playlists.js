@@ -19,14 +19,12 @@
   		}
   	}).on('click','a.watch',function(event){
   		event.preventDefault();
-  		console.log($(this).parents('.bookmark').find('.modal'));
+  		//console.log($(this).parents('.bookmark').find('.modal'));
 			$(this).parents('.bookmark').find('.modal').clone().appendTo('#modalHolder');
 			$('#modalHolder').find('.modal').on('shown', function(){
 				$(this).find('.modal-body').html($(this).find('.modal-body').data('embedcode'));
 			}).on('hide', function(){
 				$(this).find('.modal-body').children().remove();
-			}).on('hidden',function(){
-				$(this).children().remove();
 			});
 			$('#modalHolder').find('.modal').modal('show');
 			return false;
@@ -41,10 +39,26 @@
 
 
 $(function() {
-	//--applies to edit bookmark pages--
+	//--applies to show bookmark pages--
 
-	//set event handlers for bookmarks
+	//new bookmark modal link
+	$('#new-bookmark-modal-link').on('click', function(event){
+		event.preventDefault();
+		$('#new-bookmark-modal-holder').find('.modal').clone().appendTo('#modalHolder');
+		$('#modalHolder').find('.modal').modal('show');
+	});
 
+	$('#modalHolder').on('hidden',function(){
+		$(this).children().remove();
+	});
+/*
+	on('click','button[type=submit]' function(event){
+		event.preventDefault();
+		$("#new-bookmark-modal form").submit();
+	})
+*/
+
+	//set event handlers for bookmarks in list
 	$('.bookmark').bookmarkSetup();
 	ubNameSel='input[name="user_bookmark[bookmark_url_attributes][id]"]';
 	detail = $('#detail_bookmark_view');
@@ -52,16 +66,37 @@ $(function() {
 		return $('#bookmark_list_view').find(ubNameSel+'[value='+detail.find(ubNameSel).val()+']').parents('.bookmark');
 	}
 
+	$("#modalHolder").on('ajax:success', '#new-bookmark-modal form', function(event, data, status, xhr){
+		//display success
+		//if it's added to this playlist, add bookmark
+		$('.hrspacer').after(jQuery.parseHTML(data.html+"<hr>"));
+		$('.bookmark').first().bookmarkSetup();
+		//if it's added to some other list, give choice between staying here or going to that list
+		$(this).find('.alert-container-success').show();
+		$(this).find('.form-buttons').hide();
+		//console.log(data);
+	}).on('close', '#new-bookmark-modal .alert', function(){
+		$(this).after($(this).clone());
+	}).on('closed', '#new-bookmark-modal .alert', function(){
+		$('#new-bookmark-modal').find('input[type=text]').val('');
+
+		$('#new-bookmark-modal').find('.alert-container-success').hide();
+		$('#new-bookmark-modal').find('.form-buttons').show();
+	});
+
 	$('#filter_uncategorized, #filter_bookmarks').on('keyup', function(event){
 		filterField = this;
 		if($(this).val() == ''){
 			$('.bookmark').show();
+			$('.bookmark_list_view hr').show();
 		}else{
 			$('.bookmark').each( function(index){
 				if ($(this).find('a').first().text().toLowerCase().search($(filterField).val().toLowerCase()) == -1){
 					$(this).hide();
+					$(this).prev().hide();
 				}else{
 					$(this).show();
+					$(this).prev().show();
 				}
 			});
 		}
@@ -112,8 +147,6 @@ $(function() {
 			$(this).find('.modal-body').html($(this).find('.modal-body').data('embedcode'));
 		}).on('hide', function(){
 			$('#modalHolder').find('.modal-body').children().remove();
-		}).on('hidden',function(){
-			$('#modalHolder').children().remove();
 		});
 		$('#modalHolder').find('.modal').modal('show');
 	});

@@ -8,6 +8,10 @@
     <% end %>
   </div><!-- drag and drop end -->
   <h2>Bookmarks </h2>
+  <%= link_to 'Add Bookmark', '#', id:"new-bookmark-modal-link" %>
+  <div id="new-bookmark-modal-holder">
+    <%= render '/user_bookmarks/modal_new' %>
+  </div>
   <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%>
   <%= search_field_tag 'filter_uncategorized' %>
   <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>

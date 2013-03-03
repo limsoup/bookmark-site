@@ -1,18 +1,35 @@
-<h1><%= @playlist.playlist_name %></h1>
-<ul>
-	<% @playlist.user_bookmarks.each do |ub| %>
-		<li><%= ub.bookmark_name %></li>
-	<% end %>
-</ul>
-
-<p>
-<%= link_to 'Create New Playlist', new_playlist_path%> | 
-<%= link_to 'Playlist Index', playlists_path%> |
-<%= link_to 'Edit Playlist', edit_playlist_path(@playlist)%>
-</p>
-<!-- <div id="linkDrop">
-	<%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
-		<%= f.hidden_field :url %>
-		<%= f.hidden_field 'playlist_id', :value => @playlist.id %>
-	<% end %>
-</div> -->
+<%= render '/layouts/sidebar' %>
+<div class="span4" id="bookmark_list_view">
+  <div id="main_playlist_name">
+    <h3><%= @playlist.playlist_name %></h3><a href="#" class="btn btn-mini btn-primary"><i class='icon-pencil icon-white'></i></a>
+  </div>
+  <div id="main_playlist_name_edit">
+  <%= form_for @playlist do |f| %>
+    <% if @playlist.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% @playlist.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <%= f.label :playlist_name %>
+      <%= f.text_field :playlist_name %>
+    <a href="#" class="btn"><i class='icon-chevron-up'></i></a>
+    <div class="actions"><%= f.submit "Save" %></div>
+  <% end %>
+  </div>
+  <%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
+  <%= label_tag 'filter_bookmarks', 'Filter Bookmarks'%>
+  <%= search_field_tag 'filter_bookmarks' %>
+  <% @playlist.user_bookmarks.each_with_index do |user_bookmark, i| %>
+    <!--     <% unless i == @playlist.user_bookmark.length-1 %> <hr> <% end %> -->
+  	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+  <% end %>
+</div>
+<div class="span5" id="detail_bookmark_view_container">
+  <div id="detail_bookmark_view">
+  </div>
+</div>

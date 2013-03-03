@@ -1,0 +1,39 @@
+<div class="modal hide fade" id="new-bookmark-modal" tabindex="-1">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+		<h2>New Bookmark for
+		  <% if(@playlist == current_user.default_list) %>
+		    <%= current_user.username %></h2>
+		  <% else %>
+		    <%= @playlist.playlist_name %></h2>
+		  <% end %>
+	</div>
+	<%= form_for @user_bookmark, :url => [@playlist, @user_bookmark] , :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
+	<div class="modal-body">
+			<%= f.text_field :bookmark_name, :placeholder=>'Bookmark Title' %><br /><br />
+			<%= f.fields_for :bookmark_url, @bookmark_url do |f_bu| %>
+				<%= f_bu.text_field :url, :placeholder=>'URL'%>
+			<% end %>
+	</div>
+	<div class="modal-footer">
+		<div class = "form-buttons">
+			<button type="submit" class="btn btn-primary">Submit Bookmark</button>
+	  	<button class="btn" data-dismiss="modal">Close</button>
+	  	<!-- <button class="btn" data-dismiss="modal">Add Another</button> -->
+	  </div>
+  	<div class = "alert-container-success">
+	  	<div class = "alert alert-success">
+	  		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	  		Your bookmark was successfully created.
+	  	</div>
+	  </div>
+  	<div class = "alert-container-error">
+	  	<div class = "alert alert-error alert-block">
+	  		<a class="close" data-dismiss="alert" href="#">&times;</a>
+	  		You had the following errors:
+	  		<!-- errors -->
+	  	</div>
+  	</div>
+  </div>
+  <% end %>
+</div>

@@ -48,6 +48,9 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@playlist = @user.default_list
 		@lists = @user.lists
+		# for modal new bookmark
+		@user_bookmark = UserBookmark.new
+		@bookmark_url = BookmarkUrl.new
 	end
 
 	def index

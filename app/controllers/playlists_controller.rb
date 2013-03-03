@@ -1,6 +1,7 @@
 class PlaylistsController < ApplicationController
-	before_filter :authorize_owner, :only => [:edit, :update, :delete]
-	before_filter :authorize, :only => [:new, :create]
+	before_filter :authorize_owner, :only => [:edit, :update, :delete, :show ]
+	# before_filter :authorize_show, :only => [:show]
+	before_filter :authorize, :only => [:new, :create, :index]
 	
 	def new
 		@playlist = current_user.playlists.build
@@ -17,6 +18,7 @@ class PlaylistsController < ApplicationController
 
 	def show
 		@playlist = current_user.playlists.find(params[:id])
+		@lists = current_user.lists
 	end
 
 	def edit
@@ -67,21 +69,18 @@ class PlaylistsController < ApplicationController
 
 	private
 		def authorize_owner
-			@user = current_user
-			playlist = @user.playlists.find(params[:id])
-			if(@user.nil?)
-				redirect_to login_path, :notice => "You have to be logged in as the owner of the playlist to access this funcationality"
-			else
-				if(playlist.user_id != @user.id)
-					redirect_to playlists_path
-				end
+			playlist = current_user.playlists.find_by_id(params[:id])
+			if(current_user.nil?)
+				redirect_to login_path, :notice => "You have to be logged in as the owner of that playlist to access this funcationality."
+			elsif (playlist.nil?)
+				redirect_to current_user, :notice => "You have to be logged in as the owner of that playlist to access this funcationality."
 			end
 		end
 
 		def authorize
-			@user = current_user
-			if(@user.nil?)
-				redirect_to login_path, :notice => "you have to log in to make a playlist"
+			if(current_user.nil?)
+				redirect_to login_path, :notice => "You have to log in to make a playlist."
 			end
 		end
+
 end

@@ -42,7 +42,7 @@
   		<p><b>Title:&nbsp;&nbsp;</b></p>
   		<% if user_bookmark.bookmark_name %>
   			<pre><%= user_bookmark.bookmark_name %></pre>
-  		<% end %>
+  		<% end %><br />
 			<p><b>Link:&nbsp;&nbsp;</b></p>
   		<% if user_bookmark.bookmark_url.url %>
   			<pre><%= link_to user_bookmark.bookmark_url.url, user_bookmark.bookmark_url.url %></pre>
@@ -68,7 +68,7 @@
 				<%= f.hidden_field :id %>
 			<% end %>
 		</div>
-  	<% if current_user.lists.count > 1 %>
+  	<% if !(current_user.nil?) %>
 	  	<div class="move_bookmark">
 	  		<div class="btn-group" data-toggle="buttons-radio">
 				  <button type="button" class="btn btn-primary">Cut</button>
@@ -78,10 +78,7 @@
 	  		<%= select_tag 'user_bookmark_move_paste', options_from_collection_for_select((current_user.lists-[user_bookmark.playlist,current_user.default_list]), "id","playlist_name") %><br />
 	  		<%= link_to "move bookmark", '/playlists/'+@playlist.id.to_s+'/user_bookmarks/'+user_bookmark.id.to_s+'/move', class:"move_bookmark_submit", :remote => true, :method => :post, "data-type" => "json" %>
 	  	</div>
-  	<% end %><!-- 
-  	<% if !(user_bookmark.bookmark_url.thumbnail_urls.nil?) %>
-   	 <%= thumbnail_image_tag user_bookmark.bookmark_url, '80x80' %> 
-  	<% end %> -->
+  	<% end %>
   	<% if !(user_bookmark.bookmark_url.embed.nil?) %>
 			<div class="modal hide fade">
 			  <div class="modal-header">

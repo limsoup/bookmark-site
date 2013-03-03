@@ -7,6 +7,9 @@ class UserBookmarksController < ApplicationController
 
 	def create
 		@playlist = current_user.playlists.find params[:playlist_id]
+		logger.ap 17 if request.xhr?
+		@user_bookmark = UserBookmark.first();
+		logger.ap (render_to_string(:partial => 'bookmark_fields', :locals => {:user_bookmark => @user_bookmark})).html_safe
 		# if no url is given, 
 		if(!params[:user_bookmark][:bookmark_url_attributes][:url].nil?)
 			@bookmark_url = BookmarkUrl.find_by_url(params[:user_bookmark][:bookmark_url_attributes][:url])
@@ -16,7 +19,7 @@ class UserBookmarksController < ApplicationController
 				@user_bookmark = @playlist.user_bookmarks.build
 				@user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 				@bookmark_url = BookmarkUrl.new(params[:user_bookmark][:bookmark_url_attributes])
-				@user_bookmark.bookmark_url_id = @bookmark_url
+				@user_bookmark.bookmark_url_id = @bookmark_url.id
 				@bookmark_url.user_bookmarks<< @user_bookmark
 			else
 				params[:user_bookmark].delete(:bookmark_url_attributes)
@@ -25,13 +28,30 @@ class UserBookmarksController < ApplicationController
 				@bookmark_url.user_bookmarks << @user_bookmark
 			end
 			if(@bookmark_url.save and @user_bookmark.save and @playlist.save)
-				if(current_user.default_list == @playlist)
-					redirect_to current_user
-				else
-					redirect_to @playlist
+				if(request.xhr?)
+					response_json = {
+						'html' => (render_to_string(:partial => 'bookmark_fields', :locals => {:user_bookmark => @user_bookmark})).html_safe,
+					  'playlist' => 'default'
+					}
+				end
+				respond_to do |format|
+					format.html {
+						if(current_user.default_list == @playlist)
+							redirect_to current_user
+						else
+							respond_to do |format|
+								format.html {redirect_to @playlist}
+							end
+						end
+					}
+					format.json {
+						render :json => response_json
+					}
 				end
 			else
-				render 'new'
+				respond_to do |format|
+					format.html {render 'new'}
+				end
 			end
 		else
 			# give error message about the url being required
