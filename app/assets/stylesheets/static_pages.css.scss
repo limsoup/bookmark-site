@@ -46,7 +46,11 @@
 	}
 }
 
-#signup-modal {
+#signup-modal-holder {
+	display:none;
+}
+
+.signup-modal {
 	.form-buttons {
 		margin: 0 0 0 0;
 	}
