@@ -10,7 +10,7 @@ class PlaylistsController < ApplicationController
 	def create
 		@playlist = current_user.playlists.build(params[:playlist])
 		if(@playlist.save)
-			redirect_to @playlist, :notice => "Playlist Created Successfully"
+			redirect_to @playlist, :notice => "Playlist Created Successfully."
 		else
 			render 'new'
 		end

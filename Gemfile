@@ -24,6 +24,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :production do
+	gem 'ayah_integration'
 	gem 'pg'
 end
 

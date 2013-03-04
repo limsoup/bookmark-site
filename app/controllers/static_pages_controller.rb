@@ -25,10 +25,17 @@ class StaticPagesController < ApplicationController
 	def how
 	end
 
+	def info
+	end
+
 	def privacy
 	end
 
 	def about
+	end
+
+	def usernotfound
+		render 'usernotfound'
 	end
 
 end
