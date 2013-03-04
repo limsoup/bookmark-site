@@ -8,19 +8,22 @@
     <% end %>
   </div><!-- drag and drop end -->
   <h2>Bookmarks </h2>
-  <%= link_to 'Add Bookmark', '#', id:"new-bookmark-modal-link" %>
+  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', id:"new-bookmark-modal-link", class:"btn btn-primary" %>
   <div id="new-bookmark-modal-holder">
     <%= render '/user_bookmarks/modal_new' %>
-  </div>
-  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%>
-  <%= search_field_tag 'filter_uncategorized' %>
+  </div><!-- 
+  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%> -->
+  <br />
+  <!--<img src="/assets/glyphicons_320_filter.png" class="filter_img"></img>&nbsp;--><%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
   <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
     <% if i == 0 %>
       <hr class="hrspacer"> 
     <% else %>
       <hr>
     <% end %>
+    <% if user_bookmark.id %>
       <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+    <% end %>
   <% end %>
 </div>
 <div class="span4">

@@ -1,10 +1,12 @@
 BookmarkSite::Application.routes.draw do
-  root to:'users#index'
 
   resources :sessions, :only => [:create]
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  root :to => "static_pages#home"
+
   #match '/sessions(.:format)' => 'sessions#create', :via => :post
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
@@ -32,7 +34,13 @@ BookmarkSite::Application.routes.draw do
   match 'users/temp(.:format)' => 'users#temp', :as => :temp_users, :via => :get
   match 'users/create_temp(.:format)' => 'users#create_temp', :as => :create_temp_users, :via => :get
   
-  resources :users
+  resources :users do
+    member do
+      get 'upgrade'
+      put 'process_upgrade'
+    end
+    # get 'upgrade'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

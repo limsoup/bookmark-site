@@ -14,6 +14,37 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def upgrade
+		if current_user.nil?
+			render :partial => 'error' #message about how they need cookies enabled
+		else
+			@user = current_user
+			render :partial => 'modal_new'
+			# if @user.human?
+			# 	render :partial => 'edit'
+			# else
+			# 	render :partial => 'modal_new'
+			# end
+		end
+	end
+
+	def process_upgrade
+		@user = User.find(params[:id])
+		@user.update_attributes(params[:user])
+		@user.human = true
+		if(@user.save)
+			respond_to do |format|
+				format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+				format.json { render :json => {"success" => "true" } }
+			end
+		else
+			respond_to do |format|
+				format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+				format.json { render :json =>{ "errors" => @user.errors.full_messages }}
+			end
+		end
+	end
+
 	def edit
 		@user = User.find(params[:id])
 	end
@@ -49,7 +80,7 @@ class UsersController < ApplicationController
 		@playlist = @user.default_list
 		@lists = @user.lists
 		# for modal new bookmark
-		@user_bookmark = UserBookmark.new
+		@user_bookmark = @playlist.user_bookmarks.build
 		@bookmark_url = BookmarkUrl.new
 	end
 

@@ -1,35 +1,35 @@
 <%= render '/layouts/sidebar' %>
-<div class="span4" id="bookmark_list_view">
-  <div id="main_playlist_name">
-    <h3><%= @playlist.playlist_name %></h3><a href="#" class="btn btn-mini btn-primary"><i class='icon-pencil icon-white'></i></a>
-  </div>
-  <div id="main_playlist_name_edit">
-  <%= form_for @playlist do |f| %>
-    <% if @playlist.errors.any? %>
-      <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-          <% @playlist.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+<div class="span5" id="bookmark_list_view">
+  <div id='linkDrop'><!-- drag and drop    -->
+    <h1>Bookmark</h1>
+    <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
+      <%= f.hidden_field :url %>
+      <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
     <% end %>
-      <%= f.label :playlist_name %>
-      <%= f.text_field :playlist_name %>
-    <a href="#" class="btn"><i class='icon-chevron-up'></i></a>
-    <div class="actions"><%= f.submit "Save" %></div>
-  <% end %>
-  </div>
-  <%= link_to "Add Bookmark", new_playlist_user_bookmark_path(@playlist)  %>
-  <%= label_tag 'filter_bookmarks', 'Filter Bookmarks'%>
-  <%= search_field_tag 'filter_bookmarks' %>
-  <% @playlist.user_bookmarks.each_with_index do |user_bookmark, i| %>
-    <!--     <% unless i == @playlist.user_bookmark.length-1 %> <hr> <% end %> -->
-  	<%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+  </div><!-- drag and drop end -->
+  <h2><%= @playlist.playlist_name %></h2>
+  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', id:"new-bookmark-modal-link", class:"btn btn-primary" %>
+  <div id="new-bookmark-modal-holder">
+    <%= render '/user_bookmarks/modal_new' %>
+  </div><!-- 
+  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%> -->
+  <br />
+  <!--<img src="/assets/glyphicons_320_filter.png" class="filter_img"></img>&nbsp;--><%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
+  <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
+    <% if i == 0 %>
+      <hr class="hrspacer"> 
+    <% else %>
+      <hr>
+    <% end %>
+    <% logger.ap user_bookmark %>
+    <% if user_bookmark.id %>
+      <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+    <% end %>
   <% end %>
 </div>
-<div class="span5" id="detail_bookmark_view_container">
-  <div id="detail_bookmark_view">
+<div class="span4">
+  <div id="detail_bookmark_view_container">
+    <div id="detail_bookmark_view">
+    </div>
   </div>
 </div>

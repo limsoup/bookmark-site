@@ -7,9 +7,7 @@ class UserBookmarksController < ApplicationController
 
 	def create
 		@playlist = current_user.playlists.find params[:playlist_id]
-		logger.ap 17 if request.xhr?
 		@user_bookmark = UserBookmark.first();
-		logger.ap (render_to_string(:partial => 'bookmark_fields', :locals => {:user_bookmark => @user_bookmark})).html_safe
 		# if no url is given, 
 		if(!params[:user_bookmark][:bookmark_url_attributes][:url].nil?)
 			@bookmark_url = BookmarkUrl.find_by_url(params[:user_bookmark][:bookmark_url_attributes][:url])

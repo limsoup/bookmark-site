@@ -51,6 +51,26 @@ $(function() {
 	$('#modalHolder').on('hidden',function(){
 		$(this).children().remove();
 	});
+
+
+	$("#modalHolder").on('ajax:success', '.new-bookmark-modal form', function(event, data, status, xhr){
+		//display success
+		//if it's added to this playlist, add bookmark
+		$('.hrspacer').after(jQuery.parseHTML(data.html+"<hr>"));
+		$('.bookmark').first().bookmarkSetup();
+		//if it's added to some other list, give choice between staying here or going to that list
+		$(this).find('.alert-container-success').show();
+		$(this).find('.form-buttons').hide();
+		//console.log(data);
+	}).on('close', '.new-bookmark-modal .alert', function(){
+		$(this).after($(this).clone());
+	}).on('closed', '.new-bookmark-modal .alert', function(){
+		$('#modalHolder .new-bookmark-modal input[type=text]').val('');
+		$('#modalHolder .new-bookmark-modal .alert-container-success').hide();
+		//$('#modalHolder .new-bookmark-modal .alert-container-error').hide();
+		$('#modalHolder .new-bookmark-modal .form-buttons').show();
+	});
+
 /*
 	on('click','button[type=submit]' function(event){
 		event.preventDefault();
@@ -65,24 +85,6 @@ $(function() {
 	function findBookmarkInList(){
 		return $('#bookmark_list_view').find(ubNameSel+'[value='+detail.find(ubNameSel).val()+']').parents('.bookmark');
 	}
-
-	$("#modalHolder").on('ajax:success', '#new-bookmark-modal form', function(event, data, status, xhr){
-		//display success
-		//if it's added to this playlist, add bookmark
-		$('.hrspacer').after(jQuery.parseHTML(data.html+"<hr>"));
-		$('.bookmark').first().bookmarkSetup();
-		//if it's added to some other list, give choice between staying here or going to that list
-		$(this).find('.alert-container-success').show();
-		$(this).find('.form-buttons').hide();
-		//console.log(data);
-	}).on('close', '#new-bookmark-modal .alert', function(){
-		$(this).after($(this).clone());
-	}).on('closed', '#new-bookmark-modal .alert', function(){
-		$('#new-bookmark-modal').find('input[type=text]').val('');
-
-		$('#new-bookmark-modal').find('.alert-container-success').hide();
-		$('#new-bookmark-modal').find('.form-buttons').show();
-	});
 
 	$('#filter_uncategorized, #filter_bookmarks').on('keyup', function(event){
 		filterField = this;

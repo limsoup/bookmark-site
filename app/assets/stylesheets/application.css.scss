@@ -11,3 +11,27 @@
  *= require_self
  *= require_tree .
  */
+
+.navbar img {
+	vertical-align:middle;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	
+	/* This works in IE 8 & 9 too */
+	/* ... but also 5, 6, 7 */
+	filter: alpha(opacity=30);
+	
+	/* Older than Firefox 0.9 */
+	-moz-opacity:0.3;
+	
+	/* Safari 1.x (pre WebKit!) */
+	-khtml-opacity: 0.3;
+    
+	/* Modern!
+	/* Firefox 0.9+, Safari 2?, Chrome any?
+	/* Opera 9+, IE 9+ */
+	opacity: 0.3;
+	-webkit-filter: invert(100%);  
+	max-height:17px;
+	max-width:15px;
+	margin-bottom:3px;
+}

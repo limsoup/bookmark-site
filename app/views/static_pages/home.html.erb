@@ -6,7 +6,9 @@
 			<div class="row-fluid options">
 			  <div class="span3 offset1">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<a href="#" class="btn btn-primary btn-large signup-modal-link">Sign Up &raquo;</a><br />
+			  		<!-- <a href="/users/" class="btn btn-primary btn-large signup-modal-link" data-remote>Sign Up &raquo;</a><br /> -->
+			  		<%= link_to "Sign Up »", upgrade_user_path(@user), :class=>"btn btn-primary btn-large signup-modal-link", "data-remote" => true, "data-type" => "html" %>
+			  		<br />
 			  		<div id="signup-modal-holder">
 					    <%= render '/users/modal_new' %>
 					  </div>
@@ -54,7 +56,7 @@
 				<p>Just by playing through a super-simple PlayThru™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
 				<p>One thing: for this site to work, you do need cookies and javascript enabled, and it works best in up-to-date versions of Chrome, Firefox, Safari, and IE 7+. </p>
 				<div class="center-button-table"><div class="center-button-cell">
-		  		<a href="#" class="btn btn-primary signup-modal-link">Sign Up &raquo;</a><br />
+		  		<%= link_to "Sign Up »", upgrade_user_path(@user), :class=>"btn btn-primary signup-modal-link", "data-remote" => true, "data-type" => "html" %>
 			  </div></div>
 			</div>
 		</div>

@@ -77,9 +77,8 @@ Do now:
 	[ ]features
 		[x]login
 		[x]drag and drop
-		[ ]new bookmark
-			[ ]make indented action, highlight active on sidebar
-			[?]js new, ajax create
+		[x]new bookmark
+			[x]js new, ajax create
 
 	[ ]styling
 		[x]detail
@@ -127,15 +126,25 @@ Do now:
 						[ ]bookmarklet?
 						[ ]user profile
 							-when you're logged into your account, hovering over this will show a link to your profile
-			[ ]feature
+			[ ]features
 				[ ]Playthrough Create User
-					[ ]modal new/create
+					[x]modal new/create
 					[ ]playthrough integration
-				[ ]Instant Account
+				[x]Instant Account
+					[ ]home/other dialog
+						-check cookies-
+						[ ]if no account -> enable cookies
+						-ajax pull from site-
+						[x]if not human -> show upgrade path
+						[ ]if human -> "already registered, you can change your account here though or your preferences there"
+					[x]process upgrade
+						[ ]
+					[ ]on session destroy
+						delete user if not human and nothing done
 				[*]New Bookmark
-					[-]form
-					[ ]js
-						[ ]modal
+					[x]form
+					[x]js
+						[x]modal
 						[ ]submit
 						[ ]
 					[ ]errors/notices
@@ -149,7 +158,7 @@ Do now:
 
 
 		[ ]icons
-			[ ]remove
+			[x]remove
 			[ ]user
 			[ ]info 'how'
 			[ ]about
@@ -188,7 +197,10 @@ Do now:
 		[ ]container
 		[ ]optional display
 	[ ]validations
-
+	[ ]security
+		[ ]can i make bookmarklet key unaccessible
+		[ ]do i need to encode my html and other responses
+		[ ]do i need to be checking my csrf tokens
 	[ ]read
 		[ ]sharing cookies/privacy
 		[ ]csrf validity

@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
-	before_filter :authorize_owner, :only => [:edit, :update, :delete, :show ]
-	# before_filter :authorize_show, :only => [:show]
+	before_filter :authorize_owner, :only => [:edit, :update, :delete ]
+	before_filter :authorize_show_playlist, :only => [:show]
 	before_filter :authorize, :only => [:new, :create, :index]
 	
 	def new
@@ -19,6 +19,8 @@ class PlaylistsController < ApplicationController
 	def show
 		@playlist = current_user.playlists.find(params[:id])
 		@lists = current_user.lists
+		@user_bookmark = @playlist.user_bookmarks.build
+		@bookmark_url = BookmarkUrl.new 	#this is because i'm doing the 'new' form differently
 	end
 
 	def edit
@@ -69,10 +71,11 @@ class PlaylistsController < ApplicationController
 
 	private
 		def authorize_owner
-			playlist = current_user.playlists.find_by_id(params[:id])
 			if(current_user.nil?)
 				redirect_to login_path, :notice => "You have to be logged in as the owner of that playlist to access this funcationality."
-			elsif (playlist.nil?)
+			end
+			playlist = current_user.playlists.find_by_id(params[:id])
+			if (playlist.nil?)
 				redirect_to current_user, :notice => "You have to be logged in as the owner of that playlist to access this funcationality."
 			end
 		end
@@ -83,4 +86,15 @@ class PlaylistsController < ApplicationController
 			end
 		end
 
+		def authorize_show_playlist
+			if !(Playlist.find(params[:id]).public)
+				if(current_user.nil?)
+					redirect_to login_path, :notice => "You have to be logged in as the owner of that playlist to see it."
+				end
+				playlist = current_user.playlists.find_by_id(params[:id])
+				if (playlist.nil?)
+					redirect_to current_user, :notice => "You have to be logged in as the owner of that playlist to see it."
+				end
+			end
+		end
 end

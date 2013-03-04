@@ -50,9 +50,15 @@
 	.form-buttons {
 		margin: 0 0 0 0;
 	}
-	.alert-container-success, .alert-container-error {
+	.alert-container-success {
 		display:none;
 		margin-top:15px;
+	}
+	.alert-container-error{
+		display:none;
+		ul {
+			list-style-type:none;
+		}
 	}
 	.alert-success, .alert-error {
 		margin-bottom:0px;

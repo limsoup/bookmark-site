@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225213844) do
+ActiveRecord::Schema.define(:version => 20130304133342) do
 
   create_table "bookmark_urls", :force => true do |t|
     t.string   "url"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130225213844) do
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "public"
   end
 
   add_index "playlists", ["user_id"], :name => "index_playlists_on_user_id"
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130225213844) do
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.string   "bookmarklet_user_key"
+    t.boolean  "human"
   end
 
   add_index "users", ["bookmarklet_user_key"], :name => "index_users_on_bookmarklet_user_key"
