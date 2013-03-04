@@ -17,7 +17,7 @@ class PlaylistsController < ApplicationController
 	end
 
 	def show
-			@playlist = Playlist.find(params[:id])
+		@playlist = Playlist.find(params[:id])
 		if current_user
 			@playlist = current_user.playlists.find(params[:id])
 			@lists = current_user.lists

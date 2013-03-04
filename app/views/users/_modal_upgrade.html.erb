@@ -10,6 +10,7 @@
       <%= f.password_field :password, :placeholder=>"Password" %>
       <br />
       <%= f.password_field :password_confirmation, :placeholder=>"Password Confirmation" %>
+      <%= @publisher_html.try(:html_safe)  %>
     </div>
     <div class="modal-footer">
       <div class = "form-buttons">
