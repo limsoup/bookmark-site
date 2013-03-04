@@ -8,13 +8,14 @@
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<!-- <a href="/users/" class="btn btn-primary btn-large signup-modal-link" data-remote>Sign Up &raquo;</a><br /> -->
 			  		<% if @user.id %>
-			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link", "data-remote" => true, "data-type" => "html" %>
+			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+			  			<div id="signup-modal-holder">
+				  			<%= render '/users/modal_upgrade' %>
+				  		</div>
 			  		<% else %>
-				  		<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=> "signup-modal-link", "data-remote" => true, "data-type" => "html" %>
+				  		<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
 			  		<% end %>
-			  		<div id="signup-modal-holder">
-			  			<%= render 'modal_upgrade' %>
-			  		</div>
+			  		
 			  		<br />
 			  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
