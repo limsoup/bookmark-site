@@ -38,6 +38,9 @@ $(function() {
 		}
 		//disable form
 		//redirect to form page
+	}).on('shown', '#signup-modal', function(){
+		$(document.body).delay(500).trigger('load');
+		console.log('lol');
 	}).on('close', '#signup-modal form .alert', function(){
 		$(this).after($(this).clone());
 		$(this).parent().find('div').each(function(index){
