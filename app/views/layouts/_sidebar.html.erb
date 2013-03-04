@@ -1,31 +1,38 @@
 <div class="span3">
     <div class="well sidebar-nav">
       <ul class="nav nav-list">
-        <li class="nav-header">Bookmarklet</li>
-        <li><%= image_tag 'bookmarklet.png' %><li>
-        <li class="nav-header">Actions</li> 
-        <% if @playlist and @playlist.id %>
-            <% if (@playlist.user == current_user) and (current_page?(@playlist) or current_page?(edit_playlist_path(@playlist.id))) and @playlist != current_user.default_list %>
-                <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist)  %></li>
-            <% end %>
-        <% end %>
-        <li><%= link_to "Add a Bookmark", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
-        <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to 'Create New Playlist', new_playlist_path%></li>
-        <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
-        <li class="nav-header">My Playlists</li>
-        <% if !(@lists.nil?) %>
-            <% @lists.each do |pl|%>
-                <% if pl == @playlist %>
-                    <li class="active">
-                <% else %>
-                    <li>
+        <% if current_user %>
+            <li class="nav-header">Bookmarklet</li>
+            <li><%= image_tag 'bookmarklet.png' %><li>
+            <li class="nav-header">Actions</li> 
+            <% if @playlist and @playlist.id %>
+                <% if (@playlist.user == current_user) and (current_page?(@playlist) or current_page?(edit_playlist_path(@playlist.id))) and @playlist != current_user.default_list %>
+                    <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist)  %></li>
                 <% end %>
-                    <%=link_to pl.playlist_name, pl %>
-                </li>
+            <% end %>
+            <li><%= link_to "Add a Bookmark", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
+            <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to 'Create New Playlist', new_playlist_path%></li>
+            <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
+            <li class="nav-header">My Playlists</li>
+            <% if !(@lists.nil?) %>
+                <% @lists.each do |pl|%>
+                    <% if pl == @playlist %>
+                        <li class="active">
+                    <% else %>
+                        <li>
+                    <% end %>
+                        <%=link_to pl.playlist_name, pl %>
+                    </li>
+                <% end %>
+            <% else %>
+                <li style="font-size:12px">You don't have any playlists yet</li>
             <% end %>
         <% else %>
-            <li style="font-size:12px">You don't have any playlists yet</li>
-        <% end %>
+            <li class="nav-header">Actions</li> 
+            <li><%= link_to "Sign Up", '/signup'  %></li>
+            <li class="nav-header">Public</li>
+            <li><%= link_to "Brunettes", '/playlists/16'%></li>
+        <% end %> 
       </ul>
     </div>
 </div>

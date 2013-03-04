@@ -116,7 +116,7 @@ class UserBookmarksController < ApplicationController
 
 	def move
 		# logger.ap request.env
-		@source_playlist = current_user.playlists.find(params[:playlist_id])
+		@source_playlist = Playlist.find(params[:playlist_id])
 		@dest_playlist = Playlist.find(params[:destination])
 		@user_bookmark = @source_playlist.user_bookmarks.find(params[:id])
 		@bookmark_url = @user_bookmark.bookmark_url

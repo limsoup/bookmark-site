@@ -3,7 +3,7 @@
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h2>Sign Up</h2>
   </div>
-  <%= form_for @new_user, :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
+  <%= form_for @user, :url=>process_upgrade_user_path(@user), :method => :put, :html => { "data-type" => "json"}, :remote=>true do |f|%>
     <div class="modal-body">
       <%= f.text_field :username, :placeholder=>"Username" %>
       <br />
@@ -20,7 +20,7 @@
       <div class = "alert-container-success">
         <div class = "alert alert-success">
           <a class="close" data-dismiss="alert" href="#">&times;</a>
-          Your account was successfully created.
+          Your account was successfully created. Your bookmarks will be <%= link_to 'here', @user %>.
         </div>
       </div>
       <div class = "alert-container-error">

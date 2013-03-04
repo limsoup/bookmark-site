@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
 	def new
 		@user = User.new
+		if request.xhr?
+			render :partial => 'modal_new'
+		else
+			render 'new'
+		end
 	end
 
 	def create
@@ -8,9 +13,15 @@ class UsersController < ApplicationController
 		if(@user.save)
 			session[:remember_token] = @user.remember_token
 			@user.default_list = Playlist.create(:playlist_name => "default list")
-			redirect_to users_path(@user), :notice => "You've signed up successfully."
+			respond_to do |format|
+				format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+				format.json { render :json => {"success" => "true" } }
+			end
 		else
-			render 'new'
+			respond_to do |format|
+				format.html { render 'new', :notice => "You've signed up successfully." }
+				format.json { render :json =>{ "errors" => @user.errors.full_messages }}
+			end
 		end
 	end
 
@@ -19,7 +30,7 @@ class UsersController < ApplicationController
 			render :partial => 'error' #message about how they need cookies enabled
 		else
 			@user = current_user
-			render :partial => 'modal_new'
+			render :partial => 'modal_upgrade'
 			# if @user.human?
 			# 	render :partial => 'edit'
 			# else
@@ -39,7 +50,7 @@ class UsersController < ApplicationController
 			end
 		else
 			respond_to do |format|
-				format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+				format.html { redirect_to users_path(@user), :notice => "You had some errors with your changes" }
 				format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 			end
 		end
@@ -76,7 +87,11 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		if(params[:id])
+			@user = User.find(params[:id])
+		else
+			@user = User.find_by_username(params[:username])
+		end
 		@playlist = @user.default_list
 		@lists = @user.lists
 		# for modal new bookmark

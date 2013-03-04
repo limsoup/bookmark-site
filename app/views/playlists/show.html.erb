@@ -1,16 +1,20 @@
 <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
-  <div id='linkDrop'><!-- drag and drop    -->
-    <h1>Bookmark</h1>
-    <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
-      <%= f.hidden_field :url %>
-      <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
-    <% end %>
-  </div><!-- drag and drop end -->
+  <% if current_user %>
+    <div id='linkDrop'><!-- drag and drop    -->
+      <h1>Bookmark</h1>
+      <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
+        <%= f.hidden_field :url %>
+        <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
+      <% end %>
+    </div><!-- drag and drop end -->
+  <% end %>
   <h2><%= @playlist.playlist_name %></h2>
   <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', id:"new-bookmark-modal-link", class:"btn btn-primary" %>
   <div id="new-bookmark-modal-holder">
-    <%= render '/user_bookmarks/modal_new' %>
+    <% if current_user %>
+      <%= render '/user_bookmarks/modal_new' %>
+    <% end %>
   </div><!-- 
   <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%> -->
   <br />
@@ -21,7 +25,6 @@
     <% else %>
       <hr>
     <% end %>
-    <% logger.ap user_bookmark %>
     <% if user_bookmark.id %>
       <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
     <% end %>

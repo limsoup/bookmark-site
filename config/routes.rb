@@ -15,7 +15,7 @@ BookmarkSite::Application.routes.draw do
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
 
-  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :options
+  match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :post
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 
@@ -33,7 +33,9 @@ BookmarkSite::Application.routes.draw do
 
   match 'users/temp(.:format)' => 'users#temp', :as => :temp_users, :via => :get
   match 'users/create_temp(.:format)' => 'users#create_temp', :as => :create_temp_users, :via => :get
-  
+
+  match '/:username' => 'users#show'
+
   resources :users do
     member do
       get 'upgrade'

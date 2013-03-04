@@ -17,10 +17,13 @@ class PlaylistsController < ApplicationController
 	end
 
 	def show
-		@playlist = current_user.playlists.find(params[:id])
-		@lists = current_user.lists
-		@user_bookmark = @playlist.user_bookmarks.build
-		@bookmark_url = BookmarkUrl.new 	#this is because i'm doing the 'new' form differently
+			@playlist = Playlist.find(params[:id])
+		if current_user
+			@playlist = current_user.playlists.find(params[:id])
+			@lists = current_user.lists
+			@user_bookmark = @playlist.user_bookmarks.build
+			@bookmark_url = BookmarkUrl.new 	#this is because i'm doing the 'new' form differently
+		end
 	end
 
 	def edit

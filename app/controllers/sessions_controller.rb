@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
   end
   def destroy
   	session[:remember_token] = nil
+    session[:logged_out] = true;
   	redirect_to root_path
   end
 end

@@ -74,11 +74,21 @@ Do now:
 	[x]embed players
 	[x]test moving items between playlists
 		------------------
-	[ ]features
+	[x]features
 		[x]login
 		[x]drag and drop
 		[x]new bookmark
 			[x]js new, ajax create
+	[+]fix grab
+		[x]fix
+		[ ]notifcation
+		[ ]something that tells you if you have it already
+		[ ]uncategorized option
+		[x]check: only user's own playlists
+		[x]call move - "grab" when it's not the user's playlist
+	[ ]hover
+
+	[ ]dynamic routes error
 
 	[ ]styling
 		[x]detail
@@ -87,6 +97,7 @@ Do now:
 				[x]update
 			[x]get those funcitons out of bookmarkSetup
 		[x]sidebar
+		[ ]
 			[x]read about layout and yield and shit
 			[x]changes
 		[x]#link navigation
@@ -101,12 +112,14 @@ Do now:
 					[x]only one pane available at a time
 				[x]revert when
 					[x]move, expand, collapse
-			[ ]move
-				[ ]uncategorized option
-				[x]check: only user's own playlists
-				[x]call move - "grab" when it's not the user's playlist
+		[ ]move
 		
 		[ ]landing page
+			[ ]different if you're logged in
+			[ ]highlight login/signup
+				[ ]icon/background
+				[ ]timed notification .5s
+				[ ]login/login as different user
 			[x]hero
 				[x]positioning and buttons
 				[x]background
@@ -126,36 +139,35 @@ Do now:
 						[ ]bookmarklet?
 						[ ]user profile
 							-when you're logged into your account, hovering over this will show a link to your profile
-			[ ]features
-				[ ]Playthrough Create User
-					[x]modal new/create
-					[ ]playthrough integration
-				[x]Instant Account
-					[ ]home/other dialog
-						-check cookies-
-						[ ]if no account -> enable cookies
-						-ajax pull from site-
-						[x]if not human -> show upgrade path
-						[ ]if human -> "already registered, you can change your account here though or your preferences there"
-					[x]process upgrade
-						[ ]
-					[ ]on session destroy
-						delete user if not human and nothing done
-				[*]New Bookmark
-					[x]form
-					[x]js
-						[x]modal
-						[ ]submit
-						[ ]
-					[ ]errors/notices
+		[ ]features
+			[ ]Playthrough Create User
+				[x]modal new/create
+				[ ]playthrough integration
+			[x]Instant Account
+				[ ]home/other dialog
+					-check cookies-
+					[ ]if no account -> enable cookies
+					-ajax pull from site-
+					[x]if not human -> show upgrade path
+					[ ]if human -> "already registered, you can change your account here though or your preferences there"
+				[x]process upgrade
+					[ ]
+				[ ]on session destroy
+					delete user if not human and nothing done
+			[*]New Bookmark
+				[x]form
+				[x]js
+					[x]modal
+					[x]submit
+					[x]notifications
+				[ ]errors/notices
 			[ ]spacer
-			[ ]grab
 
-			[*]access
-			[x]merge new and show
-			[ ]edit <-> show
-			[x]index
-
+		[*]access
+		[x]merge new and show
+		[ ]edit <-> show
+		[x]index
+		[ ]different sidebar when not logged in
 
 		[ ]icons
 			[x]remove
@@ -258,3 +270,14 @@ Recommendations
 	thoughts:
 		[ ] might just be a matter of timing
 			[ ] can't do 
+
+monetization
+	[ ]apparatuses
+		[ ]extension
+		[ ]toys
+	[ ]game stuff
+	[ ]escort ads
+		[ ]we make the layouts
+		[ ]hook into the review sites
+	[ ]gifmaker
+	[ ]sister-non-porn ads
