@@ -19,7 +19,7 @@
                     <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist), :class => "new-bookmark-modal-link"%></li>
                 <% end %>
             <% end %>
-            <li><%= link_to "Add a Bookmark", '#', :class => "new-bookmark-modal-link", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
+            <li><%= link_to "Add a Bookmark", new_playlist_user_bookmark_path(current_user.default_list), :class => "new-bookmark-modal-link"  %></li>
             <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to 'Create New Playlist', new_playlist_path%></li>
             <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
             <li class="nav-header">My Playlists</li>
