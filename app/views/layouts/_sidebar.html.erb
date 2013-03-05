@@ -16,7 +16,7 @@
             -->
             <% if @playlist and @playlist.id %>
                 <% if (@playlist.user == current_user) and current_page?(@playlist) and @playlist != current_user.default_list %>
-                    <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist)  :class => "new-bookmark-modal-link"%></li>
+                    <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist), :class => "new-bookmark-modal-link"%></li>
                 <% end %>
             <% end %>
             <li><%= link_to "Add a Bookmark", '#', :class => "new-bookmark-modal-link", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
