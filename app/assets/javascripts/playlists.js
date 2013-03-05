@@ -7,11 +7,16 @@
 
 	ubNameSel='input[name="user_bookmark[bookmark_url_attributes][id]"]';
 	detail = $('#detail_bookmark_view');
+	function findBookmarkInList(){
+		return $('#bookmark_list_view').find(ubNameSel+'[value='+detail.find(ubNameSel).val()+']').parents('.bookmark');
+	}
   $.fn.bookmarkSetup = function (){
   	this.on('click', function(event){
 			event.preventDefault();
+			$(this).css('background','#D2FFE2');
   		if($(this).find(ubNameSel).val() != detail.find(ubNameSel).val() ){
   			if(detail.children().length > 0) {
+  				$(findBookmarkInList()).css('background','white');
   				detail.children().replaceWith($(this).find('.detail_bookmark').clone().show());
   			} else{
 					detail.append($(this).find('.detail_bookmark').clone().show());
@@ -42,7 +47,7 @@ $(function() {
 	//--applies to show bookmark pages--
 
 	//new bookmark modal link
-	$('#new-bookmark-modal-link').on('click', function(event){
+	$('.new-bookmark-modal-link').on('click', function(event){
 		event.preventDefault();
 		$('#new-bookmark-modal-holder').find('.modal').clone().appendTo('#modalHolder');
 		$('#modalHolder').find('.modal').modal('show');
@@ -214,7 +219,7 @@ $(function() {
 	
 	//--applies to playlist#show which has linkDrop
 	
-
+	/*
 	$('.container-fluid').on('dragover dragenter', function(e) {
 		//raise zindex on enter main view
 		$('#linkDrop').css('z-index','0');
@@ -248,7 +253,7 @@ $(function() {
 				}
 			});
 		}
-	});
+	}); */
 	
 	var thumbnailIntervalId;
 	$('#bookmark_list_view').on('mouseover', '.cycle' , function() {

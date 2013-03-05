@@ -3,11 +3,15 @@ class JsfilesController < ApplicationController
 	def bookmarklet
 		@user_bookmark = UserBookmark.new
 		respond_to do |format|
-			format.js {logger.ap "Requesting JS"
+			format.js {
 				render 'bookmarklet'}
-			format.html {logger.ap "Requesting HTML"
+			format.html {
 				render 'bookmarklet_content'}
 		end
+	end
+
+	def jquery_bookmarklet
+		render 'jquery_bookmarklet.min'
 	end
 
 	def embed

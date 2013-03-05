@@ -3,36 +3,43 @@
       <ul class="nav nav-list">
         <% if current_user %>
             <li class="nav-header">Bookmarklet</li>
-            <li><%= image_tag 'bookmarklet.png' %><li>
-            <li class="nav-header">Actions</li> 
+            <li><a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/assets/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a><li>
+            <li class="nav-header">Actions</li>
+            <li><%= link_to 'Home', current_user %></li>
+            <% if !current_user.human %>
+                <li><strong><%= link_to "Save your account: Confirm you're human", edit_user_path(@user) %></strong></li>
+            <% end %>
+            <!-- if there is a valid playlist
+            make sure that the current_user owns this playlist, 
+            that this is the show playlist view
+            and that the playlist isnt' the default one
+            -->
             <% if @playlist and @playlist.id %>
-                <% if (@playlist.user == current_user) and (current_page?(@playlist) or current_page?(edit_playlist_path(@playlist.id))) and @playlist != current_user.default_list %>
-                    <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist)  %></li>
+                <% if (@playlist.user == current_user) and current_page?(@playlist) and @playlist != current_user.default_list %>
+                    <li><%= link_to "Add a Bookmark to "+@playlist.playlist_name, new_playlist_user_bookmark_path(@playlist)  :class => "new-bookmark-modal-link"%></li>
                 <% end %>
             <% end %>
-            <li><%= link_to "Add a Bookmark", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
+            <li><%= link_to "Add a Bookmark", '#', :class => "new-bookmark-modal-link", new_playlist_user_bookmark_path(current_user.default_list)  %></li>
             <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to 'Create New Playlist', new_playlist_path%></li>
             <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
             <li class="nav-header">My Playlists</li>
-            <% if !(@lists.nil?) %>
+            <% if !(current_user.lists.nil?) %>
                 <% @lists.each do |pl|%>
                     <% if pl == @playlist %>
-                        <li class="active">
+                        <li class="active"><%=link_to pl.playlist_name, pl %></li>
                     <% else %>
-                        <li>
+                        <li><%=link_to pl.playlist_name, pl %></li>
                     <% end %>
-                        <%=link_to pl.playlist_name, pl %>
-                    </li>
                 <% end %>
             <% else %>
                 <li style="font-size:12px">You don't have any playlists yet</li>
             <% end %>
         <% else %>
             <li class="nav-header">Actions</li> 
-            <li><%= link_to "Sign Up", '/signup'  %></li>
-            <li class="nav-header">Public</li>
-            <li><%= link_to "Brunettes", '/playlists/16'%></li>
+            <li><strong><%= link_to "Sign Up", signup_path  %></strong></li>
         <% end %> 
+        <li class="nav-header">Public</li>
+        <!-- <li><%= link_to "Brunettes", '/playlists/16'%></li> -->
       </ul>
     </div>
 </div>

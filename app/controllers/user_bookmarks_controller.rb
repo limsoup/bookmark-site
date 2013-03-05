@@ -7,7 +7,7 @@ class UserBookmarksController < ApplicationController
 
 	def create
 		@playlist = current_user.playlists.find params[:playlist_id]
-		@user_bookmark = UserBookmark.first();
+		@user_bookmark = UserBookmark.new;
 		# if no url is given, 
 		if(!params[:user_bookmark][:bookmark_url_attributes][:url].nil?)
 			@bookmark_url = BookmarkUrl.find_by_url(params[:user_bookmark][:bookmark_url_attributes][:url])

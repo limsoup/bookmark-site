@@ -1,5 +1,4 @@
 $(function() {
-	$('.options a').tooltip({});
 	$('#add-anchor-link').on('click', function(){
 		$('#add-links-container').delay(200).effect("highlight", {color:"#FFD2AD"}, 2000);
 	});
@@ -58,7 +57,15 @@ $(function() {
 		$('#modalHolder .signup-modal .alert-container-success').hide();
 		$('#modalHolder .signup-modal .alert-container-error').hide();
 		$('#modalHolder .signup-modal .form-buttons').show();
-	});;
-
+	});
+	$('.options a').tooltip({});
+	setTimeout(function() {
+		$("#temp-acct-popover-holder").popover('show').next().on('click', function(){
+			$("#temp-acct-popover-holder").popover('hide');
+		});
+		$('#temp-acct-popover-holder+.popover').effect("highlight", {color:"#FF4D60"}, 1000);
+		$('#temp-acct-popover-holder+.popover').css('left',$('#temp-acct-popover-holder+.popover').position().left*1.8+'px');
+	},1000);
 });
+
 

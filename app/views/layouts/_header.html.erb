@@ -1,9 +1,9 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
-      <%= link_to "<img src='/assets/glyphicons/glyphicons_020_home.png'></img> Home".html_safe, home_path, class:"brand" %>
       <div class="nav-collapse collapse">
         <ul class="nav">
+          <li><%= link_to "<img src='/assets/glyphicons/glyphicons_020_home.png'></img> VRepo".html_safe, home_path, class:"logo", style:"color:#3880FF" %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_195_circle_info.png'></img> Information".html_safe, how_path %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_021_snowflake.png'></img> About Us".html_safe, about_path %></li><!-- this stuff can probably go to the footer -->
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_203_lock.png'></img> Privacy".html_safe, privacy_path %></li>
@@ -11,7 +11,7 @@
         </ul>
         <ul class="nav pull-right">
         	<% if current_user.nil? %>
-          	<li><a href="#">1 Click Save</a></li>
+          	<!-- <li><a href="#">1 Click Save</a></li> -->
             <li><a href="/signup">Sign Up</a></li>
             <li class="divider-vertical"></li>
             <li class="dropdown">
@@ -29,7 +29,7 @@
             	<li><%= link_to 'Upgrade to a full account', edit_user_path(current_user),"		tabindex" => "-1" %></li>
             	<li><%= link_to 'Log Out', logout_path , "tabindex" => "-1"%></li> <!-- some kind of notice that temp users can't get shit back if they close this -->
             <% else %>
-              <li class="dropdown">
+              <li class="dropdown" id="temp-acct-popover-holder" data-html=true data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="<p id=temp-acct-popover>An account has been created for you.<br />The password is the same as the username.</div>">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src='/assets/glyphicons/glyphicons_003_user.png'> </img><%= current_user.username %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
 		            	<li><%=link_to "Bookmarks Home", current_user , "tabindex" => "-1"%></li>

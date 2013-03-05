@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	def new
 		@user = User.new
+		ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+		@publisher_html = ayah.get_publisher_html
 		if request.xhr?
 			render :partial => 'modal_new'
 		else

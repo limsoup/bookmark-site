@@ -165,16 +165,14 @@ Do now:
 
 		[*]access
 		[x]merge new and show
-		[ ]edit <-> show
+		[x]edit <-> show
 		[x]index
-		[ ]different sidebar when not logged in
 
 		[ ]icons
 			[x]remove
 			[ ]user
-			[ ]info 'how'
-			[ ]about
-			[ ]sidebar
+			[x]info 'how'
+			[x]about
 		[ ]sidebar
 			[ ]home page
 		[ ]pages
@@ -238,20 +236,16 @@ potential changes:
 		adding a counter
 		storing when different URLs go to the same page
 ------------------------------------------------------------------
-I don't know what this means for it:
-	user_bookmarks are not destroyed when they're removed from bookmark_urls
-
-------------------------------------------------------------------
 
 connections to allow:
 
-multiple-degree connections
+	multiple-degree connections
 
-users following users:
+	users following users:
 
-users following playlists
+	users following playlists
 
-bookmarks showing who has  playlists and users
+	bookmarks showing who has  playlists and users
 
 
 Recommendations
@@ -281,3 +275,44 @@ monetization
 		[ ]hook into the review sites
 	[ ]gifmaker
 	[ ]sister-non-porn ads
+
+
+fixes
+[?] When signing up, if someone hits create account without having done playthru, give a red-text notification that they need to do the playthru game
+[x] Some of Main landing page links not working (Add LInk Button specifically)
+[ ] Bookmarklets don't work
+[x] people can't create a redundant username rite?
+[ ] drag'n drop doesn't open a modal window
+	[ ]show modal on dragn drop
+	[ ]past text into it
+	[ ]if they paste anything into it, it replaces it
+
+
+[x] Have it called VRepo.com in the tabs
+[x] Make home icon and text same size as the rest
+[x] highlight
+[ ] sidebar for temp account -> full-account convert
+[x]	sidebar for temp account -> bookmarklet
+[x] sidebar for no account -> signup
+[ ] sidebar all my bookmarks
+	[ ]link in sidebar
+	[ ]tab-enabled all/uncategorized
+
+[ ]any type of account
+	[ ]drag and drop
+	[ ]add bookmark
+	[ ]bookmarklet
+
+[ ]logged in full account
+	[ ]straight to account page
+	[ ]landing page has login
+[ ]temp account
+	[ ]signup
+	[x]notification to prove you're human
+[ ]logged out
+	[ ] signup
+	[ ] login
+	[ ] add-bookmark disabled, hover -> login or create an account
+
+
+[ ]list view, domains - labels

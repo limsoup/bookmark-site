@@ -4,7 +4,7 @@
 	Hi <%= current_user.username %><br />
 <% end %>
 </div>
-<%= form_for @user_bookmark, :url => 'http://localhost:3000/jsfiles/process_bookmarklet', :html => { "data-type" => :json, :method => :post, :remote => true} do |f| %> 
+<%= form_for @user_bookmark, :url => 'http://www.vrepo.com/jsfiles/process_bookmarklet', :html => { "data-type" => :json, :method => :post, :remote => true} do |f| %> 
 <table><th></th><th></th>
 <tr><td>
 	<%= f.label :bookmark_name, 'Title' %></td><td>

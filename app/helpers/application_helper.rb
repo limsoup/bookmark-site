@@ -4,6 +4,7 @@ require 'nokogiri'
 
 module ApplicationHelper
 
+
 	def getEmbed(url)
 		parts = URI.split(url)
 		# if parts[0] and parts[2] and parts[5]

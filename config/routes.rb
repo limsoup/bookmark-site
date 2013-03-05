@@ -12,8 +12,9 @@ BookmarkSite::Application.routes.draw do
   #match '/sessions(.:format)' => 'sessions#create', :via => :post
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
-  get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
-  get "jsfiles/embed(.:format)" => "jsfiles#embed", :as => :embed
+  get "jsfiles/jquery_bookmarklet.min(.:format)" => "jsfiles#jquery_bookmarklet", :as => :bookmarklet
+  #get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
+  #get "jsfiles/embed(.:format)" => "jsfiles#embed", :as => :embed
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
 

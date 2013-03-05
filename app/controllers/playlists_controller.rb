@@ -21,7 +21,7 @@ class PlaylistsController < ApplicationController
 		if current_user
 			@playlist = current_user.playlists.find(params[:id])
 			@lists = current_user.lists
-			@user_bookmark = @playlist.user_bookmarks.build
+			@user_bookmark = UserBookmark.new
 			@bookmark_url = BookmarkUrl.new 	#this is because i'm doing the 'new' form differently
 		end
 	end

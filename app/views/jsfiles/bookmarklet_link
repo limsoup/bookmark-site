@@ -1,10 +1,6 @@
 javascript:(function(){
-	bmk=document.createElement('SCRIPT');
-	bmk.type='text/javascript';
-	bmk.src='http://localhost:3000/jsfiles/bookmarklet.js';
-	document.getElementsByTagName('head')[0].appendChild(bmk);
-	ujs=document.createElement('SCRIPT');
-	ujs.type='text/javascript';
-	ujs.src='http://localhost:3000/assets/jquery_ujs.js';
-	document.getElementsByTagName('head')[0].appendChild(ujs);
+	jq=document.createElement('SCRIPT');
+	jq.type='text/javascript';
+	jq.src='//localhost:3000/assets/jquery_bookmarklet.min.js';
+	document.getElementsByTagName('head')[0].appendChild(jq);
 })();

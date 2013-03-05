@@ -10,7 +10,7 @@
     </div><!-- drag and drop end -->
   <% end %>
   <h2><%= @playlist.playlist_name %></h2>
-  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', id:"new-bookmark-modal-link", class:"btn btn-primary" %>
+  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
   <div id="new-bookmark-modal-holder">
     <% if current_user %>
       <%= render '/user_bookmarks/modal_new' %>
