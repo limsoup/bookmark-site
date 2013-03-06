@@ -22,8 +22,10 @@ class StaticPagesController < ApplicationController
 			@playlist = @user.default_list
 			@user_bookmark = @playlist.user_bookmarks.build
 			@bookmark_url = BookmarkUrl.new
-			ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-			@publisher_html = ayah.get_publisher_html
+			if !(@user.human)
+				ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+				@publisher_html = ayah.get_publisher_html
+			end
 		else #implictly, logged_out == true and is actually logged out
 			@user = User.new
 		end

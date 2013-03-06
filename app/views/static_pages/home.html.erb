@@ -29,14 +29,15 @@
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<% if current_user%>
-				  		<a href="#" class="btn btn-primary btn-large">Add a Link &raquo;</a><br />
-			  			<div id="new-bookmark-modal-holder">
+				  		<a href="#" class="btn btn-primary btn-large new-bookmark-modal-link">Add a Link &raquo;</a><br />
+			  			<div class="new-bookmark-modal-holder">
 				  			<%= render '/user_bookmarks/modal_new' %>
 				  		</div>
+				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% else %>
-				  		<a href="#" class="btn btn-primary btn-large">Add a Link &raquo;</a><br />
+				  		<a href="#" class="btn btn-primary btn-large disabled">Add a Link &raquo;</a><br />
+				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% end %>
-			  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			</div>
@@ -116,7 +117,11 @@
 				<p>Similar to the drag-and-drop way: Click the button below (there'll be a button like this on your standard home page), and a modal window will come up and let you set the title and submit the link.</p>
 			 	<p>From there, it'll take you to the page containing your links.</p>
 			 	<div class="center-button-table"><div class="center-button-cell">
-		  		<a href="" class="btn btn-primary">Add a Link &raquo;</a><br />
+			 		<% if current_user %>
+			  		<a href="#" class="btn btn-primary new-bookmark-modal-link">Add a Link &raquo;</a><br />
+		  		<% else %>
+			  		<a href="#" class="btn btn-primary disabled">Add a Link &raquo;</a><br />
+		  		<% end %>
 			  </div></div>
 			</div>
 		</div>

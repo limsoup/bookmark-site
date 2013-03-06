@@ -24,11 +24,13 @@
             <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
             <li class="nav-header">My Playlists</li>
             <% if !(current_user.lists.empty?) and (current_user.lists.first.id?) %>
-                <% @lists.each do |pl|%>
-                    <% if pl == @playlist %>
-                        <li class="active"><%=link_to pl.playlist_name, pl %></li>
-                    <% else %>
-                        <li><%=link_to pl.playlist_name, pl %></li>
+                <% current_user.lists.each do |pl|%>
+                    <% if pl.id %>
+                        <% if pl == @playlist %>
+                            <li class="active"><%=link_to pl.playlist_name, pl %></li>
+                        <% else %>
+                            <li><%=link_to pl.playlist_name, pl %></li>
+                        <% end %>
                     <% end %>
                 <% end %>
             <% else %>

@@ -59,13 +59,15 @@ $(function() {
 		$('#modalHolder .signup-modal .form-buttons').show();
 	});
 	$('.options a').tooltip({});
-	setTimeout(function() {
-		$("#temp-acct-popover-holder").popover('show').next().on('click', function(){
-			$("#temp-acct-popover-holder").popover('hide');
-		});
-		$('#temp-acct-popover-holder+.popover').effect("highlight", {color:"#FF4D60"}, 1000);
-		$('#temp-acct-popover-holder+.popover').css('left',$('#temp-acct-popover-holder+.popover').position().left*1.8+'px');
-	},1000);
+	if($('#temp-acct-popover-holder').length != 0){
+		setTimeout(function() {
+			$("#temp-acct-popover-holder").popover('show').next().on('click', function(){
+				$("#temp-acct-popover-holder").popover('hide');
+			});
+			$('#temp-acct-popover-holder+.popover').effect("highlight", {color:"#FF4D60"}, 1000);
+			$('#temp-acct-popover-holder+.popover').css('left',$('#temp-acct-popover-holder+.popover').position().left*1.8+'px');
+		},1000);
+	}
 });
 
 

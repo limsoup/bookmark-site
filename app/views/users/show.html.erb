@@ -1,14 +1,6 @@
 <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
-  <div id='linkDrop'><!-- drag and drop    -->
-    <h1>Bookmark</h1>
-    <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
-      <%= f.hidden_field :url %>
-      <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
-    <% end %>
-  </div><!-- drag and drop end -->
-  <h2>Bookmarks </h2>
-  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', id:"new-bookmark-modal-link", class:"btn btn-primary" %>
+  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
   <div id="new-bookmark-modal-holder">
     <%= render '/user_bookmarks/modal_new' %>
   </div><!-- 

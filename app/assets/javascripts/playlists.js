@@ -219,41 +219,45 @@ $(function() {
 	
 	//--applies to playlist#show which has linkDrop
 	
-	/*
+
 	$('.container-fluid').on('dragover dragenter', function(e) {
+		//summon modal
+		$('#new-bookmark-modal-holder').find('.modal').clone().appendTo('#modalHolder');
+		$('#modalHolder').find('.modal').modal('show');
 		//raise zindex on enter main view
-		$('#linkDrop').css('z-index','0');
-	  $('#linkDrop').css('opacity','0.25');
-		$(this).css('z-index','-1');
-	  console.log('lol');
+		//$('#linkDrop').css('z-index','0');
+	  //$('#linkDrop').css('opacity','0.25');
+		//$(this).css('z-index','-1');
 	});
 
-	$('#linkDrop').on('dragover dragenter', function (e) {		
+	$('body').on('dragover dragenter', function (e) {		
 	  if (e.preventDefault){
 	  	e.preventDefault(); // required by FF + Safari
 	  }
 		e.originalEvent.dataTransfer.dropEffect = 'copy'; // tells the browser what drop effect is allowed here
 		return false; // required by IE
 	}).on('dragleave', function (e){
-	  $(this).css('opacity','0.0');
-		$(this).css('z-index','-1');
-		$('.container-fluid').css('z-index','-1');
+		//dismiss modal
+
+	  //$(this).css('opacity','0.0');
+		//$(this).css('z-index','-1');
+		//$('.container-fluid').css('z-index','0');
 	}).on('drop', function (e){
-	  $(this).css('opacity','0.0');
+	  // $(this).css('opacity','0.0');
 		if (e.preventDefault){
 			e.preventDefault();
 		}
 		if (e.originalEvent.dataTransfer.types) {
 			[].forEach.call(e.originalEvent.dataTransfer.types, function(type) {
 				if(type == 'text/uri-list'){
-					console.log( e.originalEvent.dataTransfer.getData(type).toString());
+					//console.log( e.originalEvent.dataTransfer.getData(type).toString());
 					gUrl = e.originalEvent.dataTransfer.getData(type).toString();
-					$('#linkDrop input[name="bookmark_url[url]"]').attr('value', e.originalEvent.dataTransfer.getData(type).toString());
-					$('#linkDrop form').submit();
+					$('#modalHolder input[name="user_bookmark[bookmark_url_attributes][url]"]').attr('value', e.originalEvent.dataTransfer.getData(type).toString());
+					// $('#linkDrop form').submit();
 				}
 			});
 		}
-	}); */
+	});
 	
 	var thumbnailIntervalId;
 	$('#bookmark_list_view').on('mouseover', '.cycle' , function() {
