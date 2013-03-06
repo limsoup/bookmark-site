@@ -295,8 +295,11 @@ fixes
 [x]	sidebar for temp account -> bookmarklet
 [x] sidebar for no account -> signup
 [ ] sidebar all my bookmarks
-	[ ]link in sidebar
+	[ ]link below sidebar
 	[ ]tab-enabled all/uncategorized
+
+[ ]bookmarks home
+	[ ]title = "bookmarks"
 
 [ ]any type of account
 	[ ]drag and drop
