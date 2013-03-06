@@ -3,7 +3,7 @@
     <button type="button" class="close" data-dismiss="modal">×</button>
 		<h2>New Bookmark </h2>
 	</div>
-	<%= form_for @user_bookmark, :url => [@playlist, @user_bookmark] , :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
+	<%= form_for @user_bookmark, :url => [current_user.default_list, @user_bookmark] , :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
 	<div class="modal-body">
 			<%= f.text_field :bookmark_name, :placeholder=>'Bookmark Title' %><br /><br />
 			<%= f.fields_for :bookmark_url, @bookmark_url do |f_bu| %>
