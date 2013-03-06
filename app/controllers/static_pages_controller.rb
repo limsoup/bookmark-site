@@ -13,6 +13,9 @@ class StaticPagesController < ApplicationController
 			if (@user.save)
 				session[:remember_token] = @user.remember_token
 				@user.default_list = Playlist.create(:playlist_name => "default list")
+				@playlist = @user.default_list
+				@user_bookmark = @playlist.user_bookmarks.build
+				@bookmark_url = BookmarkUrl.new
 			end
 		elsif (current_user)
 			@user = current_user
