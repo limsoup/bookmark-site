@@ -3,7 +3,7 @@
       <ul class="nav nav-list">
         <% if current_user %>
             <li class="nav-header">Bookmarklet</li>
-            <li><a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/assets/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a><li>
+            <li><a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a><li>
             <li class="nav-header">Actions</li>
             <li><%= link_to 'Home', current_user %></li>
             <% if !current_user.human %>
@@ -23,7 +23,7 @@
             <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to 'Create New Playlist', new_playlist_path%></li>
             <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to 'Index of All My Playlists', playlists_path%></li>
             <li class="nav-header">My Playlists</li>
-            <% if !(current_user.lists.nil?) %>
+            <% if !(current_user.lists.empty?) %>
                 <% @lists.each do |pl|%>
                     <% if pl == @playlist %>
                         <li class="active"><%=link_to pl.playlist_name, pl %></li>

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # has_secure_password :validations => false
   has_one :default_list, :class_name => 'Playlist'
   has_many :playlists, :class_name => 'Playlist'
-  before_save :create_remember_token
+  before_save :create_remember_token, :reset_bookmarklet_user_key
   
   attr_accessor :password
 
