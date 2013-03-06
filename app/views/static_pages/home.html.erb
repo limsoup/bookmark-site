@@ -10,10 +10,13 @@
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<!-- <a href="/users/" class="btn btn-primary btn-large signup-modal-link" data-remote>Sign Up &raquo;</a><br /> -->
 			  			<% if current_user.human? %>
-				  			<%= link_to "You're logged in", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+				  			<%= link_to "Edit Account »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+				  			<div id="signup-modal-holder">
+					  			<%= render '/users/modal_edit' %>
+					  		</div>
 				  			<!-- some kind of popover -->
 					  	<% else %>
-				  			<%= link_to "Sign In", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+				  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
 				  			<!-- Something that triggers login-->
 				  			<div id="signup-modal-holder">
 					  			<%= render '/users/modal_edit' %>

@@ -58,7 +58,13 @@ $(function() {
 		$('#modalHolder .signup-modal .alert-container-error').hide();
 		$('#modalHolder .signup-modal .form-buttons').show();
 	});
+	
+	$('#signin-flash').on('click',function(){
+		$('.nav .dropdown-toggle').trigger('click');
+		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
+	});
 	$('.options a').tooltip({});
+
 	if($('#temp-acct-popover-holder').length != 0){
 		setTimeout(function() {
 			$("#temp-acct-popover-holder").popover('show').next().on('click', function(){
