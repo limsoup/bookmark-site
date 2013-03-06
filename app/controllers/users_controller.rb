@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+	before_filter :logged_in :except => [:new]
+	before_filter :authorize, :only => [:edit, :create, :update]
+	before_filter :authorize_admin, :only => [:index]
+
 	def new
 		@user = User.new
 		ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
@@ -31,10 +35,10 @@ class UsersController < ApplicationController
 					format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 				end
 			end
-		end
-		respond_to do |format|
-			format.html { render 'new', :notice => "You've signed up successfully." }
-			format.json { render :json =>{ "errors" => @user.errors.full_messages }}
+			respond_to do |format|
+				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
+			end
 		end
 	end
 
@@ -77,8 +81,8 @@ class UsersController < ApplicationController
 			end
 		else
 			respond_to do |format|
-				format.html { redirect_to users_path(@user), :notice => "You didn't successfully prove you're human." }
-				format.json { render :json =>{ "errors" => "You didn't successfully prove you're human." }}
+				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
 			end
 		end
 	end
@@ -120,4 +124,20 @@ class UsersController < ApplicationController
 	def index
 		@users = User.all
 	end
+
+	private
+		def logged_in
+			if(current_user.nil?)
+				redirect_to login_path, :notice => "You have to log in to make a playlist." unless ((current_user.id == params[:id]) or current_user.admin)
+			end
+		end
+
+		def authorize
+			redirect_to login_path, :notice => "You have to log in to make a playlist." unless ((current_user.id == params[:id]) or current_user.admin)
+		end
+
+		def authorize_admin
+			redirect_to login_path, :notice => "You have to log in to make a playlist." unless (current_user.admin)
+		end
+
 end

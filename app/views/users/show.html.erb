@@ -3,10 +3,9 @@
   <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
   <div id="new-bookmark-modal-holder">
     <%= render '/user_bookmarks/modal_new' %>
-  </div><!-- 
-  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%> -->
+  </div>
   <br />
-  <!--<img src="/assets/glyphicons_320_filter.png" class="filter_img"></img>&nbsp;--><%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
+  <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
   <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
     <% if i == 0 %>
       <hr class="hrspacer"> 

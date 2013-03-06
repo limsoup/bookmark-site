@@ -1,13 +1,13 @@
 <div class="modal hide fade signup-modal" tabindex="-1">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h2>Sign Up!</h2>
+    <h2>Edit Account: <%= @user.username %></h2>
   </div>
   <%= form_for @user, :html => { "data-type" => "json"}, :remote=>true do |f|%>
     <div class="modal-body">
       <%= f.text_field :username, :placeholder=>"Username" %><br />
-      <%= f.password_field :password, :placeholder=>"Password" %>
-
+      <%= f.password_field :password, :placeholder=>"Password" %><br>
+      <%= @publisher_html.try(:html_safe)  %>
     </div>
     <div class="modal-footer">
       <div class = "form-buttons">

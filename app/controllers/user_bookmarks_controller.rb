@@ -1,4 +1,7 @@
 class UserBookmarksController < ApplicationController
+	before_filter :authorize, :except => [:move]
+	before_filter :authorize_move, :only => [:move]
+
 	def new
 		@playlist = current_user.playlists.find params[:playlist_id]
 		@user_bookmark = @playlist.user_bookmarks.build
@@ -154,5 +157,18 @@ class UserBookmarksController < ApplicationController
 			format.js {render :nothing => true}
 		end
 	end
+
+	private
+		def authorize
+			if Playlist.find(params[:playlist_id]).user.id != current_user.id
+				redirect_to current_user, :notice => "You have to own the playlist to do that."
+			end
+		end
+
+		def authorize_move
+			if Playlist.find(params[:destination]).user.id != current_user.id or (Playlist.find(params[:playlist_id]).user.id != current_user.id and params[:moveType]=='cut')
+				redirect_to current_user, :notice => "You have to own the playlist to do that."
+			end
+		end
 
 end

@@ -1,24 +1,14 @@
 <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
-  <% if current_user %>
-    <div id='linkDrop'><!-- drag and drop    -->
-      <h1>Bookmark</h1>
-      <%= form_for :bookmark_url, :url => bookmark_urls_path, :method => :post do |f| %>
-        <%= f.hidden_field :url %>
-        <%= f.hidden_field 'playlist_id', :value => @playlist.id %>
-      <% end %>
-    </div><!-- drag and drop end -->
-  <% end %>
   <h2><%= @playlist.playlist_name %></h2>
   <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
   <div id="new-bookmark-modal-holder">
     <% if current_user %>
       <%= render '/user_bookmarks/modal_new' %>
     <% end %>
-  </div><!-- 
-  <%= label_tag 'filter_uncategorized', 'Filter Bookmarks'%> -->
+  </div>
   <br />
-  <!--<img src="/assets/glyphicons_320_filter.png" class="filter_img"></img>&nbsp;--><%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
+  <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
   <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
     <% if i == 0 %>
       <hr class="hrspacer"> 
