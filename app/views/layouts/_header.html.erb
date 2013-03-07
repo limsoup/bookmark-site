@@ -8,6 +8,7 @@
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_021_snowflake.png'></img> About Us".html_safe, about_path %></li><!-- this stuff can probably go to the footer -->
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_203_lock.png'></img> Privacy".html_safe, privacy_path %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_010_envelope.png'></img> Contact".html_safe, contact_path %></li>
+          <li><%= link_to "<img src='/assets/glyphicons/glyphicons_029_notes_2.png'></img> Blog".html_safe, 'http://vrepo.wordpress.com/'%></li>
         </ul>
         <ul class="nav pull-right">
         	<% if current_user.nil? %>
@@ -28,7 +29,7 @@
             <% if current_user.human or current_page?(home_path) %>
               <li class="dropdown">
             <% else %>
-              <li class="dropdown" id="temp-acct-popover-holder" data-html=true data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="<p id=temp-acct-popover>An account has been created for you.<hr>The password is the same as the username. <hr>Since this is a temp. account, your account gets wiped when you leave unless you confirm you're human.</div>">
+              <li class="dropdown" id="temp-acct-popover-holder" data-html=true data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="<div id=temp-acct-popover>An account has been created for you.<hr>The password is the same as the username. <hr>Since this is a temp. account, your account gets wiped when you leave unless you confirm you're human.</div>">
             <% end %>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src='/assets/glyphicons/glyphicons_003_user.png'> </img><%= current_user.username %> <b class="caret"></b></a>
               <ul class="dropdown-menu">

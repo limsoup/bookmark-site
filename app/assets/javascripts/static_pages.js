@@ -59,11 +59,13 @@ $(function() {
 		$('#modalHolder .signup-modal .form-buttons').show();
 	});
 
+	/* 
 	$('#signin-flash').on('click', function(event){
-		event.preventDefault();
-		$('.dropdown-toggle').dropdown('toggle');
-		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
-	});
+	 	event.preventDefault();
+	 	$('.dropdown-toggle').dropdown('toggle');
+	 	$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
+	 });
+	 */
 
 	$('.options a').tooltip({});
 

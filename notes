@@ -112,14 +112,14 @@ Do now:
 					[x]only one pane available at a time
 				[x]revert when
 					[x]move, expand, collapse
-		[ ]move
+		[x]move
 		
 		[ ]landing page
-			[ ]different if you're logged in
-			[ ]highlight login/signup
-				[ ]icon/background
-				[ ]timed notification .5s
-				[ ]login/login as different user
+			[x]different if you're logged in
+			[x]highlight login/signup
+				[x]icon/background
+				[x]timed notification .5s
+				[x]login/login as different user
 			[x]hero
 				[x]positioning and buttons
 				[x]background
@@ -225,9 +225,9 @@ Do now:
 		[ ]disable multiple submits
 		[ ]get rid of ajax playlist deletion
 		[ ]when data is dirty (from another tab or something), require refresh
-	[ ]temp user ids
-		[ ]random word sequences
-		[ ]pick from categories
+	[x]temp user ids
+		[x]random word sequences
+		[x]pick from categories
 ------------------------------------------------------------------
 potential changes:
 	bookmark urls model
@@ -276,46 +276,40 @@ monetization
 	[ ]gifmaker
 	[ ]sister-non-porn ads
 
+AYAH locations
+	UsersController
+    8, 20, 51, 66
+  Static Controller
+		16, 34
+	modal edit
+		11
+	modal new
+		10
+	edit
+		18
+	new
+		16
 
 fixes
 [?] When signing up, if someone hits create account without having done playthru, give a red-text notification that they need to do the playthru game
 [x] Some of Main landing page links not working (Add LInk Button specifically)
-[ ] Bookmarklets don't work
+[x] Bookmarklets don't work
 [x] people can't create a redundant username rite?
-[ ] drag'n drop doesn't open a modal window
-	[ ]show modal on dragn drop
-	[ ]past text into it
-	[ ]if they paste anything into it, it replaces it
+[x] drag'n drop doesn't open a modal window
+	[x]show modal on dragn drop
+	[x]past text into it
+	[x]if they paste anything into it, it replaces it
 
 
 [x] Have it called VRepo.com in the tabs
 [x] Make home icon and text same size as the rest
 [x] highlight
-[ ] sidebar for temp account -> full-account convert
+[x] sidebar for temp account -> full-account convert
 [x]	sidebar for temp account -> bookmarklet
 [x] sidebar for no account -> signup
 [ ] sidebar all my bookmarks
 	[ ]link below sidebar
 	[ ]tab-enabled all/uncategorized
-
-[ ]bookmarks home
-	[ ]title = "bookmarks"
-
-[ ]any type of account
-	[ ]drag and drop
-	[ ]add bookmark
-	[ ]bookmarklet
-
-[ ]logged in full account
-	[ ]straight to account page
-	[ ]landing page has login
-[ ]temp account
-	[ ]signup
-	[x]notification to prove you're human
-[ ]logged out
-	[ ] signup
-	[ ] login
-	[ ] add-bookmark disabled, hover -> login or create an account
 
 
 [ ]list view, domains - labels

@@ -9,6 +9,18 @@ class BookmarkUrl < ActiveRecord::Base
   has_many :user_bookmarks
   has_many :playlists, :through => :user_bookmarks
 
+	before_validation :regularize_url
+	validate :url, :format => { :with => /(https?):\/\/[^\s/$.?#].[^\s]*/,
+    :message => "Sorry, that URL wasn't recognized as valid." }
+
+		def regularize_url
+			parts = URI.split(self.url)
+			if parts[0].nil?
+				self.url = 'http://'+self.url
+				#maybe this will be where I strip away some stuff, not sure
+			end
+		end
+
 		def embed_domains
 			@embed_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com']
 		end

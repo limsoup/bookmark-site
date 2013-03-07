@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password_digest, :if => :human?
   #validates_confirmation_of :password, :if => :human?
   validates_uniqueness_of :username, :if => :human?
-  validates :username, :length => {:in => 3..30}
-  validates :password, :length => {:in => 3..30}
+  validate :username, :length => {:in => 3..30}
+  validate :password, :length => {:in => 3..30}
   
   #-- from secure_password.rb --
   if respond_to?(:attributes_protected_by_default)

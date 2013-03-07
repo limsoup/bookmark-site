@@ -16,7 +16,7 @@
 
 .navbar img {
 	vertical-align:middle;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
 	
 	/* This works in IE 8 & 9 too */
 	/* ... but also 5, 6, 7 */
@@ -53,6 +53,11 @@
 	.popover-content{
 		text-align:center;
 		padding:5px;
+		hr {
+			margin:3px;
+			border-bottom-color:#FCC;
+			margin:px
+		}
 	}
 	.arrow{
 		left:80%;

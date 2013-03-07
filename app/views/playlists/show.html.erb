@@ -1,12 +1,12 @@
 <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
   <h2><%= @playlist.playlist_name %></h2>
+  <% if current_user %>
   <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
-  <div id="new-bookmark-modal-holder">
-    <% if current_user %>
-      <%= render '/user_bookmarks/modal_new' %>
-    <% end %>
-  </div>
+    <div id="new-bookmark-modal-holder">
+        <%= render '/user_bookmarks/modal_new' %>
+    </div>
+  <% end %>
   <br />
   <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
   <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>

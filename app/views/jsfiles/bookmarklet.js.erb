@@ -22,6 +22,9 @@ $bookmarklet(function (){
 				$bookmarklet('#bookmarklet table').html("<h2>Success</h2>");
 				$bookmarklet('#bookmarklet .submit_link').remove();
 				$bookmarklet('#bookmarklet').children().last().prev().remove();
+				setTimeout(function(){
+					$bookmarklet(this).parents('#bookmarklet').remove();
+				}, 1500);
 			},
 			beforeSend: function(xhr, settings){
 				xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
