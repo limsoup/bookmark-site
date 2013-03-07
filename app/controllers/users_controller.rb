@@ -36,9 +36,10 @@ class UsersController < ApplicationController
 				end
 			end
 		else
-		respond_to do |format|
-			format.html { render 'new', :notice => "You didn't successfully prove you're human." }
-			format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
+			respond_to do |format|
+				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
+			end
 		end
 	end
 
