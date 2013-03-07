@@ -58,8 +58,9 @@ $(function() {
 		$('#modalHolder .signup-modal .alert-container-error').hide();
 		$('#modalHolder .signup-modal .form-buttons').show();
 	});
-	
-	$('#signin-flash').on('click',function(){
+
+	$('#signin-flash').on('click',function(event){
+		// event.preventDefault();
 		$('.nav .dropdown-toggle').trigger('click');
 		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
 	});

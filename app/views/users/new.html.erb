@@ -10,8 +10,8 @@
       </ul>
     </div>
   <% end %>
-  <%= f.text_field :username, :placeholder=>"Username"%><br />
-  <%= f.password_field :password, :placeholder=>"Password" %>><br />
+  <%= f.text_field :username, :placeholder=>"Username"%><br /><br />
+  <%= f.password_field :password, :placeholder=>"Password" %><br /><br />
   <%= @publisher_html.html_safe %>
   <div class="actions"><%= f.submit "Sign Up" %></div>
 <% end %>
