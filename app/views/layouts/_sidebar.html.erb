@@ -2,7 +2,7 @@
 
     <%= if current_user.nil %>
         <% if !current_user.human %>
-            <li><%= link_to "Save your account: Confirm you're human", edit_user_path(@user), class:"btn btn-large btn-action btn-block" %></li>
+            <li><%= link_to "Save your account: Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %></li>
         <% end %>
     <% end %>
     <div class="well sidebar-nav">
