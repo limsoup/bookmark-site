@@ -1,7 +1,8 @@
 <div class="span3">
     <% if current_user %>
         <% if !current_user.human %>
-            <%= link_to "Save your account: Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %>
+            <p>This temporary account will get deleted at some point if you don't confirm you're a human. </p>
+            <%= link_to "Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %>
         <% end %>
     <% end %>
     <div class="well sidebar-nav">
