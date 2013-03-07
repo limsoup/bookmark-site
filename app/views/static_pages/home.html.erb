@@ -79,7 +79,7 @@
 				  		</div>
 				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing bookmarkling links." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% else %>
-				  		<a href="#" class="btn btn-primary btn-large disabled">Add a Link &raquo;</a><br />
+				  		<a href="#" class="btn btn-primary btn-large disabled">Add Bookmark <i class="icon-plus icon-white"></i></a><br />
 				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to scroll to the part detailing bookmarks links" data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% end %>
 			  	</div></div>
@@ -149,17 +149,16 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>Drag-and-Drop</h4>
-				<p>Just drag a the URL off the address bar from another site and drop it on the window of this page like this:</p>
-				---image of someone dragging url from address bar---
+				<p>Just drag a the URL off the address bar from another site and drop it onto any page with an "Add Bookmark" button like the one above or below this, (including this page), if you want to try it now like this:</p>
+				<%= image_tag 'dragondrop.png' %><br />
 			 	<p>A modal window will come up and let you set the title and submit the link.</p>
-			 	<p>From there, it'll take you to the page containing your links.</p>
 			</div>
 		</div>
 		<hr>
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>Form</h4>
-				<p>Similar to the drag-and-drop way: Click the button below (there'll be a button like this on your standard home page), and a modal window will come up and let you set the title and submit the link.</p>
+				<p>Click the button below (there'll be a button like this on your standard home page), and a modal window will come up and let you set the title and submit the link.</p>
 			 	<p>From there, it'll take you to the page containing your links.</p>
 			 	<div class="center-button-table"><div class="center-button-cell">
 			 		<% if current_user %>
