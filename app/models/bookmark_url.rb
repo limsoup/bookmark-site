@@ -2,6 +2,15 @@ require 'open-uri'
 require 'uri'
 require 'nokogiri'
 
+class UrlFormatValidation < ActiveModel::Validator
+	def validate(record)
+		parts = URI.split(record.url)
+		unless parts[0] and parts [2]
+			record.errors[:url] = "Sorry, that URL wasn't recognized as valid."
+		end
+	end
+end
+
 class BookmarkUrl < ActiveRecord::Base
   attr_accessible :url, :embed
   before_save :check_thumbnails_and_embed
@@ -10,8 +19,8 @@ class BookmarkUrl < ActiveRecord::Base
   has_many :playlists, :through => :user_bookmarks
 
 	before_validation :regularize_url
-	validate :url, :format => { :with => /(https?):\/\/[^\s/$.?#].[^\s]*/,
-    :message => "Sorry, that URL wasn't recognized as valid." }
+	include ActiveModel::Validations
+	validates_with UrlFormatValidation
 
 		def regularize_url
 			parts = URI.split(self.url)
