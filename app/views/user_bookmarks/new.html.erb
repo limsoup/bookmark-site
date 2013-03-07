@@ -1,3 +1,4 @@
+<div class="span4 offset2">
 <h2><%= "New Bookmark for "%>
   <% if(@playlist == current_user.default_list) %>
     <%= link_to current_user.username, current_user%></h2>
@@ -26,3 +27,4 @@
 		<%= f.submit 'Create New Bookmark' %>
 	</div>
 <% end %>
+</div>

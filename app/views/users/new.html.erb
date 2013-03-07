@@ -1,3 +1,4 @@
+<div class="span4 offset 2">
 <h1>Sign Up!</h1>
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
@@ -12,6 +13,7 @@
   <% end %>
   <%= f.text_field :username, :placeholder=>"Username"%><br /><br />
   <%= f.password_field :password, :placeholder=>"Password" %><br /><br />
-  <%= @publisher_html.html_safe %>
+  <%= @publisher_html.html_safe %><br />
   <button type="submit" class="btn btn-primary btn-large">Create Account</button>
 <% end %>
+</div>
