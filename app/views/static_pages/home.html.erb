@@ -5,28 +5,40 @@
 		  <h3>You can explore by trying some stuff out.</h3>
 		  <br/>
 			<div class="row-fluid options">
-	  		<% if current_user%>
-			  <div class="span3 offset1">
+			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<!-- <a href="/users/" class="btn btn-primary btn-large signup-modal-link" data-remote>Sign Up &raquo;</a><br /> -->
-			  			<% if current_user.human? %>
-				  			<%= link_to "Edit Account »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
-				  			<div id="signup-modal-holder">
-					  			<%= render '/users/modal_edit' %>
-					  		</div>
-				  			<!-- some kind of popover -->
-					  	<% else %>
-				  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
-				  			<!-- Something that triggers login-->
-				  			<div id="signup-modal-holder">
-					  			<%= render '/users/modal_edit' %>
-					  		</div>
-					  		<br />
-					  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
-					  	<% end %>
+		  		<% if current_user%>
+		  			<% if current_user.human? %>
+			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+			  			<div id="signup-modal-holder">
+				  			<%= render '/users/modal_edit' %>
+				  		</div>
+				  	<% else %>
+			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+			  			<!-- Something that triggers login-->
+			  			<div id="signup-modal-holder">
+				  			<%= render '/users/modal_edit' %>
+				  		</div>
+				  	<% end %>
+			  	<% else %>
+		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+		  			<!-- Something that triggers login-->
+		  			<div id="signup-modal-holder">
+			  			<%= render '/users/modal_new' %>
+			  		</div>
+			  	<% end %>
+		  		<br />
+		  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
-			  <div class="span4">
+			  <div class="span3">
+			  	<div class="center-button-table"><div class="center-button-cell">
+			  		<!-- something that triggers sign-in -->
+		  			<%= link_to "Sign In", '', :class=>"btn btn-primary btn-large", :id=>"signin-flash" %>
+			  		<br />
+			  	</div></div>
+			  </div>
+			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<a href="/playlists/7" class="btn btn-primary btn-large">Browse &raquo;</a><br />
 			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
@@ -46,45 +58,6 @@
 			  		<% end %>
 			  	</div></div>
 			  </div>
-			  <% else %>
-			  <div class="span3">
-			  	<div class="center-button-table"><div class="center-button-cell">
-			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
-			  			<div id="signup-modal-holder">
-				  			<%= render '/users/modal_new' %>
-				  		</div>
-			  		<br />
-			  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
-			  	</div></div>
-			  </div>
-			  <div class="span3">
-			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<!-- something that triggers sign-in -->
-		  			<%= link_to "Sign In", '#', :class=>"btn btn-primary btn-large", :id=>"signin-flash" %>
-			  		<br />
-			  	</div></div>
-			  </div>
-			  <div class="span3">
-			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<a href="/playlists/7" class="btn btn-primary btn-large">Browse &raquo;</a><br />
-			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
-			  	</div></div>
-			  </div>
-			  <div class="span3">
-			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<% if current_user%>
-				  		<a href="#" class="btn btn-primary btn-large new-bookmark-modal-link">Add a Link &raquo;</a><br />
-			  			<div class="new-bookmark-modal-holder">
-				  			<%= render '/user_bookmarks/modal_new' %>
-				  		</div>
-				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing bookmarkling links." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
-			  		<% else %>
-				  		<a href="#" class="btn btn-primary btn-large disabled">Add Bookmark <i class="icon-plus icon-white"></i></a><br />
-				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to scroll to the part detailing bookmarks links" data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
-			  		<% end %>
-			  	</div></div>
-			  </div>
-			  <% end %>
 			</div>
 		</div>
 	</div>

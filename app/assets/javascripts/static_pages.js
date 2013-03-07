@@ -64,11 +64,15 @@ $(function() {
 		$('.dropdown-toggle').dropdown('toggle');
 		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
 	});
+
 	$('.options a').tooltip({});
 
 	if($('#temp-acct-popover-holder').length != 0){
 		setTimeout(function() {
 			$("#temp-acct-popover-holder").popover('show').next().on('click', function(){
+				$("#temp-acct-popover-holder").popover('hide');
+			});
+			$(".nav .dropdown").on('click', function(){
 				$("#temp-acct-popover-holder").popover('hide');
 			});
 			$('#temp-acct-popover-holder+.popover').effect("highlight", {color:"#FF4D60"}, 1000);
