@@ -59,9 +59,9 @@ $(function() {
 		$('#modalHolder .signup-modal .form-buttons').show();
 	});
 
-	$('#signin-flash').on('click',function(event){
+	$('#signin-flash').on('click', function(event){
 		event.preventDefault();
-		$('.nav .dropdown').toggleClass('open');
+		$('.dropdown-toggle').dropdown('toggle');
 		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
 	});
 	$('.options a').tooltip({});
