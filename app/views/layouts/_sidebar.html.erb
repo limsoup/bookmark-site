@@ -1,5 +1,5 @@
 <div class="span3">
-    <% if current_user.nil %>
+    <% if current_user.nil? %>
         <% if !current_user.human %>
             <%= link_to "Save your account: Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %>
         <% end %>
