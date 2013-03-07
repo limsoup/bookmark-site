@@ -40,7 +40,7 @@
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<a href="/playlists/7" class="btn btn-primary btn-large">Browse &raquo;</a><br />
+			  		<a href="/playlists/9" class="btn btn-primary btn-large">Browse &raquo;</a><br />
 			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
@@ -48,7 +48,7 @@
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<% if current_user%>
 				  		<a href="#" class="btn btn-primary btn-large new-bookmark-modal-link">Add a Link &raquo;</a><br />
-			  			<div class="new-bookmark-modal-holder">
+			  			<div id="new-bookmark-modal-holder">
 				  			<%= render '/user_bookmarks/modal_new' %>
 				  		</div>
 				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>

@@ -1,7 +1,6 @@
 <div class="span3">
     <% if current_user %>
         <%if !current_user.human %>
-            <p>This temporary account will get deleted at some point if you don't confirm you're a human. </p> 
             <%= link_to "<span style='text-align:center'>Save Your account:<br />Confirm you're human</span>".html_safe, edit_user_path(current_user), class:"btn btn-large btn-danger btn-block" %>
             <br />
         <% end %>
