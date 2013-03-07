@@ -60,8 +60,8 @@ $(function() {
 	});
 
 	$('#signin-flash').on('click',function(event){
-		// event.preventDefault();
-		$('.nav .dropdown-toggle').trigger('click');
+		event.preventDefault();
+		$('.nav .dropdown').toggleClass('open');
 		$('.nav .dropdown-menu').effect("highlight", {color:"#FF4D60"}, 1000);
 	});
 	$('.options a').tooltip({});
