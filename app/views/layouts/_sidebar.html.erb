@@ -13,7 +13,7 @@
             <li class="nav-header">Actions</li>
             <li><%= link_to 'Home', current_user %></li>
             <% if !current_user.human %>
-                <li><strong><%= link_to "Save your account: Confirm you're human", edit_user_path(@user) %></strong></li>
+                <li><strong><%= link_to "Save your account: Confirm you're human", edit_user_path(current_user) %></strong></li>
             <% end %>
             <!-- if there is a valid playlist
             make sure that the current_user owns this playlist, 
