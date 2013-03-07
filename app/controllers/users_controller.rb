@@ -31,14 +31,14 @@ class UsersController < ApplicationController
 				end
 			else
 				respond_to do |format|
-					format.html { render 'new', :notice => "You've signed up successfully." }
+					format.html { render 'new' }
 					format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 				end
 			end
-			respond_to do |format|
-				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
-				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
-			end
+		else
+		respond_to do |format|
+			format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+			format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
 		end
 	end
 
