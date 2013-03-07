@@ -1,8 +1,7 @@
 <div class="span3">
-
-    <%= if current_user.nil %>
+    <% if current_user.nil %>
         <% if !current_user.human %>
-            <li><%= link_to "Save your account: Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %></li>
+            <%= link_to "Save your account: Confirm you're human", edit_user_path(current_user), class:"btn btn-large btn-action btn-block" %>
         <% end %>
     <% end %>
     <div class="well sidebar-nav">
@@ -50,5 +49,4 @@
         <!-- <li><%= link_to "Brunettes", '/playlists/16'%></li> -->
       </ul>
     </div>
-
 </div>
