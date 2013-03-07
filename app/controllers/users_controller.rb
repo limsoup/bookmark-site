@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_filter :logged_in, :except => [:new]
-	before_filter :authorize, :only => [:edit, :create, :update]
+	before_filter :logged_in, :except => [:new, :create]
+	before_filter :authorize, :only => [:edit, :update]
 	before_filter :authorize_admin, :only => [:index]
 
 	def new
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 				session[:remember_token] = @user.remember_token
 				@user.default_list = Playlist.create(:playlist_name => "default list")
 				respond_to do |format|
-					format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+					format.html { redirect_to user_path(@user), :notice => "You've signed up successfully." }
 					format.json { render :json => {"success" => "true" } }
 				end
 			else
@@ -70,18 +70,18 @@ class UsersController < ApplicationController
 			@user.human = true
 			if(@user.save)
 				respond_to do |format|
-					format.html { redirect_to users_path(@user), :notice => "You've signed up successfully." }
+					format.html { redirect_to user_path(@user), :notice => "You've signed up successfully." }
 					format.json { render :json => {"success" => "true" } }
 				end
 			else
 				respond_to do |format|
-					format.html { redirect_to users_path(@user), :notice => "You had some errors with your changes." }
+					format.html { redirect_to edit_user_path(@user), :notice => "You had some errors with your changes." }
 					format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 				end
 			end
 		else
 			respond_to do |format|
-				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+				format.html { render 'edit', :notice => "You didn't successfully prove you're human." }
 				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
 			end
 		end

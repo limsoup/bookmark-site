@@ -3,6 +3,7 @@ class Playlist < ActiveRecord::Base
   has_many :user_bookmarks #, :dependent => :destroy
   has_many :bookmark_urls, :through => :user_bookmarks
   validates_existence_of :user
+  validates :playlist_name, :length => {:in => 3..30}
   belongs_to :user
   accepts_nested_attributes_for :user_bookmarks, :allow_destroy => :true
   accepts_nested_attributes_for :bookmark_urls
