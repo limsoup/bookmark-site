@@ -26,7 +26,7 @@
               </div>
             </li>
           <% else %>
-            <% if current_user.human or current_page?(home_path) %>
+            <% if current_user.human or !current_page?(home_path) %>
               <li class="dropdown">
             <% else %>
               <li class="dropdown" id="temp-acct-popover-holder" data-html=true data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="<div id=temp-acct-popover>An account has been created for you.<hr>The password is the same as the username. <hr>Since this is a temp. account, your account gets wiped when you leave unless you confirm you're human.</div>">

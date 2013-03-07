@@ -129,16 +129,19 @@ class UsersController < ApplicationController
 	private
 		def logged_in
 			if(current_user.nil?)
-				redirect_to login_path, :notice => "You have to log in to make a playlist." unless ((current_user.id == params[:id]) or current_user.admin)
+				redirect_to login_path, :notice => "You have to log in to do that."
 			end
 		end
 
 		def authorize
-			redirect_to login_path, :notice => "You have to log in to make a playlist." unless ((current_user.id == params[:id]) or current_user.admin)
+			logger.ap current_user
+			logger.ap current_user.id
+			logger.ap params[:id]
+			redirect_to login_path, :notice => "You have to log in to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin)
 		end
 
 		def authorize_admin
-			redirect_to login_path, :notice => "You have to log in to make a playlist." unless (current_user.admin)
+			redirect_to login_path, :notice => "You have to be an admin access that." unless (current_user.admin)
 		end
 
 end
