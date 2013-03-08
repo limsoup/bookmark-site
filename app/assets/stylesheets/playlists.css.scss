@@ -85,8 +85,8 @@
 			left:0px;
 		}
 	}
-	img {
-		height:72px;
+	.span2{
+		position:relative;
 	}
 	p.dunno-lol{
 		font-size:17px;
@@ -194,21 +194,4 @@
 	float:right;
 	display:none;
 	margin: 10px;
-}
-
-
-#linkDrop {
-	opacity:0.0;
-	background:#444;
-	z-index:-1;
-	position:fixed;
-	height:100%;
-	width:100%;
-	top:0%;
-	left:0%;
-	h1 {
-		top:43%;
-		left:43%;
-		position:fixed;
-	}
 }

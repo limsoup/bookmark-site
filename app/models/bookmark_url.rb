@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'uri'
 require 'nokogiri'
+require 'image_size'
+
 
 class UrlFormatValidation < ActiveModel::Validator
 	def validate(record)
@@ -31,11 +33,11 @@ class BookmarkUrl < ActiveRecord::Base
 		end
 
 		def embed_domains
-			@embed_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com']
+			@embed_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com','xhamster.com','www.xhamster.com']
 		end
 
 		def thumbnail_domains
-			@thumbnail_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com']
+			@thumbnail_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com', 'xhamster.com', 'www.xhamster.com']
 		end
 
 		def set_embed
@@ -81,6 +83,20 @@ class BookmarkUrl < ActiveRecord::Base
 					(1..16).each do |i|
 						self.thumbnail_urls['thumb'+i.to_s] = thumbnail_url.sub(/....\.jpg/, '0'*(3-(i.to_s).length)+(i.to_s)+'m.jpg');
 					end
+				when 'xhamster.com', 'www.xhamster.com'
+					id_str = parts[5][/[0-9]+/]
+					self.thumbnail_urls['thumbindex'] = 3
+					self.thumbnail_urls['thumbindexstart'] = 3
+					self.thumbnail_urls['numthumbs']=10;
+					(1..10).each do |i|
+						self.thumbnail_urls['thumb'+i.to_s] = 'http://ut'+id_str[-1]+'.xhamster.com/t/'+id_str[-3..-1]+'/'+i.to_s+'_b_'+id_str+'.jpg'
+					end
+				# when 'beeg.com','www.beeg.com'
+				# 	id_str = parts[5][/[0-9]+/]
+				# 	self.thumbnail_urls['thumbindex'] = 1
+				# 	self.thumbnail_urls['thumbindexstart'] = 1
+				# 	self.thumbnail_urls['thumb1'] = "http://cdn.anythumb.com/320x240/"+id_str+".jpg"
+				# 	self.thumbnail_urls['numthumbs']=1
 				end
 			end
 		end

@@ -2,7 +2,7 @@
 <div class="span5" id="bookmark_list_view">
   <h3>Unsorted Bookmarks</h3>
   <% if current_user %>
-  <%= link_to 'Add Bookmark <i class="icon-plus icon-white"></i>'.html_safe, '#', class:"btn btn-primary new-bookmark-modal-link" %>
+  <%= link_to 'Add A Link <i class="icon-plus icon-white"></i>'.html_safe, '', class:"btn btn-primary new-bookmark-modal-link" %>
     <div id="new-bookmark-modal-holder">
         <%= render '/user_bookmarks/modal_new' %>
     </div>

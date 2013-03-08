@@ -9,19 +9,19 @@
 			  	<div class="center-button-table"><div class="center-button-cell">
 		  		<% if current_user%>
 		  			<% if current_user.human? %>
-			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
+			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
 			  			<div id="signup-modal-holder">
 				  			<%= render '/users/modal_edit' %>
 				  		</div>
 				  	<% else %>
-			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
+			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
 			  			<!-- Something that triggers login-->
 			  			<div id="signup-modal-holder">
 				  			<%= render '/users/modal_edit' %>
 				  		</div>
 				  	<% end %>
 			  	<% else %>
-		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
+		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
 		  			<!-- Something that triggers login-->
 		  			<div id="signup-modal-holder">
 			  			<%= render '/users/modal_new' %>
@@ -47,13 +47,13 @@
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<% if current_user%>
-				  		<a href="#" class="btn btn-primary btn-large new-bookmark-modal-link">Add a Link &raquo;</a><br />
+				  		<a href="#" class="btn btn-primary btn-large new-bookmark-modal-link">Add A Link <i class="icon-plus icon-white"></i></a><br />
 			  			<div id="new-bookmark-modal-holder">
 				  			<%= render '/user_bookmarks/modal_new' %>
 				  		</div>
 				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% else %>
-				  		<a href="#" class="btn btn-primary btn-large disabled">Add a Link &raquo;</a><br />
+				  		<a href="#" class="btn btn-primary btn-large disabled">Add A Link <i class="icon-plus icon-white"></i></a><br />
 				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% end %>
 			  	</div></div>
@@ -73,9 +73,9 @@
 				<p>Having an account lets you<p>
 				<ul>
 					<li>keep your bookmarks and playlists saved for good after you've left the site</li>
+					<li>access them easily by going to vrepo.com/--your-username-here--</li>
 					<li>use the bookmarklet to bookmark pages when you're on other sites.</li>
-					<li>bookmark more than three links.</li>
-					<li>upload an avatar.</li>
+					<li>edit your account by change your username and password.</a>
 				</ul>
 				<p>So you can still <i>try out</i> the site without actually joining, but there's less you can do, and joining is really easy!</p>
 			</div>
@@ -87,11 +87,15 @@
 				<p>Just by playing through a super-simple PlayThru™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
 				<p>One thing: for this site to work, you do need cookies and javascript enabled, and it works best in up-to-date versions of Chrome, Firefox, Safari, and IE 7+. </p>
 				<div class="center-button-table"><div class="center-button-cell">
-		  		<% if current_user %>
-		  			<%= link_to "Sign Up »", upgrade_user_path(@user), :class=>"btn btn-primary signup-modal-link", "data-remote" => true, "data-type" => "html" %>
-		  		<% else %>
-			  		<%= link_to "Sign Up »", new_user_path, :class=>"btn btn-primary signup-modal-link", "data-remote" => true, "data-type" => "html" %>
-		  		<% end %>
+					<% if current_user%>
+			  		<% if current_user.human? %>
+			  			<%= link_to "Edit Account »", '', :class=>"btn btn-cherry signup-modal-link" %>
+				  	<% else %>
+			  			<%= link_to "Sign Up »", '', :class=>"btn btn-cherry signup-modal-link" %>
+				  	<% end %>
+			  	<% else %>
+		  			<%= link_to "Sign Up »", '', :class=>"btn btn-cherry signup-modal-link" %>
+			  	<% end %>
 			  </div></div>
 			</div>
 		</div>
@@ -100,8 +104,6 @@
 			<div class="span12">
 				<h4>Your Privacy</h4>
 				<p>I'm <strong>not asking for your email address.</strong> If I ever do want it then I'll ask ya'll nicely, and it'll be entirely optional. I don't collect/share any kind of personal data. Here is a link to the site's privacy policy, and here's a link to frequently asked questions. I take your privacy seriously: I realize that's kind of the entire point of using this.</p>
-				<br />
-				<p>As for the bookmarks and playlists you make, they'll be public by default so that we can work on recommending things to people based on things they have in common. <strong>However</strong>, you have the option of making any of your individual playlists or all the bookmarks and playlists in your account private. You just have to create a profile and change the settings on your profile page.</p>
 			</div>
 		</div>
 	</div>
@@ -111,20 +113,11 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>Bookmarklet</h4>
-				<p class="contains_bookmarklet">To use it, drag this <a id="bookmarklet" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your <a href="---this will hover-show where it's supposed to go---">bookmark bar</a></p>
+				<p class="contains_bookmarklet">To use it, drag this <a id="bookmarklet" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your bookmark bar, which should be under your address bar.</a></p>
 				<br />
 				<p>When you're logged in here and click it, and something like this image below will show up near the top of your website.</p><br />
 				<%= image_tag 'Bookmarklet Example.png' %><br /><br />
 				<p>Keep in mind that this only works if you have an account and are logged in.</p>
-			</div>
-		</div>
-		<hr>
-		<div class="row-fluid">
-			<div class="span12">
-				<h4>Drag-and-Drop</h4>
-				<p>Just drag a the URL off the address bar from another site and drop it onto any page with an "Add Bookmark" button like the one above or below this, (including this page), if you want to try it now like this:</p>
-				<%= image_tag 'dragondrop.png' %><br />
-			 	<p>A modal window will come up and let you set the title and submit the link.</p>
 			</div>
 		</div>
 		<hr>
@@ -135,11 +128,20 @@
 			 	<p>From there, it'll take you to the page containing your links.</p>
 			 	<div class="center-button-table"><div class="center-button-cell">
 			 		<% if current_user %>
-			  		<a href="#" class="btn btn-primary new-bookmark-modal-link">Add a Link &raquo;</a><br />
+			  		<a href="#" class="btn btn-primary new-bookmark-modal-link">Add A Link <i class="icon-plus icon-white"></i></a><br />
 		  		<% else %>
-			  		<a href="#" class="btn btn-primary disabled">Add a Link &raquo;</a><br />
+			  		<a href="#" class="btn btn-primary disabled">Add A Link <i class="icon-plus icon-white"></i></a><br />
 		  		<% end %>
 			  </div></div>
+			</div>
+		</div>
+		<hr>
+		<div class="row-fluid">
+			<div class="span12">
+				<h4>Drag-and-Drop</h4>
+				<p>Just drag a the URL off the address bar from another site and drop it onto any page with an "Add Bookmark" button like the one above or below this, (including this page), if you want to try it now like this:</p>
+				<%= image_tag 'dragondrop.png' %><br />
+			 	<p>A modal window will come up and let you set the title and submit the link.</p>
 			</div>
 		</div>
 	</div>

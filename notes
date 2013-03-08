@@ -307,15 +307,28 @@ fixes
 [x] sidebar for temp account -> full-account convert
 [x]	sidebar for temp account -> bookmarklet
 [x] sidebar for no account -> signup
-[ ] sidebar all my bookmarks
-	[ ]link below sidebar
-	[ ]tab-enabled all/uncategorized
+[x] sidebar all my bookmarks
+	[x]link below sidebar
+	[x]tab-enabled all/uncategorized
 
-
+[ ] sign up
+[ ]sandbag ourselves? 
+[ ]move
+	[ ]playlists
+	[ ]notifications
+	[ ]restrict which ones
+[ ]new bookmark
+	[ ]playlist
+	[ ]notifications
+	[ ]restrict which playlists
+[ ]images
+	[ ]gifs
+	[ ]
 [ ]list view, domains - labels
+[ ] visit doesn't work
+[ ]bookmarklets for older accounts
 
-
-1) Sign in Button should have text saying "For Returning Users" underneath it
+x Sign in Button should have text saying "For Returning Users" underneath it
 
 x Let's have the 4 buttons use alternating colors
 
@@ -331,7 +344,7 @@ Playlist View:
 
 x Change the capitalization to "Save Your Account: Confirm You Are Human"
 
-2) Change "Home" to "Account Main Page"
+x Change "Home" to "Account Main Page"
 
 x Change default playlist name from "Bookmarks that aren't in a playlist" to "Unsorted Videos"
 

@@ -11,7 +11,7 @@
 		return $('#bookmark_list_view').find(ubNameSel+'[value='+detail.find(ubNameSel).val()+']').parents('.bookmark');
 	}
   $.fn.bookmarkSetup = function (){
-  	this.on('click', function(event){
+  	this.on('click',function(event){
 			event.preventDefault();
 			$(this).css('background','#D2FFE2');
   		if($(this).find(ubNameSel).val() != detail.find(ubNameSel).val() ){
@@ -22,6 +22,9 @@
 					detail.append($(this).find('.detail_bookmark').clone().show());
   			}
   		}
+  	}).on('click', 'a.visit', function(event){
+			var visit=window.open($(this).attr('href'), '_blank');
+  		visit.focus();
   	}).on('click','a.watch',function(event){
   		event.preventDefault();
   		//console.log($(this).parents('.bookmark').find('.modal'));
@@ -37,7 +40,11 @@
 	};
 	$.fn.cycle = function() {
 		this.data('thumbindex', (this.data('thumbindex') % this.data('numthumbs'))  + 1);
-		this.attr('src', this.data('thumb' + this.data('thumbindex')) );
+		if(this.data('sprite')==true){
+			this.css('background-position', -1*this.data('thumbindex')*this.data('spriteSize') )
+		}else{
+			this.attr('src', this.data('thumb' + this.data('thumbindex')) );
+		}
 	};
 
 })( jQuery );
@@ -263,12 +270,19 @@ $(function() {
 	
 	var thumbnailIntervalId;
 	$('#bookmark_list_view').on('mouseover', '.cycle' , function() {
+		$(this).toggleClass('hoverclass');
+		$(this).css('top', (($(this).height() - 72)/(-2)).toString()+'px');
+		// $(this).removeAttr('height');
+		// $(this).removeAttr('width');
 		var tn = $(this);
 		thumbnailIntervalId = setInterval(function(){
 			tn.cycle();
 		},1000); 
 	}).on('mouseout', '.cycle', function() {
 		clearInterval(thumbnailIntervalId);
+		$(this).toggleClass('hoverclass');
+		// $(this).attr('height','75');
+		// $(this).attr('width','75');
 	});
 
 });

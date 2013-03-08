@@ -17,7 +17,7 @@ $(function() {
 	// 	$('#modalHolder').find('.modal').modal('show');
 	// });
 
-	$('#signup-modal-link').on('click', function(event){
+	$('.signup-modal-link').on('click', function(event){
 		event.preventDefault();
 		$('#signup-modal-holder').find('.modal').clone().appendTo('#modalHolder');
 		$('#modalHolder').find('.modal').modal('show');

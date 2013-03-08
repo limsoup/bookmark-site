@@ -18,7 +18,7 @@
 				<% if user_bookmark.bookmark_url.embed %>
 					<a href='#', class="btn btn-mini btn-success watch" >watch <i class="icon-play icon-white"></i></a>
 				<% else %>
-					<a href= '<%= user_bookmark.bookmark_url.url %>', class="btn btn-mini btn-success watch" >visit <i class="icon-share icon-white"></i></a>
+					<a href= '<%= user_bookmark.bookmark_url.url %>', class="btn btn-mini btn-success visit" >visit <i class="icon-share icon-white"></i></a>
 				<% end %>
 				<a href='#', class="btn btn-mini btn-primary expand" >expand <i class="icon-chevron-right icon-white"></i></a>
 			</div>
@@ -48,9 +48,11 @@
   			<pre><%= link_to user_bookmark.bookmark_url.url, user_bookmark.bookmark_url.url %></pre>
   		<% end %>
   		<br/>
+  		<% if current_user.id == @playlist.user.id or current_user.admin %>
 	  	<div class="pull-right">
 				<%= link_to '<i class="icon-trash icon-white"></i> Remove Bookmark'.html_safe, [@playlist, user_bookmark], :method => :delete, :remote => true, :confirm => "Are you sure you want to delete this bookmark?" , class: "remove_link btn btn-mini btn-warning" %>
 			</div>
+			<% end %>
   		<br/>	
   	</div>
   	<div class="edit_bookmark_fields"%>

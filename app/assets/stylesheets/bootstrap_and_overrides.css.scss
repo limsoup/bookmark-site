@@ -30,3 +30,23 @@ body {
 }
 
 @import "bootstrap-responsive";
+
+.show_bookmark{
+	img {
+		height:72px;
+		padding:2px;
+		border:1px #AAA solid;
+		border-radius:4px;
+	}
+	img.hoverclass{
+		position:absolute;
+		width:150px;
+		height:auto;
+		//height:150px;
+		max-width:150px;
+		max-height:150px;
+		right:-15px;
+		//top:-32px;
+		z-index:2;
+	}
+}

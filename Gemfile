@@ -13,6 +13,7 @@ gem "awesome_print" #will it work in heroku?
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'nokogiri'
+gem 'imagesize'
 
 group :development do
 	gem 'sqlite3'

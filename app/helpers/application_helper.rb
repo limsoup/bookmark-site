@@ -49,7 +49,11 @@ module ApplicationHelper
 
 
 	def thumbnail_image_tag(bookmark_url, size = nil)
-		image_tag(bookmark_url.thumbnail_urls['thumb'+bookmark_url.thumbnail_urls['thumbindexstart'].to_s], :size => size,  :class => 'media-object thumbnail cycle', :data => bookmark_url.thumbnail_urls).html_safe
+		# if(bookmark_url.thumbnail_urls['sprite'])
+		# 	image_tag('1px.png', :size => size,  :class => 'cycle', :data => bookmark_url.thumbnail_urls, :style => "background-size: 135px 240px; background-image:url(\""+bookmark_url.thumbnail_urls['thumb']+"\"); background-position: 0px -"+bookmark_url.thumbnail_urls['spriteSize'].to_s+"px;").html_safe
+		# else
+			image_tag(bookmark_url.thumbnail_urls['thumb'+bookmark_url.thumbnail_urls['thumbindexstart'].to_s], :size => size,  :class => 'cycle', :data => bookmark_url.thumbnail_urls).html_safe
+		# end
 	end
 
 end
