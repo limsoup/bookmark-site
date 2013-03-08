@@ -1,7 +1,7 @@
 <div class="span3">
     <% if current_user %>
         <%if !current_user.human %>
-            <%= link_to "<span style='text-align:center'>Save Your account:<br />Confirm you're human</span>".html_safe, edit_user_path(current_user), class:"btn btn-large btn-danger btn-block" %>
+            <%= link_to "<span style='text-align:center'>Save Your Account:<br />Confirm You're Human.</span>".html_safe, edit_user_path(current_user), class:"btn btn-large btn-cherry btn-block" %>
             <br />
         <% end %>
     <% end %>
@@ -9,9 +9,9 @@
       <ul class="nav nav-list">
         <% if current_user %>
             <li class="nav-header">Bookmarklet</li>
-            <li><a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a><li>
+            <li><a id="bookmarklet" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a><li>
             <li class="nav-header">Actions</li>
-            <li><%= link_to 'Home', current_user %></li>
+            <li><%= link_to 'Account Main Page', current_user %></li>
             <!-- if there is a valid playlist
             make sure that the current_user owns this playlist, 
             that this is the show playlist view

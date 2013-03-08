@@ -313,3 +313,26 @@ fixes
 
 
 [ ]list view, domains - labels
+
+
+1) Sign in Button should have text saying "For Returning Users" underneath it
+
+x Let's have the 4 buttons use alternating colors
+
+3) When converting a temp account to a permanent account, we should not be loading the temp username by default
+
+4) Site doesn't work in safari on Ipad
+
+x For all pages, stick a footer at the bottom © 2013 VRepo
+
+
+
+Playlist View:
+
+x Change the capitalization to "Save Your Account: Confirm You Are Human"
+
+2) Change "Home" to "Account Main Page"
+
+x Change default playlist name from "Bookmarks that aren't in a playlist" to "Unsorted Videos"
+
+Remove the link from our e-mail. It defeats the entire purpose of writing the e-mail that way if there's a link to it.

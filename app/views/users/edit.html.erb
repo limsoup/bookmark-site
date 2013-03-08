@@ -1,5 +1,5 @@
 <div class="span7 offset2">
-<h2>Edit Your Account</h2><br />
+<h2>Edit Account: <%= @user.username %></h2><br />
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
@@ -11,8 +11,8 @@
       </ul>
     </div>
   <% end %>
-  <%= f.text_field :username, :placeholder=>"Set New Username"%><br /><br />
-  <%= f.password_field :password, :placeholder=>"Set a New Password" %><br /><br />
+  <%= f.text_field :username, :value=> "", :placeholder=>"Set A New Username"%><br /><br />
+  <%= f.password_field :password, :placeholder=>"Set A New Password" %><br /><br />
   <% if !@user.human %>
     <p>Confirm you're human for the form go through and save your account.</p>
     <%= @publisher_html.html_safe %><br />

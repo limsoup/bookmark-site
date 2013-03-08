@@ -207,7 +207,7 @@ $(function() {
 			$(findBookmarkInList()).remove();
 			detail.children().remove();
 			detail.parent().removeClass('detail_container_color');
-		}
+		}http://www.w3schools.com/jsref/jsref_substring.asp
 		return false;
 	});
 
@@ -219,20 +219,22 @@ $(function() {
 	
 	//--applies to playlist#show which has linkDrop
 	if($('.new-bookmark-modal').length > 0){
-		$('.container-fluid').on('dragover dragenter', function(e) {
-			//summon modal
-			$('#new-bookmark-modal-holder').find('.modal').clone().appendTo('#modalHolder');
-			$('#modalHolder').find('.modal').modal('show');
-			//raise zindex on enter main view
-			//$('#linkDrop').css('z-index','0');
-		  //$('#linkDrop').css('opacity','0.25');
-			//$(this).css('z-index','-1');
+
+		$('.container-fluid').on('dragenter dragover', function(e) {
+			console.log(e);
+			if (!document.hasFocus()) {
+				$('#new-bookmark-modal-holder').find('.modal').clone().appendTo('#modalHolder');
+				$('#modalHolder').find('.modal').modal('show');	
+			}
+			e.originalEvent.dataTransfer.dropEffect = 'copy';
 		});
-		if($())
-		$('body').on('dragover dragenter', function (e) {		
+
+		$('body').on('dragover dragenter', '.modal-backdrop, .modal, .nav', function (e) {		
 		  if (e.preventDefault){
 		  	e.preventDefault(); // required by FF + Safari
 		  }
+		  //console.log(e);
+		  //console.log(e.originalEvent.dataTransfer);
 			e.originalEvent.dataTransfer.dropEffect = 'copy'; // tells the browser what drop effect is allowed here
 			return false; // required by IE
 		}).on('dragleave', function (e){

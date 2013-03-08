@@ -5,8 +5,8 @@
   </div>
   <%= form_for @user, :html => { "data-type" => "json"}, :remote=>true do |f|%>
     <div class="modal-body">
-      <%= f.text_field :username, :placeholder=>"Username" %><br />
-      <%= f.password_field :password, :placeholder=>"Password" %><br>
+      <%= f.text_field :username, :value=> "",:placeholder=>"Set A New Username" %><br />
+      <%= f.password_field :password, :placeholder=>"Set a New Password" %><br>
       <% if !(@user.human?) %>
         <%= @publisher_html.try(:html_safe)  %>
       <% end %>

@@ -14,25 +14,7 @@
 
  @import url("http://fonts.googleapis.com/css?family=Condiment");
 
-.navbar img {
-	vertical-align:middle;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-	
-	/* This works in IE 8 & 9 too */
-	/* ... but also 5, 6, 7 */
-	filter: alpha(opacity=30);
-	
-	/* Older than Firefox 0.9 */
-	-moz-opacity:0.3;
-	
-	/* Safari 1.x (pre WebKit!) */
-	-khtml-opacity: 0.3;
-    
-	/* Modern!
-	/* Firefox 0.9+, Safari 2?, Chrome any?
-	/* Opera 9+, IE 9+ */
-	opacity: 0.3;
-	-webkit-filter: invert(100%);  
+.navbar img { 
 	max-height:17px;
 	max-width:15px;
 	margin-bottom:3px;
@@ -56,13 +38,28 @@
 		hr {
 			margin:3px;
 			border-bottom-color:#FCC;
-			margin:px
 		}
 	}
 	.arrow{
 		left:80%;
 	}
 }
+
+.info{
+	.span4{
+		padding-left:5px;
+		padding-right:5px;
+	}
+}
+
+.footer{
+	.footer-spacer{
+		height:130px;
+	}
+	bottom:0%;
+	text-align:center;
+}
+
 
 //.navbar .container-fluid {
 //	padding-right:0px;

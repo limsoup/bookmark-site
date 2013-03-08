@@ -9,19 +9,19 @@
 			  	<div class="center-button-table"><div class="center-button-cell">
 		  		<% if current_user%>
 		  			<% if current_user.human? %>
-			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
 			  			<div id="signup-modal-holder">
 				  			<%= render '/users/modal_edit' %>
 				  		</div>
 				  	<% else %>
-			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
 			  			<!-- Something that triggers login-->
 			  			<div id="signup-modal-holder">
 				  			<%= render '/users/modal_edit' %>
 				  		</div>
 				  	<% end %>
 			  	<% else %>
-		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-primary btn-large", :id=>"signup-modal-link" %>
+		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large", :id=>"signup-modal-link" %>
 		  			<!-- Something that triggers login-->
 		  			<div id="signup-modal-holder">
 			  			<%= render '/users/modal_new' %>
@@ -33,15 +33,15 @@
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<!-- something that triggers sign-in -->
-		  			<%= link_to "Sign In", login_path, :class=>"btn btn-primary btn-large" %>
-			  		<br />
+		  			<%= link_to "Log In »", login_path, :class=>"btn btn-warning btn-large" %>
+		  		<br />
+		  		<a id="signing-anchor-link" data-toggle="tooltip" title="If you're logged out, you can login from the upper-right dropdown menu." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">For Returning Users.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
-			  		<a href="/playlists/9" class="btn btn-primary btn-large">Browse &raquo;</a><br />
-			  		<a href="---move to join anchor and flash--" data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
+			  		<a href="/playlists/9" class="btn btn-success btn-large">Browse &raquo;</a><br />
+			  		<a data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
@@ -111,7 +111,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>Bookmarklet</h4>
-				<p class="contains_bookmarklet">To use it, drag this <a href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your <a href="---this will hover-show where it's supposed to go---">bookmark bar</a></p>
+				<p class="contains_bookmarklet">To use it, drag this <a id="bookmarklet" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your <a href="---this will hover-show where it's supposed to go---">bookmark bar</a></p>
 				<br />
 				<p>When you're logged in here and click it, and something like this image below will show up near the top of your website.</p><br />
 				<%= image_tag 'Bookmarklet Example.png' %><br /><br />
