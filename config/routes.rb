@@ -24,7 +24,7 @@ BookmarkSite::Application.routes.draw do
 
   get 'home', to: 'static_pages#home', as: 'home'
   get 'about', to: 'static_pages#about', as: 'about'
-  get 'how', to: 'static_pages#how', as: 'how'
+  # get 'how', to: 'static_pages#how', as: 'how'
   get 'privacy', to: 'static_pages#privacy', as: 'privacy'
   get 'contact', to: 'static_pages#contact', as: 'contact'
 

@@ -42,8 +42,8 @@ class StaticPagesController < ApplicationController
 	def how
 	end
 
-	def info
-	end
+	# def info
+	# end
 
 	def privacy
 	end
