@@ -194,16 +194,16 @@ Do now:
 	[ ]thumbnails
 		[ ]pulling
 			[ ]easy
-				-xvideos
-					;url_bigthumb=.*?.jpg
-				-fapdu
-				-xhamster +
-				-slutload +
-				-redtube
-				-tube8
-				-pornhub
-				-youporn
-				-beeg
+				[x]xvideos
+					-;url_bigthumb=.*?.jpg
+				[ ]fapdu
+				[x]xhamster +
+				[ ]slutload +
+				[x]redtube
+				[ ]tube8
+				[ ]pornhub
+				[ ]youporn
+				[ ]beeg
 		[ ]container
 		[ ]optional display
 	[ ]validations
