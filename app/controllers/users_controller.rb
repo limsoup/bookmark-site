@@ -90,8 +90,10 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
-		ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-		@publisher_html = ayah.get_publisher_html
+		if(!@user.human)
+			ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+			@publisher_html = ayah.get_publisher_html
+		end
 		if request.xhr?
 			render :partial => 'modal_edit'
 		else
@@ -141,9 +143,6 @@ class UsersController < ApplicationController
 		end
 
 		def authorize
-			logger.ap current_user
-			logger.ap current_user.id
-			logger.ap params[:id]
 			redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin)
 		end
 
