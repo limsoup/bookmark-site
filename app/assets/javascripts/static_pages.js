@@ -81,6 +81,11 @@ $(function() {
 			$('#temp-acct-popover-holder+.popover').css('left',$('#temp-acct-popover-holder+.popover').position().left*1.8+'px');
 		},1000);
 	}
+
+	//see more buttons
+	$('.feature').on('click', function(){
+		$(this).next('.more-info').fadeToggle();
+	});
 });
 
 

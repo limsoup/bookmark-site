@@ -33,11 +33,11 @@ class BookmarkUrl < ActiveRecord::Base
 		end
 
 		def embed_domains
-			@embed_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com','xhamster.com','www.xhamster.com']
+			@embed_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com','xhamster.com','www.xhamster.com','tube8.com','www.tube8.com', 'pornhub.com', 'www.pornhub.com']
 		end
 
 		def thumbnail_domains
-			@thumbnail_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com', 'xhamster.com', 'www.xhamster.com']
+			@thumbnail_domains ||= ['xvideos.com','www.xvideos.com','redtube.com','www.redtube.com', 'xhamster.com', 'www.xhamster.com','slutload.com','www.slutload.com','tube8.com','www.tube8.com', 'pornhub.com', 'www.pornhub.com']
 		end
 
 		def set_embed
@@ -54,6 +54,15 @@ class BookmarkUrl < ActiveRecord::Base
 				when 'www.xhamster.com', 'xhamster.com'
 					embed="<iframe width=\"510\" height=\"400\" src=\"http://xhamster.com/xembed.php?video=REPLACEME\" frameborder=\"0\" scrolling=\"no\"></iframe>"
 					self.embed = embed.sub(/REPLACEME/, parts[5].match(/[0-9]+/).to_s).html_safe
+				when 'slutload.com', 'www.slutload.com'
+					embed= "<div style=\"margin:auto\" align=\"center\"><object type=\"application/x-shockwave-flash\" data=\"http://emb.slutload.com/REPLACEME\" width=\"450\" height=\"253\"><param name=\"AllowScriptAccess\" value=\"always\"><param name=\"movie\" value=\"http://emb.slutload.com/REPLACEME\"></param><param name=\"allowfullscreen\" value=\"true\"></param><embed src=\"http://emb.slutload.com/REPLACEME\" AllowScriptAccess=\"always\" allowfullscreen=\"true\" width=\"450\" height=\"253\"></embed></object><br /><a href=\"http://www.slutload.com/\" target=\"_blank\">Porno</a></div>"
+					self.embed = embed.gsub(/REPLACEME/, parts[5].match(/watch\/(.+)\//)[1].to_s).html_safe
+				when 'tube8.com','www.tube8.com'
+					embed= "<iframe src=\"http://www.tube8.com/embedREPLACEME\" frameborder=0 height=481 width=608 scrolling=no name=\"t8_embed_video\"></iframe>"
+					self.embed = embed.sub(/REPLACEME/, parts[5].match(/\/.+\/[0-9]+\//).to_s)
+				when 'pornhub.com','www.pornhub.com'
+					embed= "<iframe src=\"http://www.pornhub.com/embed/REPLACEME\" frameborder=\"0\" width=\"608\" height=\"481\" scrolling=\"no\"></iframe>"
+					self.embed = embed.sub(/REPLACEME/, parts[7].match(/viewkey=([0-9]+)/)[1])
 				end
 			end
 			# return embedFinal
@@ -91,12 +100,39 @@ class BookmarkUrl < ActiveRecord::Base
 					(1..10).each do |i|
 						self.thumbnail_urls['thumb'+i.to_s] = 'http://ut'+id_str[-1]+'.xhamster.com/t/'+id_str[-3..-1]+'/'+i.to_s+'_b_'+id_str+'.jpg'
 					end
+				when 'slutload.com', 'www.slutload.com'
+					"http://i4-sec.slutload-media.com/U/w/v/B/UwvBjPPQoW8.240x180.10.jpg"
+					id_str = parts[5].match(/watch\/(.+)\//)[1].to_s
+					self.thumbnail_urls['thumbindex'] = 10
+					self.thumbnail_urls['thumbindexstart'] = 10
+					self.thumbnail_urls['numthumbs']=20;
+					(1..20).each do |i|
+						self.thumbnail_urls['thumb'+i.to_s] = "http://i4-sec.slutload-media.com/"+id_str[0]+"/"+id_str[1]+"/"+id_str[2]+"/"+id_str[3]+"/"+id_str+".240x180."+("%02d" % i)+".jpg"
+					end
 				# when 'beeg.com','www.beeg.com'
-				# 	id_str = parts[5][/[0-9]+/]
+				# 	id_str = parts[5][/[0-9]+/]s
 				# 	self.thumbnail_urls['thumbindex'] = 1
 				# 	self.thumbnail_urls['thumbindexstart'] = 1
 				# 	self.thumbnail_urls['thumb1'] = "http://cdn.anythumb.com/320x240/"+id_str+".jpg"
 				# 	self.thumbnail_urls['numthumbs']=1
+				when 'tube8.com', 'www.tube8.com'
+					page = Nokogiri::HTML(open(url))
+					thumbnail_url = URI.unescape(page.css('#flvplayer script')[0].text.match(/image_url\":\"(.+?\.jpg)/)[1]).gsub(/\\/,'')
+					self.thumbnail_urls['thumbindex'] = thumbnail_url.match(/.*\/(.+)\.jpg/)[1].to_i
+					self.thumbnail_urls['thumbindexstart'] = thumbnail_url.match(/.*\/(.+)\.jpg/)[1].to_i
+					self.thumbnail_urls['numthumbs']=16;
+					(1..16).each do |i|
+						self.thumbnail_urls['thumb'+i.to_s] = thumbnail_url.sub(/\/[0-9]+\.jpg/, '/'+ i.to_s+'.jpg');
+					end
+				when 'pornhub.com', 'www.pornhub.com'
+					page = Nokogiri::HTML(open(url))
+ 					thumbnail_url = URI.unescape(page.css('.video-wrapper script')[0].text.match(/image_url\":\"(.+?\.jpg)/)[1])
+					self.thumbnail_urls['thumbindex'] = thumbnail_url.match(/.*\/(.+)\.jpg/)[1].to_i
+					self.thumbnail_urls['thumbindexstart'] = thumbnail_url.match(/.*\/(.+)\.jpg/)[1].to_i
+					self.thumbnail_urls['numthumbs']=16;
+					(1..16).each do |i|
+						self.thumbnail_urls['thumb'+i.to_s] = thumbnail_url.sub(/\/[0-9]+\.jpg/, '/'+ i.to_s+'.jpg');
+					end
 				end
 			end
 		end

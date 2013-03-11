@@ -1,5 +1,5 @@
-.home, .info {
-	h1, h2, h3, h4, a{
+.home, .info, .info2 {
+	h1, h2, h3, h4, h5, a{
 		text-align: center;
 	}
 }
@@ -22,6 +22,47 @@
 	li {
 		color:#666666;
 	}
+}
+
+.info2{ 
+
+	.span4 {
+		margin-left:8px;
+	}
+}
+div.feature {
+	div {
+		cursor:pointer;
+		background:#EAEAFF;
+		width:115px;
+		height:135px;
+		margin:0px;
+		border: 0px solid;
+		border-radius:8px;
+		background-repeat:no-repeat;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	a {
+		border-bottom-right-radius:0px;
+		border-bottom-left-radius:0px;
+		border-top-right-radius:8px;
+		border-top-left-radius:8px;
+	}
+	img {
+		height:105px;
+		margin-left:auto;
+		margin-right:auto;
+		display:block;
+	}
+}
+
+.more-info {
+	display: none;
+	text-align: justify;
+	padding-left:7px;
+	padding-right:7px;
+	padding-top:7px;
 }
 
 .hero-unit{

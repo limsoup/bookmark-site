@@ -40,11 +40,11 @@
 	};
 	$.fn.cycle = function() {
 		this.data('thumbindex', (this.data('thumbindex') % this.data('numthumbs'))  + 1);
-		if(this.data('sprite')==true){
-			this.css('background-position', -1*this.data('thumbindex')*this.data('spriteSize') )
-		}else{
+		// if(this.data('sprite')==true){
+		// 	this.css('background-position', -1*this.data('thumbindex')*this.data('spriteSize') )
+		// }else{
 			this.attr('src', this.data('thumb' + this.data('thumbindex')) );
-		}
+		// }
 	};
 
 })( jQuery );

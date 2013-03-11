@@ -146,7 +146,7 @@ Do now:
 			[x]Instant Account
 				[ ]home/other dialog
 					-check cookies-
-					[ ]if no account -> enable cookies
+					[x]if no account -> enable cookies
 					-ajax pull from site-
 					[x]if not human -> show upgrade path
 					[ ]if human -> "already registered, you can change your account here though or your preferences there"
@@ -161,33 +161,25 @@ Do now:
 					[x]submit
 					[x]notifications
 				[ ]errors/notices
-			[ ]spacer
+			[x]spacer
 
 		[*]access
 		[x]merge new and show
 		[x]edit <-> show
 		[x]index
 
-		[ ]icons
+		[x]icons
 			[x]remove
-			[ ]user
+			[x]user
 			[x]info 'how'
 			[x]about
-		[ ]sidebar
-			[ ]home page
-		[ ]pages
-			[ ]bookmarklet/how-to page
-			[ ]new bookmark
-			[ ]drag and drop modal window
+		[x]sidebar
+			[x]home page
+		[x]pages
+			[x]new bookmark
+			[x]drag and drop modal window
 
-	[ ]save state
-
-	[ ]modal window on delete
-	[ ]pages
-		[ ]bookmarklet/how-to page
-		[ ]new bookmark
-		[ ]drag and drop modal window
-	[ ]embedding
+	[x]embedding
 		[x]lazy embedding
 		[ ]iframe for objects
 	[ ]ensuring remember tokens & bookmarklet keys are unique
@@ -198,85 +190,210 @@ Do now:
 					-;url_bigthumb=.*?.jpg
 				[ ]fapdu
 				[x]xhamster +
-				[ ]slutload +
+				[x]slutload +
 				[x]redtube
 				[ ]tube8
 				[ ]pornhub
 				[ ]youporn
-				[ ]beeg
-		[ ]container
+				[nope]beeg
+		[x]container
+			[x]enlarge on hover
 		[ ]optional display
-	[ ]validations
-	[ ]security
-		[ ]can i make bookmarklet key unaccessible
-		[ ]do i need to encode my html and other responses
-		[ ]do i need to be checking my csrf tokens
+	[x]validations
+		[x]user
+			[x]name
+			[x]password
+		[x]bookmark_url
+		[x]bookmark_url
 	[ ]read
-		[ ]sharing cookies/privacy
-		[ ]csrf validity
-		[ ]read about session expiry
-		[ ]https
 	[ ]back-and-authenticate
-	[ ]notification (use noty or bootstrap?)
-		[ ]ajax errors
-		[ ]html errors
-		[ ]warnings before submitting invalid data
-	[ ]ajax on invalid things
-		[ ]disable multiple submits
-		[ ]get rid of ajax playlist deletion
-		[ ]when data is dirty (from another tab or something), require refresh
 	[x]temp user ids
 		[x]random word sequences
 		[x]pick from categories
 ------------------------------------------------------------------
-potential changes:
-	bookmark urls model
-		adding a playlist_url model
-		indexing
-		adding a counter
-		storing when different URLs go to the same page
-------------------------------------------------------------------
-
-connections to allow:
-
-	multiple-degree connections
-
-	users following users:
-
-	users following playlists
-
-	bookmarks showing who has  playlists and users
 
 
-Recommendations
-	pros:
-		[ ]site is alive
-			[ ]something to do there
-			[ ]stuff is going on
+Fixes
+	[x] Some of Main landing page links not working (Add Link Button specifically)
+	[x] Bookmarklets don't work
+	[x] people can't create a redundant username rite?
+	[x] drag'n drop doesn't open a modal window
+		[x] show modal on dragon drop
+		[x] past text into it
+		[x] if they paste anything into it, it replaces it
 
-		[ ]get fetish-users
-		[ ]humans are better at it
-	
-	negative:
-		[ ] does it look non-utility?
-			[ ] do we eschew the utility goodwill
+Fixes From David
+	[x] Have it called VRepo.com in the tabs
+	[x] Make home icon and text same size as the rest
+	[x] highlight
+	[x] sidebar for temp account -> full-account convert
+	[x]	sidebar for temp account -> bookmarklet
+	[x] sidebar for no account -> signup
+	[x] sidebar all my bookmarks
+	[x]link below sidebar
 
-	thoughts:
-		[ ] might just be a matter of timing
-			[ ] can't do 
 
-monetization
-	[ ]apparatuses
-		[ ]extension
-		[ ]toys
-	[ ]game stuff
-	[ ]escort ads
-		[ ]we make the layouts
-		[ ]hook into the review sites
-	[ ]gifmaker
-	[ ]sister-non-porn ads
+Fixes From David
+	[x]Bookmark View
+		[x] Sign in Button should have text saying "For Returning Users" underneath it
+		[x] Let's have the 4 buttons use alternating colors
+		[x] Blank Username Text Input
+		[x] Site doesn't work in safari on Ipad
+		[x] For all pages, stick a footer at the bottom © 2013 VRepo
+	[x]Playlist View:
+	[x] Change the capitalization to "Save Your Account: Confirm You Are Human"
+	[x] Change "Home" to "Account Main Page"
+	[x] Change default playlist name to "Unsorted Videos"
+	[x] Remove the link from our e-mail. 
 
-AYAH locations
+Fixes
+	[ ]Temp Account Notifcations not showing up
+
+[ ]embed/thumbnails
+	[ ]secure iframe
+	[ ]iframe
+	[ ]sites
+		[x]xvideos
+			[x]thumbs
+			[x]embed
+			[x]allowed
+		[ ]fapdu
+			[ ]thumbs
+			[ ]embed
+		[x]xhamster
+			[x]thumbs
+			[x]embed
+			[x]allowed
+		[x]slutload
+			[x]thumbs
+			[-]embed - doesn't work, will ask
+			[?]allowed - ask
+		[x]redtube
+			[x]thumbs
+			[x]embed - needs secure iframe
+			[x]allowed
+		[ ]tube8
+			[ ]thumbs
+			[ ]embed
+			[x]allowed
+		[ ]pornhub
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed - (probably)
+		[ ]youporn
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]keezmovies
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]XTube
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]EmpFlix
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]Youporn
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]Spankwire
+			[ ]thumbs
+			[ ]embed
+			[ ]allowed
+		[ ]yobt
+			embedding <iframe src="http://www.yobt.com/embed/684512.html" width="640" height="510" scrolling="no" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0"></iframe><br /><a href="http://www.yobt.com/content/684512/emily-gets-karate.html">	
+
+			freeporn/684512.xml
+		[ ]eporner
+			[ ]embed - doesn't work
+			[ ]thumbnails
+		[ ]badoink
+		[ ]dreamamateurs
+		[ ]vidz
+		[ ]myfreecams
+		[ ]livejasmin
+		[ ]tubewolf
+		[ ]mofosex
+		[ ]xxxbunker
+			[ ]ask
+		[ ]pornotube
+		[ ]rawthumbs
+		[ ]porntube
+		[ ]youjizz
+		[ ]madthumbs
+		[ ]hardsextue
+			[x]allowed
+		[nope]beeg
+			[ ]thumbs - requires us to be part of the program
+			[ ]embed - doesn't have any
+
+[ ]modal window on delete
+[ ]validations
+	[ ]user_bookmarks
+		[ ]bookmark_name
+[ ]notification (use noty or bootstrap?)
+	[ ]ajax errors - handle rollback detection
+	[ ]warnings before submitting invalid data
+[ ]tab-enabled all/uncategorized
+[ ]sandbag ourselves?
+[ ]move
+	[ ]fixing which playlists you can move to
+	[ ]notifications
+	[ ]not having grab there if it's already there
+[ ]new bookmark
+	[ ]choosing playlists
+	[ ]notifications about errors
+	[ ]disabling form during submit
+	[ ]waiting/processing spinny wheel or something
+		[ ]display it
+	[ ]removing the button from the top of playlists the user doesn't own
+[ ]images
+	[ ]gifs
+	[ ]gallery
+[ ]list view, domains - labels
+[ ]visit doesn't work
+[ ]bookmarklets for older accounts
+[ ]indexing
+[ ]ajax on invalid things
+	[ ]disable multiple submits
+	[ ]get rid of ajax playlist deletion
+	[ ]when data is dirty (from another tab or something), require refresh
+
+
+Stuff To learn
+	[ ]rails tasks
+		[ ]how to apply stuff to a bunch of database objects at the same time
+		[ ]how to automate regular tasks
+	[ ]how database operations work
+		[ ]what can i do to make writes faster?
+			[ ]cache?
+			[ ]save all at once?
+		[ ]what about queries
+			[ ]searching by uuid? does it use radix search?
+	[ ]getting the most relevant image from a site
+	[ ]security
+		[ ]sharing cookies/privacy
+		[ ]csrf validity
+		[ ]read about session expiry
+		[ ]https
+
+Future Development
+	connections to allow:
+		multiple-degree connections
+		users following users
+		users following playlists
+		bookmarks showing who has playlists and users
+	playlist_bookmarks
+	url cleaning / verifying destinations
+	adding a counter?
+	video downloading
+
+Coding Information
+	AYAH locations
 	UsersController
     8, 20, 51, 66
   Static Controller
@@ -290,62 +407,85 @@ AYAH locations
 	new
 		16
 
-fixes
-[?] When signing up, if someone hits create account without having done playthru, give a red-text notification that they need to do the playthru game
-[x] Some of Main landing page links not working (Add LInk Button specifically)
-[x] Bookmarklets don't work
-[x] people can't create a redundant username rite?
-[x] drag'n drop doesn't open a modal window
-	[x]show modal on dragn drop
-	[x]past text into it
-	[x]if they paste anything into it, it replaces it
+Misc Info
+	Recommendations Pros/Cons
+		pros:
+			[ ]site is alive
+				[ ]something to do there
+				[ ]stuff is going on
+			[ ]get fetish-users
+			[ ]humans are better at it
+		negative:
+			[ ] does it look non-utility?
+				[ ] do we eschew the utility goodwill
+		thoughts:
+			[ ] might just be a matter of timing
+				[ ] can't do 
+	monetization
+		[ ]apparatuses
+			[ ]extension
+			[ ]toys
+		[ ]game stuff
+		[ ]escort ads
+			[ ]we make the layouts
+			[ ]hook into the review sites
+		[ ]gifmaker
+		[ ]sister-site non-porn ads
+	AYAH Keys
+		publisher key
+		bd04599eed9a3768e786ecbf73defecc313a59b1
+		scoring key
+		08dc9c32c3d7426be6aebb66b7cff9958b4d9c27
+	usernames/password combos
+		feeble candy
+		parliament
+
+		daffy green beans
+		green
+
+		fabulous wine
+		wine
+	People I should get to use it on xerq
+		nate
+		nathan
+		babylon
+		adil
+		nish
+		shyamie
+		jessie
+		samiah
+		faceman
+		buster
+		paintballer
+		bauce
+		OTFN (5-10)
+		Entrpreneur Crew
+			red
+			cthalupa
+			XER
+
+Idea: "shit or get off the can"
+	Automate general porn site production
+		Pull Database
+		RSS Feeds
+		Thumbnail Rehosting
+	Adding Value
+		Filter out porn that looks bad:
+			From a crummy user or tag title
+			Processing
+				Thumbnail Quality
+					-Lighting, effective resolution, fuzziness, etc. Things that we'd associate w/ production value
+					-Maybe do some unsupervised learning to select features
+					-Some reinforcement learning to check features (seeing how well an adjustment lets it reconcile with known things)
+					-basic Information
+						-kinds of acts, number of actors, location, clothes
+					-features that have physical correlates: facial attractiveness/features, bodily features
+				-nlp titling
+				Audio Garbled
+				tool for tracking down pirated porn
+					-cut a deal
+		Instant reddit thread creation when someone comments
+		download utility
+		mixin with vrepo
 
 
-[x] Have it called VRepo.com in the tabs
-[x] Make home icon and text same size as the rest
-[x] highlight
-[x] sidebar for temp account -> full-account convert
-[x]	sidebar for temp account -> bookmarklet
-[x] sidebar for no account -> signup
-[x] sidebar all my bookmarks
-	[x]link below sidebar
-	[x]tab-enabled all/uncategorized
-
-[ ] sign up
-[ ]sandbag ourselves? 
-[ ]move
-	[ ]playlists
-	[ ]notifications
-	[ ]restrict which ones
-[ ]new bookmark
-	[ ]playlist
-	[ ]notifications
-	[ ]restrict which playlists
-[ ]images
-	[ ]gifs
-	[ ]
-[ ]list view, domains - labels
-[ ] visit doesn't work
-[ ]bookmarklets for older accounts
-
-x Sign in Button should have text saying "For Returning Users" underneath it
-
-x Let's have the 4 buttons use alternating colors
-
-3) When converting a temp account to a permanent account, we should not be loading the temp username by default
-
-4) Site doesn't work in safari on Ipad
-
-x For all pages, stick a footer at the bottom © 2013 VRepo
-
-
-
-Playlist View:
-
-x Change the capitalization to "Save Your Account: Confirm You Are Human"
-
-x Change "Home" to "Account Main Page"
-
-x Change default playlist name from "Bookmarks that aren't in a playlist" to "Unsorted Videos"
-
-Remove the link from our e-mail. It defeats the entire purpose of writing the e-mail that way if there's a link to it.

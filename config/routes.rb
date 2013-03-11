@@ -13,7 +13,7 @@ BookmarkSite::Application.routes.draw do
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
   get "jsfiles/jquery_bookmarklet.min(.:format)" => "jsfiles#jquery_bookmarklet", :as => :bookmarklet
-  #get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
+  get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
   #get "jsfiles/embed(.:format)" => "jsfiles#embed", :as => :embed
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
@@ -24,7 +24,7 @@ BookmarkSite::Application.routes.draw do
 
   get 'home', to: 'static_pages#home', as: 'home'
   get 'about', to: 'static_pages#about', as: 'about'
-  # get 'how', to: 'static_pages#how', as: 'how'
+  get 'info', to: 'static_pages#info', as: 'info'
   get 'privacy', to: 'static_pages#privacy', as: 'privacy'
   get 'contact', to: 'static_pages#contact', as: 'contact'
 
