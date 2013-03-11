@@ -69,29 +69,41 @@
 		    <div class="feature">
 		    	<div>
 					      <a href="" class="btn btn-block btn-primary">Bookmarklet</a>
-					      <img src="http://i.imgur.com/62gkiK5.png"></img>
+					      <%= image_tag "bookmark.png" %>
 				  </div>
 		    </div>
-		    <div class="more-info">Use a bookmarklet to favorite videos when browsing other sites</div>
+		    <div class="more-info">
+			    <p class="contains_bookmarklet">Drag this icon <a id="bookmarklet" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %></a> and drop it in your bookmark bar. Click it when you're on another site and a small form will show up</p><br />
+					<%= image_tag 'Bookmarklet Example.png' %>
+		  	</div>
 		  </div>
 		  <div class="span4">
 		    <div class="feature"><div>
 			      <a href="" class="btn btn-block btn-primary">Drag &amp; Drop</a>
-			      <img src="http://icons.iconarchive.com/icons/dapino/medical/128/blood-drop-icon.png"></img>
+			      <%= image_tag "blood-drop-icon.png" %>
 					</div></div>
-		    <div class="more-info">Drag a favorite video from any other site to a window the VRepo home page or your playlist</div>
+		    <div class="more-info">Drag the link to a video from any other site into the VRepo home (here), account main, or playlist page.<br />
+		    <%= image_tag 'dragondrop.png' %></div>
 		  </div>
 		  <div class="span4">
 		    <div class="feature">
 		    	<div>
 		      <a href="" class="btn btn-block btn-primary">Form</a>
-		      <img src="http://i.imgur.com/hdVna0n.png"></img>
+		      <%= image_tag "form.png" %>
 		    </div>
 		    </div>
-		    <div class="more-info">Use the standard "Add a Link" form to manually add your favorite links</div>
+		    <div class="more-info">Click the standard "Add A Link" button to manually add your favorite links on a form. <br/> 
+		    	<% if current_user%>
+			  		<br /><br /><br /><br />
+			  		<div style="margin-left:auto; margin-right:auto; width:60%">
+				  		<a href="#" class="btn btn-primary btn-block new-bookmark-modal-link">Add A Link <i class="icon-plus icon-white"></i></a>
+				  	</div>
+		  		<% end %>
+			  </div>
 		  </div>
 		</div>
 	</div>
+
 	<div class="span4">
 		<h3>Info</h3>
 		This site is intended as a <strong>safe</strong> place to
