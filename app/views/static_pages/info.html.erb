@@ -6,7 +6,7 @@
 				<p>Having an account lets you<p>
 				<ul>
 					<li>keep your bookmarks and playlists saved for good after you've left the site</li>
-					<li>access them easily by going to vrepo.com/--your-username-here--</li>
+					<li>access them easily by going to <i>vrepo.com/YourUsername</i></li>
 					<li>use the bookmarklet to bookmark pages when you're on other sites.</li>
 					<li>edit your account by change your username and password.</a>
 				</ul>
@@ -17,17 +17,17 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h4>As simple as proving you're a human</h4>
-				<p>Just by playing through a super-simple PlayThru™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
+				<p>Just by playing through a PlayThru™ game, we can filter out bots and give you a profile. After that, you can give edit your profile to give yourself a username and password if you want.</p>
 				<p>One thing: for this site to work, you do need cookies and javascript enabled, and it works best in up-to-date versions of Chrome, Firefox, Safari, and IE 7+. </p>
 				<div class="center-button-table"><div class="center-button-cell">
 					<% if current_user%>
 			  		<% if current_user.human? %>
-			  			<%= link_to "Edit Account »", '', :class=>"btn btn-cherry signup-modal-link" %>
+			  			<%= link_to "Edit Account »", edit_user_path(current_user), :class=>"btn btn-cherry " %>
 				  	<% else %>
-			  			<%= link_to "Sign Up »", '', :class=>"btn btn-cherry signup-modal-link" %>
+			  			<%= link_to "Sign Up »", edit_user_path(current_user), :class=>"btn btn-cherry " %>
 				  	<% end %>
 			  	<% else %>
-		  			<%= link_to "Sign Up »", '', :class=>"btn btn-cherry signup-modal-link" %>
+		  			<%= link_to "Sign Up »", new_user_path, :class=>"btn btn-cherry signup-modal-link" %>
 			  	<% end %>
 			  </div></div>
 			</div>
@@ -61,7 +61,7 @@
 			 	<p>From there, it'll take you to the page containing your links.</p>
 			 	<div class="center-button-table"><div class="center-button-cell">
 			 		<% if current_user %>
-			  		<a href="#" class="btn btn-primary new-bookmark-modal-link">Add A Link <i class="icon-plus icon-white"></i></a><br />
+			  		<%= link_to "Try it Out <i class='icon-plus icon-white'></i>".html_safe, user_path(current_user),class:"btn btn-primary"%><br />
 		  		<% else %>
 			  		<a href="#" class="btn btn-primary disabled">Add A Link <i class="icon-plus icon-white"></i></a><br />
 		  		<% end %>
