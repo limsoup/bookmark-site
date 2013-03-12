@@ -27,20 +27,20 @@
 			  		</div>
 			  	<% end %>
 		  		<br />
-		  		<a href="#signing-up" id="signing-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
+		  		<a href="#" id="signing-anchor-link" data-toggle="tooltip" title="This button brings up a form to verify you're human." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 		  			<%= link_to "Log In »", login_path, :class=>"btn btn-warning btn-large" %>
 		  		<br />
-		  		<a id="signing-anchor-link" data-toggle="tooltip" title="If you're logged out, you can login from the upper-right dropdown menu." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">For Returning Users.</a>
+		  		<a href="#" id="signing-anchor-link" data-toggle="tooltip" title="If you're logged out, you can also login by clicking the top-right dropdown menu." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">For Returning Users.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 			  		<a href="/playlists/9" class="btn btn-success btn-large">Browse &raquo;</a><br />
-			  		<a data-toggle="tooltip" title="This button will take you my playlist so you can explore how this works." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
+			  		<a href="#" data-toggle="tooltip" title="This button will take you my playlist so can check out how one looks." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  	</div></div>
 			  </div>
 			  <div class="span3">
@@ -50,10 +50,10 @@
 			  			<div id="new-bookmark-modal-holder">
 				  			<%= render '/user_bookmarks/modal_new' %>
 				  		</div>
-				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
+				  		<a href="#threeways" id="add-anchor-link" data-toggle="tooltip" title="Click this link to scroll to the part about adding boomkmarks." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% else %>
 				  		<a href="#" class="btn btn-primary btn-large disabled">Add A Link <i class="icon-plus icon-white"></i></a><br />
-				  		<a href="#adding-links" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to scroll to the part detailing signing up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
+				  		<a href="/signup" id="add-anchor-link" data-toggle="tooltip" title="This button is disabled because you're not logged into any kind of account. Click this link to sign up." data-placement="bottom" style="font-size: 14px; font-weight:500;line-height:14px;">More Information.</a>
 			  		<% end %>
 			  	</div></div>
 			  </div>
@@ -64,11 +64,11 @@
 <div class="row-fluid info2">
 	<div class = "span8">
 		<div class="row-fluid">
-			<h3>Three Ways to Add Links</h3>
+			<h3 id="threeways">Three Ways to Add Links</h3>
 		  <div class="span4">
 		    <div class="feature">
 		    	<div>
-					      <a href="" class="btn btn-block btn-primary">Bookmarklet</a>
+					      <a href="#threeways" class="btn btn-block btn-primary">Bookmarklet</a>
 					      <%= image_tag "bookmark.png" %>
 				  </div>
 		    </div>
@@ -79,7 +79,7 @@
 		  </div>
 		  <div class="span4">
 		    <div class="feature"><div>
-			      <a href="" class="btn btn-block btn-primary">Drag &amp; Drop</a>
+			      <a href="#threeways" class="btn btn-block btn-primary">Drag &amp; Drop</a>
 			      <%= image_tag "blood-drop-icon.png" %>
 					</div></div>
 		    <div class="more-info">Drag the link to a video from any other site into the VRepo home (here), account main, or playlist page.<br />
@@ -88,7 +88,7 @@
 		  <div class="span4">
 		    <div class="feature">
 		    	<div>
-		      <a href="" class="btn btn-block btn-primary">Form</a>
+		      <a href="#threeways" class="btn btn-block btn-primary">Form</a>
 		      <%= image_tag "form.png" %>
 		    </div>
 		    </div>

@@ -83,9 +83,10 @@ $(function() {
 	}
 
 	//see more buttons
-	$('.feature').on('click', function(){
+	$('.feature').on('click', function(event){
+		// event.preventDefault();
 		$(this).next('.more-info').fadeToggle();
-	});
+	})
 });
 
 
