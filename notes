@@ -31,7 +31,7 @@ fixes:
 		view:
 			[x]make an 'edit' view
 ------------------------------------------------------------------
-Do now:
+Done:
 	[x]update user_bookmarks 
 		[x]change controller
 		[x]edit button: prevent default, send to html
@@ -151,8 +151,8 @@ Do now:
 					[x]if not human -> show upgrade path
 					[ ]if human -> "already registered, you can change your account here though or your preferences there"
 				[x]process upgrade
-					[ ]
-				[ ]on session destroy
+					[x]
+				[x]on session destroy
 					delete user if not human and nothing done
 			[*]New Bookmark
 				[x]form
@@ -205,8 +205,8 @@ Do now:
 			[x]password
 		[x]bookmark_url
 		[x]bookmark_url
-	[ ]read
-	[ ]back-and-authenticate
+	[x]read
+	[x]back-and-authenticate
 	[x]temp user ids
 		[x]random word sequences
 		[x]pick from categories
@@ -247,12 +247,18 @@ Fixes From David
 	[x] Remove the link from our e-mail. 
 
 Fixes
-	[ ]Temp Account Notifcations not showing up
+	[x]Temp Account Notifcations not showing up
+
+Next Post:
+	[ ]blog post
+	[ ]i'll verify you as human
+	[ ]changes to UI
 
 [ ]embed/thumbnails
 	[ ]secure iframe
 	[ ]iframe
 	[ ]sites
+	http://www.submityourflicks.com/
 		[x]xvideos
 			[x]thumbs
 			[x]embed
@@ -331,37 +337,38 @@ Fixes
 			[ ]thumbs - requires us to be part of the program
 			[ ]embed - doesn't have any
 
-[ ]modal window on delete
-[ ]validations
-	[ ]user_bookmarks
-		[ ]bookmark_name
-[ ]notification (use noty or bootstrap?)
-	[ ]ajax errors - handle rollback detection
-	[ ]warnings before submitting invalid data
-[ ]tab-enabled all/uncategorized
-[ ]sandbag ourselves?
-[ ]move
-	[ ]fixing which playlists you can move to
-	[ ]notifications
-	[ ]not having grab there if it's already there
-[ ]new bookmark
-	[ ]choosing playlists
-	[ ]notifications about errors
-	[ ]disabling form during submit
-	[ ]waiting/processing spinny wheel or something
-		[ ]display it
-	[ ]removing the button from the top of playlists the user doesn't own
-[ ]images
-	[ ]gifs
-	[ ]gallery
-[ ]list view, domains - labels
-[ ]visit doesn't work
-[ ]bookmarklets for older accounts
-[ ]indexing
-[ ]ajax on invalid things
-	[ ]disable multiple submits
-	[ ]get rid of ajax playlist deletion
-	[ ]when data is dirty (from another tab or something), require refresh
+Features/Improvments
+	[ ]modal window on delete
+	[ ]validations
+		[ ]user_bookmarks
+			[ ]bookmark_name
+	[ ]notification (use noty or bootstrap?)
+		[ ]ajax errors - handle rollback detection
+		[ ]warnings before submitting invalid data
+	[ ]tab-enabled all/uncategorized
+	[ ]sandbag ourselves?
+	[ ]move
+		[ ]fixing which playlists you can move to
+		[ ]notifications
+		[ ]not having grab there if it's already there
+	[ ]new bookmark
+		[ ]choosing playlists
+		[ ]notifications about errors
+		[ ]disabling form during submit
+		[ ]waiting/processing spinny wheel or something
+			[ ]display it
+		[ ]removing the button from the top of playlists the user doesn't own
+	[ ]images
+		[ ]gifs
+		[ ]gallery
+	[ ]list view, domains - labels
+	[ ]visit doesn't work
+	[ ]bookmarklets for older accounts
+	[ ]indexing
+	[ ]ajax on invalid things
+		[ ]disable multiple submits
+		[ ]get rid of ajax playlist deletion
+		[ ]when data is dirty (from another tab or something), require refresh
 
 
 Stuff To learn

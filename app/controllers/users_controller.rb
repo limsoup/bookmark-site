@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
 	before_filter :logged_in, :except => [:new, :create]
 	before_filter :authorize, :only => [:edit, :update]
+	before_filter :authorize_or_accessible, :only => [:show]
 	before_filter :authorize_admin, :only => [:index]
 
 	def new
-		@user = User.new
-		ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-		@publisher_html = ayah.get_publisher_html
+		if flash[:user]
+			@user = flash[:user]
+		else
+			@user = User.new
+		end
+		# ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+		# @publisher_html = ayah.get_publisher_html
 		if request.xhr?
 			render :partial => 'modal_new'
 		else
@@ -17,9 +22,9 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(params[:user])
 		session_secret = params['session_secret'] # in this case, using Rails
-		ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-		ayah_passed = ayah.score_result(session_secret, request.remote_ip)
-		if ayah_passed
+		# ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+		# ayah_passed = ayah.score_result(session_secret, request.remote_ip)
+		# if ayah_passed
 			@user.admin = false
 			@user.human = true
 			if(@user.save)
@@ -31,16 +36,19 @@ class UsersController < ApplicationController
 				end
 			else
 				respond_to do |format|
-					format.html { render 'new' }
+					format.html { 
+						flash[:user] = @user
+						redirect_to signup_path
+					}
 					format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 				end
 			end
-		else
-			respond_to do |format|
-				format.html { render 'new', :notice => "You didn't successfully prove you're human." }
-				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
-			end
-		end
+		# else
+			# respond_to do |format|
+			# 	format.html { render 'new', :notice => "You didn't successfully prove you're human." }
+			# 	format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
+			# end
+		# end
 	end
 
 	# def upgrade
@@ -61,14 +69,14 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-		if !(@user.human)
-			session_secret = params['session_secret'] # in this case, using Rails
-			ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-			ayah_passed = ayah.score_result(session_secret, request.remote_ip)
-		end
-		if @user.human or ayah_passed
+		# if !(@user.human)
+		# 	session_secret = params['session_secret'] # in this case, using Rails
+		# 	ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+		# 	ayah_passed = ayah.score_result(session_secret, request.remote_ip)
+		# end
+		# if @user.human or ayah_passed
 			@user.update_attributes(params[:user])
-			@user.human = true
+			# @user.human = true
 			if(@user.save)
 				respond_to do |format|
 					format.html { redirect_to user_path(@user), :notice => "You've signed up successfully." }
@@ -76,24 +84,33 @@ class UsersController < ApplicationController
 				end
 			else
 				respond_to do |format|
-					format.html { redirect_to edit_user_path(@user), :notice => "You had some errors with your changes." }
+					# format.html { render edit_user_path(@user), :notice => "You had some errors with your changes." }
+					# @user = User.find(params[])
+					format.html { 
+						flash[:user] = @user
+						redirect_to edit_user_path(@user)
+					}
 					format.json { render :json =>{ "errors" => @user.errors.full_messages }}
 				end
 			end
-		else
-			respond_to do |format|
-				format.html { render 'edit', :notice => "You didn't successfully prove you're human." }
-				format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
-			end
-		end
+		# else
+		# 	respond_to do |format|
+		# 		format.html { render 'edit', :notice => "You didn't successfully prove you're human." }
+		# 		format.json { render :json =>{ "errors" => ["You didn't successfully prove you're human."] } }
+		# 	end
+		# end
 	end
 
 	def edit
-		@user = User.find(params[:id])
-		if(!@user.human)
-			ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-			@publisher_html = ayah.get_publisher_html
+		if(flash[:user])
+			@user = flash[:user]
+		else
+			@user = User.find(params[:id])
 		end
+		# if(!@user.human)
+		# 	ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
+		# 	@publisher_html = ayah.get_publisher_html
+		# end
 		if request.xhr?
 			render :partial => 'modal_edit'
 		else
@@ -112,23 +129,23 @@ class UsersController < ApplicationController
 	# end
 
 	def show
-		if(params[:id])
-			@user = User.find(params[:id])
-		else
-			@user = User.find_by_username(params[:username])
-			# logger.ap @user
-			if @user.nil?
-				# logger.ap 'dammit'
-				redirect_to usernotfound_path
-			end
-		end
-		if @user
+		# if(params[:id])
+		# 	@user = User.find(params[:id])
+		# else
+		# 	@user = User.find_by_regularized_username(params[:username].gsub(/\s/,'').downcase)
+		# 	# logger.ap @user
+		# 	if @user.nil?
+		# 		# logger.ap 'dammit'
+		# 		redirect_to usernotfound_path
+		# 	end
+		# end
+		# if @user
 			@playlist = @user.default_list
 			@lists = @user.lists
 			# for modal new bookmark
 			@user_bookmark = @playlist.user_bookmarks.build
 			@bookmark_url = BookmarkUrl.new
-		end
+		# end
 	end
 
 	def index
@@ -144,6 +161,19 @@ class UsersController < ApplicationController
 
 		def authorize
 			redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin)
+		end
+		
+		def authorize_or_accessible
+			if params[:id]
+				@user = User.find(params[:id])
+			elsif params[:username]
+				@user = User.find_by_regularized_username(params[:username].gsub(/\s/,'').downcase)
+			end
+			if @user
+				redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin or @user.access)
+			else
+				redirect_to usernotfound
+			end
 		end
 
 		def authorize_admin

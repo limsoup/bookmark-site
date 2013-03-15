@@ -2,12 +2,158 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-//playlist classes
 
+//playlist classes
+.playlist_links {
+	height:26px;
+}
+
+ /* custom player skin */
+ .flowplayer { background-color: #222; background-size: cover; max-width: 800px; height:95px; margin:10px 0px 10px 0px; }
+ .flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
+ .flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
+ .flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
+ .flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
+ //#accordion2 .flowplayer .fp-ui{background-image: url(http://releases.flowplayer.org/5.3.2/skin/img/play_black.png); background-repeat:no-repeat;}
+ .flowplayer { background-image: url(/assets/Bookmarklet%20Example.png)
+ }
+.flowplayer:not(.is-poster):not(.is-finished){
+   background-image:none;
+ }
+ .is-playing{ background-image:none;}
+.flowplayer.is-finished .fp-controls,.flowplayer.is-finished .fp-fullscreen,.flowplayer.is-finished .fp-unload,.flowplayer.is-finished .fp-time,.flowplayer.is-finished .fp-embed{display:none !important}.flowplayer.is-finished .fp-engine{ top:-9999em;}
+
+//#inlay{background:#333 url("/media/img/demos/layout/coffee2.jpg") 0 0 no-repeat;}
+//#inlay .fp-ratio{/* initial state */-webkit-transition:padding-top .5s;-moz-transition:padding-top .5s;transition:padding-top .5s;padding-top:45%}
+//#inlay.is-splash{cursor:default}
+//#inlay.is-splash .fp-ui{/* initially the nested UI element works as thumbnail */background:#333 url("/media/img/demos/layout/coffee3.jpg") 0 0 no-repeat;-webkit-background-size:contain;-moz-background-size:contain;background-size:contain;top:auto;bottom:10%;border:3px solid #eee;-webkit-box-shadow:0 0 15px rgba(0,0,0,0.25);-moz-box-shadow:0 0 15px rgba(0,0,0,0.25);box-shadow:0 0 15px rgba(0,0,0,0.25);left:5%;width:25%;height:42%}
+//#inlay.is-ready{/* playback starts */background:#fff;}
+//#inlay.is-ready .fp-ratio{padding-top:75%}
+//#inlay.is-ready .info{display:none}
+
+#bookmark_bar{
+	width:40px;
+	height:1px;
+}
+
+#bookmark_bar+.tooltip{
+	.tooltip-arrow{
+		border-bottom-color:#457AFD;
+	}
+	.tooltip-inner{
+		background-color:#457AFD;
+	}
+}
+
+.info_box {
+	font-size:13px;
+	//font-weight:600;
+	//color:white;
+	margin-bottom:20px;
+	padding-right:8px;
+	padding-left:8px;
+	border-radius:4px;
+	h4 {
+		margin: 4px auto 4px 5px;
+		text-align:center;
+	}
+	p{
+		margin: 0 0 0 5px;
+	}
+	.accordion-group{
+		border:none
+	}
+	.accordion-heading {
+		height:18px;
+		border: 1px #4A76FF solid;
+		border-radius:4px;
+		a {
+			color:#555;
+			text-decoration:none;
+			//border-bottom: 1px #EEE dotted;
+			//display:inline;
+			padding: 0px 0px 0px 0px;
+			margin: 1px 0px 0px 3px;
+		}
+	}
+	.accordion-toggle{
+		line-height:normal;
+		//padding: 0px 15px 0px 15px;
+	}
+	.accordion-inner{
+		border:none;
+		height:150px;
+		//position:relative;
+		//overflow:visible;
+		padding:5px 0px 5px 0px;
+	}
+
+	div.info-hover, img.info-hover{
+		//position:absolute;
+		width:350px;
+		height:175px;
+		//max-width:180px;
+		//max-height:240px;
+		//left:-32px;
+		//top:-15px;
+		z-index:3;
+	  //.flowplayer {
+	  //	width:180px;
+	  //}
+	}
+	//.youtube{
+	//}
+}
+.info-box-blue {
+	color:#555;
+	background: #BBD3FF;
+	height:260px;
+	border:2px dashed #4A76FF;
+}
+
+.info-box-green {
+	color: #019B09;
+	background-color:#ACFFA9;
+	height:200px;
+	width:200px;
+	border:2px dashed #1E9500;
+	border-radius:4px;
+}
+
+.info-box-yellow {
+	background: #FFBA1F;
+	color:#555555;
+	height:100px;
+	margin-top:60px;
+	border:2px dashed #A57417;
+}
+
+.info-box-red {
+	color: #FF0000;
+	background: #FDCBCE;
+	height:160px;
+	border:2px dashed #FF0000;
+}
 
 //sidebar classes
 .well {
 	background-color:#E6E6E6;
+	img {
+		vertical-align:text-top;
+	}
+
+	i,img{
+		filter: alpha(opacity=50);  
+  	-moz-opacity: 0.5;  
+  	-khtml-opacity: 0.5;  
+  	opacity: 0.5; 
+	}
+	#bookmarklet img {
+	 filter: alpha(opacity=100);  
+   -moz-opacity: 1.0;  
+   -khtml-opacity: 1.0;  
+   opacity: 1.0; 
+	}
 }
 
 //list classes
@@ -106,6 +252,7 @@
 }
 
 #detail_bookmark_view_container{
+	width: 31%;
 	position:fixed;
 	margin-right:7px;
   -webkit-border-radius: 4px;

@@ -1,22 +1,32 @@
-<div class="span7 offset2">
-<h2>Edit Account: <%= @user.username %></h2><br />
+<div class="span4 offset2">
+<h2>Edit Account: <%= current_user.username %></h2><br />
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
-    <div class="error_messages">
+    <!-- <div class="error_messages">
       <h2>Form is invalid</h2>
       <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+        <%# @user.errors.full_messages.each do |message| %>
+          <li><%#= message %></li>
+        <%# end %>
       </ul>
-    </div>
+    </div> -->
+    <% @user.errors.full_messages.each do |msg| %>
+        <div class="alert alert-error">
+          <a class="close" data-dismiss="alert">&#215;</a>
+          <%= content_tag :div, msg%>
+        </div>
+    <% end %>
   <% end %>
   <%= f.text_field :username, :value=> "", :placeholder=>"Set A New Username"%><br /><br />
   <%= f.password_field :password, :placeholder=>"Set A New Password" %><br /><br />
-  <% if !@user.human %>
-    <p>Confirm you're human for the form go through and save your account.</p>
-    <%= @publisher_html.html_safe %><br />
-  <% end %>
+  <label class="checkbox">
+    <%= f.check_box :access %>
+    Check this box if you want to be able to access <i>www.vrepo.com/<%=@user.username%></i> without having to log in.
+  </label><br /><br />
+  <%# if !@user.human %>
+    <!-- <p>Confirm you're human for the form go through and save your account.</p> -->
+    <%#= @publisher_html.html_safe %><br />
+  <%# end %>
   <button type="submit" class="btn btn-primary btn-large">Submit Changes</button>
 <% end %>
 </div>

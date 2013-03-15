@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
   def new
+    #flash = flash
   end
   def create
   	user = User.find_by_username(params[:username])
   	if !user.nil? && user.authenticate(params[:password])
-		session[:remember_token] = user.remember_token
-		redirect_to user, notice: "Login Successful"
+  		session[:remember_token] = user.remember_token
+  		redirect_to username_path(user), notice: "Login Successful"
   	else
-  		# flash[:error] = 'Username and/or Password combination invalid.'
-  		render 'new'
+  		flash[:login_error] = 'Username / Password combination invalid.'
+  		redirect_to login_path
   	end
   end
   def destroy

@@ -18,6 +18,17 @@ class ApplicationController < ActionController::Base
 	  @current_user ||= User.find_by_remember_token(session[:remember_token]) if session[:remember_token]
 	end
 
+	def call_rake(task, options ={})
+		options[:rails_env] = Rails.env
+		args = options.map {|n,v| "#{n.to_s.upcase}='{v}'"}
+		system "bundle exec rake #{task} #{args.join(' ')} --trace >> #{Rails.root}/log/#{task.to_s}.log"
+	end
+
+	helper_method :username_path
+	def username_path(user)
+		return '/'+user.username
+	end
+
 		# def authorize
 		#   redirect_to login_url, alert: "Not authorized" if current_user.nil?
 		# end

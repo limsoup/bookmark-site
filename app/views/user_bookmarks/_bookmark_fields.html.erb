@@ -2,7 +2,7 @@
 	<div class ="show_bookmark row-fluid">
     <div class="span2">
       <% if !(user_bookmark.bookmark_url.thumbnail_urls.nil?) %> 
-      	<%= thumbnail_image_tag user_bookmark.bookmark_url, '75x75' %>
+      	<%= thumbnail_image_tag user_bookmark.bookmark_url %>
     	<% else %>
 	      <!-- <img src="/assets/blergh.png" size="75x75"></img> -->
 	      <p class="dunno-lol"><b>¯\(ツ)/¯</b></p>

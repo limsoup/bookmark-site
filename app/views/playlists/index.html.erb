@@ -14,9 +14,9 @@
 		<div class="span7"%>
 			<% @lists.each do |pl| %>
 				<div class="playlist_links">
-				  <%= link_to "edit", edit_playlist_path(pl) %> | 
-				  <%= link_to "delete", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists but puts the otherwise un-playlisted videos in that section" %> | 
-				  <%= link_to "delete list with bookmarks", playlist_path(pl), class: "remove_playlist", :remote => true, :method => :delete, :confirm => "This deletes the playlists and gets rid of all the bookmarks inside." %>
+				  <%= link_to "<i class='icon-edit'></i> edit".html_safe, edit_playlist_path(pl), class: "btn btn-small btn-info"%>
+				  <%= link_to "<i class='icon-trash'></i> delete".html_safe, playlist_path(pl), class: "remove_playlist btn btn-small btn-danger", :remote => true, :method => :delete, :confirm => "This deletes the playlist and puts the otherwise un-playlisted videos on your home page" %>
+				  
 				</div>
 			<% end %>
 		</div>

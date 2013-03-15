@@ -7,12 +7,13 @@ BookmarkSite::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  root :to => "static_pages#home"
+  root :to => "static_pages#welcome"
 
   #match '/sessions(.:format)' => 'sessions#create', :via => :post
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
   get "jsfiles/jquery_bookmarklet.min(.:format)" => "jsfiles#jquery_bookmarklet", :as => :bookmarklet
+  get "jsfiles/cleanslate(.:format)" => "jsfiles#cleanslate", :as => :cleanslate
   get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
   #get "jsfiles/embed(.:format)" => "jsfiles#embed", :as => :embed
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
@@ -22,7 +23,7 @@ BookmarkSite::Application.routes.draw do
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'
   # get 'playlists/:id/new_bookmark' => 'playlists#new_bookmark'
 
-  get 'home', to: 'static_pages#home', as: 'home'
+  get 'welcome', to: 'static_pages#welcome', as: 'welcome'
   get 'about', to: 'static_pages#about', as: 'about'
   get 'info', to: 'static_pages#info', as: 'info'
   get 'privacy', to: 'static_pages#privacy', as: 'privacy'

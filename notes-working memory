@@ -1,3 +1,14 @@
 i can hack this out in a few hours
 
-http://www.pornhub.com/view_video.php?viewkey=2003698437
+
+[x]add a migration for realusername vs normal username
+[x]add a task to add regularized_usernames
+[x]test out on usernames here
+	[x]create some invalid usernames
+	[x]create valid ones that collide
+	[x]keep the bad username from showing up
+	[x]check if bad edit still counts as changing update time
+[ ]public/private
+[ ]inline form
+[ ]rake task to set users:access to true
+triage!!

@@ -52,7 +52,33 @@
 
 $(function() {
 	//--applies to show bookmark pages--
+	$('#demo-tooltip').tooltip();
+	$('.indicator_tooltip').on('mouseover', function(){
+		$($(this).data('tooltip-selector')).tooltip('show');
+	}).on('mouseleave', function(){
+		$($(this).data('tooltip-selector')).tooltip('hide');
+	});
 
+	$('.flowplayer').on('mouseover', function(){
+		$(this).addClass('info-hover');
+		$(this).parents('.accordion-body').css('overflow-x','visible');
+		$(this).parents('.accordion-body').css('overflow-y','visible');
+		// x = $(this).attr('src');
+		// $(this).attr('src', $(this).data('image'));
+		// $(this).data('image',x);
+		// $(this).css('top', (($(this).height() - 72)/(-2)).toString()+'px');
+	}).on('mouseleave', function() {
+		$(this).removeClass('info-hover');
+		$(this).parents('.accordion-body').css('overflow-x','hidden');
+		$(this).parents('.accordion-body').css('overflow-y','hidden');
+		// x = $(this).attr('src');
+		// $(this).attr('src',$(this).data('image'));
+		// $(this).data('image',x);
+		// $(this).attr('style','');
+	}).on('finished', function(){
+		$(this).addClass('is-poster');
+		console.log('lol');
+	});
 	//new bookmark modal link
 	$('.new-bookmark-modal-link').on('click', function(event){
 		event.preventDefault();
@@ -116,8 +142,8 @@ $(function() {
 		}
 		if(detail.children().length != 0){
 			if($(findBookmarkInList()).css('display')=='none') {
+				$(findBookmarkInList()).css('background','white');
 				detail.children().remove();
-				detail.parent().removeClass('detail_container_color');
 			}
 		}
 	});
@@ -126,6 +152,7 @@ $(function() {
 
 	detail.on('click', 'a.collapse_link', function(event){
 		event.preventDefault();
+		$(findBookmarkInList()).css('background','white');
 		detail.children().remove();
 		//detail.parent().removeClass('detail_container_color');
 	});

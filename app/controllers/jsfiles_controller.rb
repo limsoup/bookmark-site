@@ -14,6 +14,10 @@ class JsfilesController < ApplicationController
 		render 'jquery_bookmarklet.min'
 	end
 
+	def cleanslate
+		render 'cleanslate'
+	end
+
 	def embed
 		render 'embed'
 	end

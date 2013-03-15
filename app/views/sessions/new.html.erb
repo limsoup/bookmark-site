@@ -1,13 +1,20 @@
+<div class="span4 offset2">
 <h1>Log In</h1>
 
 <%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :username %><br />
-    <%= text_field_tag :username, params[:username] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
+	<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    </div>
+  <% end %>
 <% end %>
+	<br />
+  <%= text_field_tag :username, params[:username], :placeholder=>"Username" %><br />
+  <%= password_field_tag :password, '', :placeholder=>"Password" %>
+  <br/>
+  <br/>
+  <button type="submit" class="btn btn-primary btn-large">Login</button>
+<% end %>
+</div>

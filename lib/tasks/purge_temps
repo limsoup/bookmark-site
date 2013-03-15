@@ -1,0 +1,4 @@
+User.find_each(:batch_size => 400) do |user|
+	if user.default_list.user_bookmarks.empty?
+
+grab all teh playslists at the same time
