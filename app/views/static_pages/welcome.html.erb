@@ -10,7 +10,7 @@
 		  		<% if current_user%>
 		  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
 		  			<div id="signup-modal-holder">
-			  			<%= render '/users/modal_new' %>
+			  			<%= render '/users/modal_edit' %>
 			  		</div>
 			  	<% else %>
 		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
