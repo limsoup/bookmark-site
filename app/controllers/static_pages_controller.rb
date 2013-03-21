@@ -18,7 +18,17 @@ class StaticPagesController < ApplicationController
 			@user.default_list = Playlist.create(:playlist_name => "default list")
 			flash[:instant_account] = 'new';
 			if (@user.save)
-				session[:remember_token] = @user.remember_token
+				session[:remember_token] = @user.remember_token	
+				ub1 = @user.default_list.user_bookmarks.build
+				ub.name = "Two Really Hot Italian Soccer Fans Wrestle it out."
+				bu1 = BookmarkUrl.find(62)
+				ub1.bookmark_url = bu1;
+				ub1.save
+				ub2 = @user.default_list.user_bookmarks.build
+				ub.name = "Wholesome-looking Mormon girl gets it."
+				bu2 = BookmarkUrl.find(63)
+				ub2.bookmark_url= bu2
+				ub2.save
 				redirect_to username_path(@user)
 			end
 		elsif (current_user)

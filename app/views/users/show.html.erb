@@ -20,7 +20,7 @@
     <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"bottom"%>
   </div>
   <div class="bookmark-list">
-    <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
+    <% @playlist.user_bookmarks.reverse.each_with_index do |user_bookmark,i| %>
 
       <% if i > 0 and !user_bookmark.id.nil? %>
         <hr>
