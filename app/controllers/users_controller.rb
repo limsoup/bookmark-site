@@ -76,6 +76,12 @@ class UsersController < ApplicationController
 		# end
 		# if @user.human or ayah_passed
 			@user.update_attributes(params[:user])
+			if(!params[:user][:password].blank?)
+				@user.password = params[:user][:password]
+			end
+			if(!params[:user][:username].blank?)
+				@user.username = params[:user][:username]
+			end
 			# @user.human = true
 			if(@user.save)
 				respond_to do |format|
@@ -140,6 +146,7 @@ class UsersController < ApplicationController
 		# 	end
 		# end
 		# if @user
+			logger.ap session
 			@playlist = @user.default_list
 			@lists = @user.lists
 			# for modal new bookmark

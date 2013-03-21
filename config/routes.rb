@@ -12,12 +12,14 @@ BookmarkSite::Application.routes.draw do
   #match '/sessions(.:format)' => 'sessions#create', :via => :post
 
   get "jsfiles/bookmarklet(.:format)" => "jsfiles#bookmarklet", :as => :bookmarklet
-  get "jsfiles/jquery_bookmarklet.min(.:format)" => "jsfiles#jquery_bookmarklet", :as => :bookmarklet
+  get "jsfiles/jquery_bookmarklet.min(.:format)" => "jsfiles#jquery_bookmarklet", :as => :bookmarklet_setup
   get "jsfiles/cleanslate(.:format)" => "jsfiles#cleanslate", :as => :cleanslate
   get "jsfiles/playground(.:format)" => "jsfiles#playground", :as => :playground
   #get "jsfiles/embed(.:format)" => "jsfiles#embed", :as => :embed
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#process_bookmarklet', :via => :post
   match 'jsfiles/process_bookmarklet(.:format)' => 'jsfiles#preflight', :via => :options
+
+  # match 'sessions' => 'sessions#preflight', :via => :options
 
   match 'playlists/:playlist_id/user_bookmarks/:id/move(.:format)' => 'user_bookmarks#move', :via => :post
   # get 'playlists/:id/destroy_bookmark/:bookmark_id' => 'playlists#destroy_bookmark'

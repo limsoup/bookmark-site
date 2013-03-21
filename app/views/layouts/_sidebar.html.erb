@@ -1,76 +1,28 @@
 <div class="span3">
+    <div class="well sidebar-nav hasBookmarklet">
 
-    <!-- INFO BLUE BEGIN-->
-    <div class = "info_box info-box-blue" >
-        <a class="pull-right close" data-dismiss="alert" href="#">&times;</a>
-        <h4>Adding Links</h4>
-        <div class="accordion" id="accordion2">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                Bookmarklet
-              </a>
-            </div>
-            <div id="collapseOne" class="accordion-body collapse in">
-              <div class="accordion-inner">
-                Once you've dragged the <a class="indicator_tooltip" data-tooltip-selector="#bookmarklet">bookmarklet</a> to your <a class="indicator_tooltip" data-tooltip-selector="#bookmark_bar">bookmark bar</a>, here's how to use it:
-                <div data-swf="http://releases.flowplayer.org/5.3.2/flowplayer.swf" class="flowplayer color-light no-toggle is-poster" data-ratio="0.5">
-                    <video>
-                       <source type="video/webm" src="/assets/bookmarklet_recording.webm"/>
-                       <source type="video/mp4" src="/assets/bookmarklet_recording.mp4"/>
-                       <source type="video/ogv" src="/assets/bookmarklet_recording.ogv"/>
-                    </video>
-                 </div> 
-                 <br />
-              </div>
-            </div>
-          </div>
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                Form
-              </a>
-            </div>
-            <div id="collapseTwo" class="accordion-body collapse">
-              <div class="accordion-inner">
-                You can access the standard form for adding links <a class="indicator_tooltip" data-tooltip-selector="#bookmark_list_view .new-bookmark-modal-link">here</a> and <a class="indicator_tooltip" data-tooltip-selector=".sidebar-nav .new-bookmark-modal-link">here</a>
-              </div>
-            </div>
-          </div>
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                Drag-and-Drop
-              </a>
-            </div>
-            <div id="collapseThree" class="accordion-body collapse">
-              <div class="accordion-inner">
-                Anim pariatur cliche...
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="well sidebar-nav">
+            <div class="sidebar-title">Bookmarklet</div>
       <ul class="nav nav-list">
         <% if current_user %>
-            <li class="nav-header">Bookmarklet</li>
-            <li><a id="bookmarklet" data-toggle="tooltip" data-trigger="manual"data-title="here" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag 'bookmarklet.png' %> Drag to your bookmark bar</a><li>
+            <li><a id="bookmarklet" data-toggle="tooltip" data-trigger="manual"data-title="here" href ="javascript:(function(){jq=document.createElement('SCRIPT');jq.type='text/javascript';jq.src='//www.vrepo.com/jsfiles/jquery_bookmarklet.min.js';document.getElementsByTagName('head')[0].appendChild(jq);})();"><%= image_tag '/assets/glyphicons/glyphicons_072_bookmark.png' %> Drag to your bookmark bar</a><li>
             </ul></div>
-            <div class="well sidebar-nav"><ul class="nav nav-list">
-            <li class="nav-header">Actions</li>
-            <li><%= link_to "<i class='icon-home'></i> Home".html_safe, username_path(current_user) %></li>
+            <div class="well sidebar-nav">
+                <div class="sidebar-title">Actions</div>
+                <ul class="nav nav-list">
+            <li <%= "class=active" if current_page?(username_path(current_user)) %> > <%= link_to "<i class='icon-home'></i> Home".html_safe, username_path(current_user) %></li>
             <!-- if there is a valid playlist
             make sure that the current_user owns this playlist, 
             that this is the show playlist view
             and that the playlist isnt' the default one
             -->
             <% if @playlist and @playlist.id %>
-                <% if (@playlist.user == current_user) and current_page?(@playlist) and @playlist != current_user.default_list %>
-                    <li><%= link_to ("<i class='icon-plus'></i>  Add a Bookmark to "+@playlist.playlist_name).html_safe, new_playlist_user_bookmark_path(@playlist), :class => "new-bookmark-modal-link"%></li>
+                <% if (@playlist.user == current_user) %>
+                    <li><%= link_to "<i class='icon-plus'></i> Add a Bookmark".html_safe, new_playlist_user_bookmark_path(current_user.default_list), :class => "new-bookmark-modal-link" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"top" %></li>
+                    <% if current_page?(@playlist) and @playlist != current_user.default_list %>
+                        <li><%= link_to ("<i class='icon-plus'></i>  Add a Bookmark to "+@playlist.playlist_name).html_safe, new_playlist_user_bookmark_path(@playlist), :class => "new-bookmark-modal-link"%></li>
+                    <% end %>
                 <% end %>
             <% end %>
-            <li><%= link_to "<i class='icon-plus'></i> Add a Bookmark".html_safe, new_playlist_user_bookmark_path(current_user.default_list), :class => "new-bookmark-modal-link" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"top" %></li>
             <li <%= "class=active" if current_page?(new_playlist_path) %> ><%= link_to "<img src='/assets/new_playlist_icon.png'></img> Create New Playlist".html_safe, new_playlist_path%></li>
             <li class="nav-header">My Playlists</li>
             <li <%= "class=active" if current_page?(playlists_path) %> ><%= link_to "<i class='icon-list'></i> Index of All My Playlists".html_safe, playlists_path%></li>
@@ -91,8 +43,6 @@
             <li class="nav-header">Actions</li> 
             <li><strong><%= link_to "Sign Up", signup_path  %></strong></li>
         <% end %> 
-        <!-- <li class="nav-header">Public</li>
-            <li><%= link_to "Brunettes", '/playlists/16'%></li>
-      </ul> -->
+      </ul>
     </div>
 </div>

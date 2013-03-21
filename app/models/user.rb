@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   before_validation :create_regularized_username
   attr_accessor :password
 
-  validates_presence_of :password_digest
+  validates_presence_of :password_digest, :unless => "password.blank?"
   #validates_confirmation_of :password, :if => :human?
   validates_uniqueness_of :regularized_username, :message => " has already been registered"
   validate :username_is_not_a_route

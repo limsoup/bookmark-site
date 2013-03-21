@@ -1,62 +1,41 @@
+<%= render '/layouts/info_pane' %>
+<div class="row-fluid">
 <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
-  <!-- INFO GREEN BEGIN-->
-  <div class="info-box info-box-green pull-right">
-    <h4>Welcome to VRepo!</h4> This is your homepage. These (pretty?) dashed <br/> boxes are only here on your first visit, and contain non-obvious feature info. Hover over the <%= link_to 'links',"",id:"demo-tooltip", "data-toggle"=>"tooltip", "data-title"=>"like this", "data-placement"=>"bottom"%> to point out features.
-    <a class="btn btn-success">Kill these boxes!</a>
-  </div>
-  <!-- INFO GREEN END -->
+  <% if @user != current_user %>
+     <h3><%= @user.username %>'s</h3>
+   <% end %>
   <h3>Unsorted Bookmarks</h3>
   <% if current_user %>
-  <%= link_to 'Add A Link <i class="icon-plus icon-white"></i>'.html_safe, '', class:"btn btn-primary new-bookmark-modal-link", "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"right" %>
-    <div id="new-bookmark-modal-holder">
-        <%= render '/user_bookmarks/modal_new' %>
-    </div>
+    <% if @playlist.user == current_user %>
+      <%= link_to 'Add A Link <i class="icon-plus icon-white"></i>'.html_safe, '', class:"btn btn-primary new-bookmark-modal-link", "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"right" %>
+      <div id="new-bookmark-modal-holder">
+          <%= render '/user_bookmarks/modal_new' %>
+      </div>
+    <% end %>
   <% end %>
   <br />
-  <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"bottom"%>
-
-  <div class = "info_box info-box-yellow" >
-      <a class="pull-right close" data-dismiss="alert" href="#">&times;</a>
-      <p><a class="indicator_tooltip" data-tooltip-selector="#filter_uncategorized">Filter</a> bookmarks by their title text.</p>
-      <p>If we find multple <a class="indicator_tooltip" data-tooltip-selector=".cycle">thumbnails</a> you can hover to play through them.
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-filter"></i></span>
+    <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"bottom"%>
   </div>
-  <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
-    <% if i == 0 %>
-      <hr class="hrspacer"> 
-    <% else %>
-      <hr>
+  <div class="bookmark-list">
+    <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
+
+      <% if i > 0 and !user_bookmark.id.nil? %>
+        <hr>
+      <% end %>
+      
+      <% if user_bookmark.id %>
+        <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+      <% end %>
     <% end %>
-    <% if user_bookmark.id %>
-      <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
-    <% end %>
-  <% end %>
+  </div>
 </div>
 <div class="span4">
   <div id="detail_bookmark_view_container">
-    <!-- INFO YELLOW BEGIN-->
-    <div class = "info_box info-box-red" >
-        <div class = "pull-right" style="width:48%">
-          <a class="pull-right close" data-dismiss="alert" href="#">&times;</a>
-          <h4>Instant Account</h4>
-          <p>The dropdown menu has links to:</p>
-          <ul>
-            <li>User Home (here)</li>
-            <li>User Settings</li>
-            <li>Log out</li>
-          </ul>
-        </div>
-        <div class ="pull-left" style="width:48%">
-          <h4>User Settings</h4>
-          <ul>
-            <li>Username</li>
-            <li>Password <br/>(currently: blank)</li>
-            <li>Requiring login is to access this page (currently: no)</li>
-          </ul>
-        </div>
-    </div>
-    <!-- INFO YELLOW END -->
     <div id="detail_bookmark_view">
     </div>
   </div>
+</div>
 </div>

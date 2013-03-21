@@ -1,5 +1,5 @@
-<ul>
+<div class="row-fluid"><ul>
 	<% @users.each do |user| %>
 		<li><%= link_to (user.username.nil?) ? user_path(user) : user.username, user %></li>
 	<% end %>
-</ul>
+</ul></div>

@@ -4,6 +4,7 @@ task :all_user_tasks => :environment do
 		user.purge_self
 		if !user.frozen?
 			x = user
+			x.human = true;
 			x.save
 		end
 	end

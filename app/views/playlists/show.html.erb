@@ -1,4 +1,5 @@
-<%= render '/layouts/sidebar' %>
+<div class="row-fluid">
+  <%= render '/layouts/sidebar' %>
 <div class="span5" id="bookmark_list_view">
   <h2><%= @playlist.playlist_name %></h2>
   <% if current_user %>
@@ -8,21 +9,25 @@
     </div>
   <% end %>
   <br />
-  <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" %>
-  <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
-    <% if i == 0 %>
-      <hr class="hrspacer"> 
-    <% else %>
-      <hr>
+  <div class="input-prepend">
+    <span class="add-on"><i class="icon-filter"></i></span>
+    <%= search_field_tag 'filter_uncategorized', '', :placeholder=>"Filter Bookmarks" , "data-toggle"=>"tooltip", "data-trigger"=>"manual", "data-title"=>"here", "data-placement"=>"bottom"%>
+  </div>
+  <div class="bookmark-list">
+    <% @playlist.user_bookmarks.each_with_index do |user_bookmark,i| %>
+      <% if i > 0 and !user_bookmark.id.nil? %>
+        <hr>
+      <% end %>
+      <% if user_bookmark.id %>
+        <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
+      <% end %>
     <% end %>
-    <% if user_bookmark.id %>
-      <%= render :partial =>'/user_bookmarks/bookmark_fields.html.erb', :locals => {:user_bookmark => user_bookmark} %>
-    <% end %>
-  <% end %>
+  </div>
 </div>
 <div class="span4">
   <div id="detail_bookmark_view_container">
     <div id="detail_bookmark_view">
     </div>
   </div>
+</div>
 </div>

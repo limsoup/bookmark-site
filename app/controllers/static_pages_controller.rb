@@ -12,18 +12,14 @@ class StaticPagesController < ApplicationController
 				foundFlag = User.find_by_username(userName).nil?
 			end
 			@user.username= (adjectives.sample.capitalize+foods.sample.capitalize)
-			@user.password = @user.username
+			@user.password = ""
 			@user.human = false
 			@user.admin = false
 			@user.default_list = Playlist.create(:playlist_name => "default list")
-			# ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-			# @publisher_html = ayah.get_publisher_html
+			flash[:instant_account] = 'new';
 			if (@user.save)
 				session[:remember_token] = @user.remember_token
 				redirect_to username_path(@user)
-				# @playlist = @user.default_list
-				# @user_bookmark = @playlist.user_bookmarks.build
-				# @bookmark_url = BookmarkUrl.new
 			end
 		elsif (current_user)
 			if request.referer
@@ -43,10 +39,6 @@ class StaticPagesController < ApplicationController
 				format.html {render 'welcome'}
 			end
 		end
-		# if !(@user.human)
-		# 	ayah = AYAH::Integration.new('bd04599eed9a3768e786ecbf73defecc313a59b1', '08dc9c32c3d7426be6aebb66b7cff9958b4d9c27')
-		# 	@publisher_html = ayah.get_publisher_html
-		# end
 	end
 
 	def how

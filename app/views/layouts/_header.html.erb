@@ -2,7 +2,7 @@
   <div class="navbar-inner">
     <div class="container-fluid">
       <div class="nav-collapse collapse">
-        <ul class="nav"><!-- <img src='/assets/glyphicons/glyphicons_020_home.png'></img> -->
+        <ul class="nav">
           <li><%= link_to "VRepo".html_safe, welcome_path, class:"logo", style:"color:#3880FF" %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_021_snowflake.png'></img> About Us".html_safe, about_path %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_195_circle_info.png'></img> Info".html_safe, info_path %></li>
@@ -11,6 +11,11 @@
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_010_envelope.png'></img> Contact".html_safe, contact_path %></li>
           <li><%= link_to "<img src='/assets/glyphicons/glyphicons_029_notes_2.png'></img> Blog".html_safe, 'http://vrepo.wordpress.com/'%></li>
         </ul>
+          <% if current_page?(current_user) or current_page?(username_path(current_user))%>
+            <div style="position:absolute; left:47%; top:29px; background:#1b1b1b; height:14px">
+              <a class="btn btn-mini btn-inverse info-pane-button">Expand <i class="icon-chevron-down"></i></a>
+            </div>
+          <% end %>
         <ul class="nav pull-right">
         	<% if current_user.nil? %>
           	<!-- <li><a href="#">1 Click Save</a></li> -->
@@ -21,7 +26,7 @@
             <% end %>
             <li class="divider-vertical"></li>
             <li><a href="/signup">Sign Up</a></li>
-<!--             <li class="dropdown">
+             <!--<li class="dropdown">
               <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
               <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
                 <%#= form_tag sessions_path do %>
@@ -32,6 +37,15 @@
               </div>
             </li> -->
           <% else %>
+            <div class="navbar-form pull-left"><a class="btn btn-inverse" id="login-btn"><i class="icon-white icon-heart"></i> Returning Users</a></div>
+            <!-- <div style="display:none;" id="nav-login"> -->
+              <%= form_tag sessions_path, class:"navbar-form pull-left", style:"display:none", id:"nav-login" do %>
+                <%= text_field_tag :username, '', :placeholder => 'Username' ,id:"navbar-input-1"%>
+                <%= password_field_tag :password,'', :placeholder=>'Password' ,id:"navbar-input-2"%>
+                <button type="submit" class="btn btn-small" id="navbar-form-button">Sign in</button>
+              <% end %>
+            <!-- </div> -->
+            <li class="divider-vertical"></li>
             <% if current_user.human or !current_page?(:controller => 'static_pages', :action=>'welcome') %>
               <li class="dropdown">
             <% else %>

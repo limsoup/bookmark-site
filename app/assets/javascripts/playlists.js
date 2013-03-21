@@ -13,10 +13,10 @@
   $.fn.bookmarkSetup = function (){
   	this.on('click',function(event){
 			event.preventDefault();
-			$(this).css('background','#D2FFE2');
+			$(this).find('.show_bookmark').addClass('active-bookmark');
   		if($(this).find(ubNameSel).val() != detail.find(ubNameSel).val() ){
   			if(detail.children().length > 0) {
-  				$(findBookmarkInList()).css('background','white');
+  				$(findBookmarkInList()).find('.show_bookmark').removeClass('active-bookmark');
   				detail.children().replaceWith($(this).find('.detail_bookmark').clone().show());
   			} else{
 					detail.append($(this).find('.detail_bookmark').clone().show());
@@ -27,7 +27,6 @@
   		visit.focus();
   	}).on('click','a.watch',function(event){
   		event.preventDefault();
-  		//console.log($(this).parents('.bookmark').find('.modal'));
 			$(this).parents('.bookmark').find('.modal').clone().appendTo('#modalHolder');
 			$('#modalHolder').find('.modal').on('shown', function(){
 				$(this).find('.modal-body').html($(this).find('.modal-body').data('embedcode'));
@@ -40,11 +39,7 @@
 	};
 	$.fn.cycle = function() {
 		this.data('thumbindex', (this.data('thumbindex') % this.data('numthumbs'))  + 1);
-		// if(this.data('sprite')==true){
-		// 	this.css('background-position', -1*this.data('thumbindex')*this.data('spriteSize') )
-		// }else{
-			this.attr('src', this.data('thumb' + this.data('thumbindex')) );
-		// }
+		this.attr('src', this.data('thumb' + this.data('thumbindex')) );
 	};
 
 })( jQuery );
@@ -61,20 +56,8 @@ $(function() {
 
 	$('.flowplayer').on('mouseover', function(){
 		$(this).addClass('info-hover');
-		$(this).parents('.accordion-body').css('overflow-x','visible');
-		$(this).parents('.accordion-body').css('overflow-y','visible');
-		// x = $(this).attr('src');
-		// $(this).attr('src', $(this).data('image'));
-		// $(this).data('image',x);
-		// $(this).css('top', (($(this).height() - 72)/(-2)).toString()+'px');
 	}).on('mouseleave', function() {
 		$(this).removeClass('info-hover');
-		$(this).parents('.accordion-body').css('overflow-x','hidden');
-		$(this).parents('.accordion-body').css('overflow-y','hidden');
-		// x = $(this).attr('src');
-		// $(this).attr('src',$(this).data('image'));
-		// $(this).data('image',x);
-		// $(this).attr('style','');
 	}).on('finished', function(){
 		$(this).addClass('is-poster');
 		console.log('lol');
@@ -94,7 +77,7 @@ $(function() {
 	$("#modalHolder").on('ajax:success', '.new-bookmark-modal form', function(event, data, status, xhr){
 		//display success
 		//if it's added to this playlist, add bookmark
-		$('.hrspacer').after(jQuery.parseHTML(data.html+"<hr>"));
+		$('.bookmark-list').prepend(jQuery.parseHTML(data.html+"<hr>"));
 		$('.bookmark').first().bookmarkSetup();
 		//if it's added to some other list, give choice between staying here or going to that list
 		$(this).find('.alert-container-success').show();
@@ -142,7 +125,7 @@ $(function() {
 		}
 		if(detail.children().length != 0){
 			if($(findBookmarkInList()).css('display')=='none') {
-				$(findBookmarkInList()).css('background','white');
+				$(findBookmarkInList()).find('.show_bookmark').removeClass('active-bookmark');
 				detail.children().remove();
 			}
 		}
@@ -152,7 +135,7 @@ $(function() {
 
 	detail.on('click', 'a.collapse_link', function(event){
 		event.preventDefault();
-		$(findBookmarkInList()).css('background','white');
+		$(findBookmarkInList()).find('.show_bookmark').removeClass('active-bookmark');
 		detail.children().remove();
 		//detail.parent().removeClass('detail_container_color');
 	});
@@ -241,7 +224,7 @@ $(function() {
 			$(findBookmarkInList()).remove();
 			detail.children().remove();
 			detail.parent().removeClass('detail_container_color');
-		}http://www.w3schools.com/jsref/jsref_substring.asp
+		}
 		return false;
 	});
 
@@ -267,28 +250,17 @@ $(function() {
 		  if (e.preventDefault){
 		  	e.preventDefault(); // required by FF + Safari
 		  }
-		  //console.log(e);
-		  //console.log(e.originalEvent.dataTransfer);
 			e.originalEvent.dataTransfer.dropEffect = 'copy'; // tells the browser what drop effect is allowed here
 			return false; // required by IE
-		}).on('dragleave', function (e){
-			//dismiss modal
-
-		  //$(this).css('opacity','0.0');
-			//$(this).css('z-index','-1');
-			//$('.container-fluid').css('z-index','0');
 		}).on('drop', function (e){
-		  // $(this).css('opacity','0.0');
 			if (e.preventDefault){
 				e.preventDefault();
 			}
 			if (e.originalEvent.dataTransfer.types) {
 				[].forEach.call(e.originalEvent.dataTransfer.types, function(type) {
 					if(type == 'text/uri-list'){
-						//console.log( e.originalEvent.dataTransfer.getData(type).toString());
 						gUrl = e.originalEvent.dataTransfer.getData(type).toString();
 						$('#modalHolder input[name="user_bookmark[bookmark_url_attributes][url]"]').attr('value', e.originalEvent.dataTransfer.getData(type).toString());
-						// $('#linkDrop form').submit();
 					}
 				});
 			}
@@ -299,8 +271,6 @@ $(function() {
 	$('#bookmark_list_view').on('mouseover', '.cycle' , function() {
 		$(this).toggleClass('hoverclass');
 		$(this).css('top', (($(this).height() - 72)/(-2)).toString()+'px');
-		// $(this).removeAttr('height');
-		// $(this).removeAttr('width');
 		var tn = $(this);
 		thumbnailIntervalId = setInterval(function(){
 			tn.cycle();
@@ -308,8 +278,6 @@ $(function() {
 	}).on('mouseout', '.cycle', function() {
 		clearInterval(thumbnailIntervalId);
 		$(this).toggleClass('hoverclass');
-		// $(this).attr('height','75');
-		// $(this).attr('width','75');
 	});
 
 });

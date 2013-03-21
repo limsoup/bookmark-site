@@ -1,5 +1,5 @@
 $bookmarklet(function (){
-	var newSS, styles='#bookmarklet * {margin:4px;} #bookmarklet {background: #ADF8A2; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; color:#0088cc; font-size:11px;border-radius: 10px;border: 1px solid;width: 300px;top: 5px;right: 30%;position:fixed;z-index:999998;} #bookmarklet  .floatright {float:right;}';
+	var newSS, styles='#bookmarklet .cleanslate * {margin:4px !important ; } #bookmarklet .cleanslate {background: #ADF8A2 !important ; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif !important ; color:#0088cc !important ; font-size:13px !important ;border-radius: 10px !important ;border: 1px solid !important ;width: 300px !important ;top: 5px !important ;right: 30% !important ;position:fixed !important ;z-index:999998 !important ;} #bookmarklet .cleanslate  .floatright {float:right !important ;}';
 	if(document.createStyleSheet) { 
 		document.createStyleSheet("javascript:'"+styles+"'");
 	}
@@ -11,7 +11,7 @@ $bookmarklet(function (){
 	}
 	$bookmarklet('body').append('<div id="bookmarklet"><div>');
 	$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
-	$bookmarklet('#bookmarklet').on('click', 'a.submit_link', function(){
+	$bookmarklet('#bookmarklet').on('click', '#new_user_bookmark a.submit_link', function(){
 		var postData = $bookmarklet('#bookmarklet form').serialize();
 		$bookmarklet.ajax({
 			url: $bookmarklet('#bookmarklet form').attr('action'),

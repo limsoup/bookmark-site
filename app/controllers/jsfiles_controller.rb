@@ -1,6 +1,7 @@
 class JsfilesController < ApplicationController
 	layout false
 	def bookmarklet
+		#logger.ap request.env
 		@user_bookmark = UserBookmark.new
 		respond_to do |format|
 			format.js {

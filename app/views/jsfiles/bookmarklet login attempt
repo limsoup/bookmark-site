@@ -1,0 +1,65 @@
+// bookmarklet.js.erb
+<% if current_user %>
+		$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
+	<% else %>
+		$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_login' %>");
+		$bookmarklet('#bookmarklet').on('click', '#bookmarklet-login-form a.submit_link', function(){
+			var postData = $bookmarklet('#bookmarklet form').serialize();
+			$bookmarklet.ajax({
+				url: $bookmarklet('#bookmarklet form').attr('action'),
+				type: 'POST',
+				data: postData,
+				dataType:'json',
+				success: function(data, textStatus, xhr){
+					//replace html with bookmarklet form, including error
+					$bookmarklet('#bookmarklet').html(data.html);
+				},
+				error: function(xhr, status, error) {
+					//show error
+					//clear fields
+					$bookmarklet('#bookmarklet .error').html(error.toString());
+					$bookmarklet('input[type=text]').val('');
+				},
+				beforeSend: function(xhr, settings){
+					xhr.setRequestHeader('X-CSRF-Token', $bookmarklet('#bookmarklet meta[name="csrf-token"]').attr('content'));
+				},
+		    // xhrFields: {
+		    //    withCredentials: true
+		    // },
+				crossDomain: true,
+			});
+		});
+	<% end %>
+//sessions controller
+		  if (request.headers["HTTP_ORIGIN"] !="http://localhost:3000")
+        @user_bookmark = UserBookmark.new
+        response_json = {
+          'html' => (render_to_string(:partial => '/jsfiles/bookmarklet_content')).html_safe
+        }
+        render :json => response_json
+      else
+        redirect_to username_path(user), notice: "Login Successful"
+      end
+	
+	      if (request.headers["HTTP_ORIGIN"] !="http://localhost:3000")
+        render :nothing => true
+      else
+        flash[:login_error] = 'Username / Password combination invalid.'
+        redirect_to login_path
+      end
+
+
+
+
+
+  def preflight
+    respond_to do |format|
+      format.json { render :json => {"pre-preflight successful"=> true} }
+      format.html { 
+        logger.ap "html pre pre flight request"
+        render :json => {"pre-preflight successful"=> true}
+      }
+    end
+  end
+// Session Store
+// changed it to active record store

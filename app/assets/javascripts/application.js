@@ -14,3 +14,31 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+
+
+$(function() {
+
+
+	$('.info-pane-button').on('click', function(){
+		//scroll to anchor
+		$('#info-pane').slideToggle().delay(1000).next().next('hr').toggle();
+		$('.info-pane-button').parent().toggle();
+		if($('#detail_bookmark_view_container').css('position')=='fixed'){
+			$('#detail_bookmark_view_container').css('position','absolute')
+		}else{
+			$('#detail_bookmark_view_container').css('position','fixed')
+		}
+		//$('body').toggleClass('open');
+	});
+
+	$('#login-btn').on('click',function(){
+		$(this).hide();
+		$('#nav-login').show();
+	});
+
+	if($('#introduction').length != 0) {
+		$('.info-pane-button').first().delay(1500).trigger('click');
+	}
+	
+});

@@ -1,3 +1,4 @@
+<div class="row-fluid">
 	<div class="span12">
 		<div class="hero-unit home">
 		  <h1>Welcome to VRepo!</h1>
@@ -7,18 +8,10 @@
 			  <div class="span3">
 			  	<div class="center-button-table"><div class="center-button-cell">
 		  		<% if current_user%>
-		  			<% if current_user.human? %>
-			  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
-			  			<div id="signup-modal-holder">
-				  			<%= render '/users/modal_edit' %>
-				  		</div>
-				  	<% else %>
-			  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
-			  			<!-- Something that triggers login-->
-			  			<div id="signup-modal-holder">
-				  			<%= render '/users/modal_edit' %>
-				  		</div>
-				  	<% end %>
+		  			<%= link_to "Edit Account »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
+		  			<div id="signup-modal-holder">
+			  			<%= render '/users/modal_new' %>
+			  		</div>
 			  	<% else %>
 		  			<%= link_to "Sign Up »", '#', :class=>"btn btn-cherry btn-large signup-modal-link" %>
 		  			<!-- Something that triggers login-->
@@ -117,6 +110,4 @@
 		<p> VRepo.com does not and has no intention of collecting your e-mail or any other information which can be traced back to your offline identity. <p>
 	</div>
 </div>
-
-	<!-- last row-fluid gets closed in application.erb.html -->
-
+</div>

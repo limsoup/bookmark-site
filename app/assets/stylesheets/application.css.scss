@@ -12,7 +12,18 @@
  *= require_tree .
  */
 
- @import url("http://fonts.googleapis.com/css?family=Condiment");
+ //@import url("http://fonts.googleapis.com/css?family=Condiment");
+
+@font-face {
+	font-family: 'Condiment';
+  font-style: normal;
+  font-weight: 400;
+	src: url('Condiment-Regular.ttf');
+}
+
+body {
+	//background-image: url(background2.jpg);
+}
 
 .navbar img { 
 	max-height:17px;
@@ -31,7 +42,6 @@
 	font-size:12px;
 	font-weight:500;
 	color:#C70002;
-	//background-color:#E4FF92;
 	.popover-content{
 		text-align:center;
 		padding:5px;
@@ -54,40 +64,107 @@
 
 .footer{
 	.footer-spacer{
-		height:200px;
+		height:150px;
 	}
 	text-align:center;
 }
 
+#info-pane {
+	border-color: #AAE;
+	//custom player skin
+	.flowplayer {
+		background-image: url(/assets/Bookmarklet%20Example.png);
+		max-height:100%;
+		overflow:hidden;
 
-//.navbar .container-fluid {
-//	padding-right:0px;
-//	padding-bottom:0px;
-//	.pull-right 
-//	{
-//		height:43px;
-//		li.dropdown {
-//			//dropdown open override below
-//			height:43px;
-//			padding-left:10px;
-//			padding-right:5px;
-//			/* IE10 Consumer Preview */ 
-//			background-image: -ms-linear-gradient(top left, #1A1A1A 0%, #2448BD 100%);
-//			/* Mozilla Firefox */ 
-//			background-image: -moz-linear-gradient(top left, #1A1A1A 0%, #2448BD 100%);
-//			/* Opera */ 
-//			background-image: -o-linear-gradient(top left, #1A1A1A 0%, #2448BD 100%);
-//			/* Webkit (Safari/Chrome 10) */ 
-//			background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #1A1A1A), color-stop(1, #2448BD));
-//			/* Webkit (Chrome 11+) */ 
-//			background-image: -webkit-linear-gradient(top left, #1A1A1A 0%, #2448BD 100%);
-//			/* W3C Markup, IE10 Release Preview */ 
-//			background-image: linear-gradient(to bottom right, #1A1A1A 0%, #2448BD 100%);
-//		}
-//	}
-//}
-//
-////dropdown open override
-//.navbar-inverse .nav .pull-right li.dropdown.open > .dropdown-toggle{
-//	background-color:transparent;
-//}
+		-moz-transition:width 0.5s, height 0.5s;
+		-webkit-transition:width 0.5s, height 0.5s;
+		-o-transition:width 0.5s, height 0.5s;
+		transition:width 0.5s, height 0.5s;
+	}
+	.flowplayer .fp-controls { background-color: rgba(0, 0, 0, 0.4)}
+	.flowplayer .fp-timeline { background-color: rgba(0, 0, 0, 0.5)}
+	.flowplayer .fp-progress { background-color: rgba(219, 0, 0, 1)}
+	.flowplayer .fp-buffer { background-color: rgba(249, 249, 249, 1)}
+
+	.flowplayer:not(.is-poster):not(.is-finished){background-image:none;}
+	 .is-playing{ background-image:none;}
+	.flowplayer.is-finished .fp-controls,.flowplayer.is-finished .fp-fullscreen,.flowplayer.is-finished .fp-unload,.flowplayer.is-finished .fp-time,.flowplayer.is-finished .fp-embed{display:none !important}.flowplayer.is-finished .fp-engine{ top:-9999em;}
+
+
+	.info_box {
+
+		color: #555;
+		font-size:12px;
+
+		//background: #FBFBFB;
+		background:url(background2.jpg);
+		background-size: cover;
+		border-radius:4px;
+		border:1px dashed #E18E00;
+		
+		height: 177px;
+		-moz-box-shadow: 7px 7px 5px #969696;
+		-webkit-box-shadow: 7px 7px 5px #969696;
+		box-shadow: 7px 7px 5px #969696;
+		padding-right:8px;
+		padding-left:8px;
+		h4,h3 {
+			margin: 4px auto 4px 5px;
+			text-align:center;
+			.logo {
+				font-family: 'Condiment', cursive;
+				font-size:29px;
+				color:#3880FF;
+			}
+		}
+		p{
+			margin: 0 0 0 0px;
+			text-align:justify;
+		}
+		a {
+			font-weight:500;
+		}
+		.info-hover{
+			width:350px;
+			z-index:3;
+			max-height:100%;
+			overflow:hidden;
+		}
+	}
+}
+
+
+#bookmark_bar{
+	width:40px;
+	height:1px;
+}
+
+#bookmark_bar+.tooltip{
+	.tooltip-arrow{
+		border-bottom-color:#457AFD;
+	  filter: alpha(opacity=90);  
+    -moz-opacity: 0.9;  
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
+	}
+	.tooltip-inner{
+		background-color:#457AFD;
+	  filter: alpha(opacity=90);  
+    -moz-opacity: 0.9;  
+    -khtml-opacity: 1.9;  
+    opacity: 0.9; 
+	}
+}
+
+#filter_uncategorized{
+	background-color:lighten(#006ccc,50%);
+}
+
+.icon-filter{
+	-webkit-filter: hue-rotate(130deg);
+	-moz-filter: hue-rotate(130deg);
+	-ms-filter: hue-rotate(130deg);
+	-o-filter: hue-rotate(130deg);
+	filter: hue-rotate(130deg);
+}

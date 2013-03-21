@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
 	before_filter :set_access_control_headers
-	
+	before_filter :set_instant_account_flash
+
 	protect_from_forgery
 
 	def set_access_control_headers
 	  headers['Access-Control-Allow-Origin'] = "*"
-	  # headers['Access-Control-Allow-Credentials'] = 'true' this and the  Origin = * are incompatible
+	  # headers['Access-Control-Allow-Credentials'] = 'true'
+	  # this and the  Origin = * are incompatible
+	  # ,Set-Cookie
     headers['Access-Control-Allow-Headers'] = '*,X-CSRF-Token,x-requested-with,Content-Type,If-Modified-Since,If-None-Match'
 	  headers['Access-Control-Request-Method'] = 'POST, OPTIONS'
     headers['Access-Control-Expose-Headers'] = 'ETag'
@@ -29,6 +32,21 @@ class ApplicationController < ActionController::Base
 		return '/'+user.username
 	end
 
+	private
+
+		def set_instant_account_flash
+			if flash[:instant_account]
+				if flash[:instant_account] == 'new'
+					flash[:instant_account] = 'home'
+				elsif flash[:instant_account] == 'home'
+					flash[:instant_account] = 'first-action'
+				elsif flash[:instant_account] == 'first-action'
+					flash[:instant_account] = 'second-action'
+				elsif flash[:instant_account] == 'second-action'
+					flash[:instant_account] = nil
+				end
+			end
+		end
 		# def authorize
 		#   redirect_to login_url, alert: "Not authorized" if current_user.nil?
 		# end

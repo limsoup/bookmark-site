@@ -5,6 +5,11 @@
 	</div>
 	<%= form_for @user_bookmark, :url => [@playlist, @user_bookmark] , :method => :post, :html => { "data-type" => "json"}, :remote=>true do |f|%>
 	<div class="modal-body">
+			<div style="padding-left: 50px; margin-right: 70px; float:right; border-left:1px solid #AAA">
+				<%= image_tag 'blood-drop-icon.png', :size => '90x90' %>
+				<h5 style="text-align:center;">Drag &amp; Drop </h5>
+				<h5 style="text-align:center;">Here</h5>
+			</div>
 			<%= f.text_field :bookmark_name, :placeholder=>'Bookmark Title' %><br /><br />
 			<%= f.fields_for :bookmark_url, @bookmark_url do |f_bu| %>
 				<%= f_bu.text_field :url, :placeholder=>'URL'%>

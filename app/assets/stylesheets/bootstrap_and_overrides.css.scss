@@ -1,6 +1,13 @@
 @import "bootstrap";
 body { 
  padding-top: 60px;
+ //-moz-transition: padding 1s;
+ //-webkit-transition: padding 1s;
+ //-o-transition: padding 1s;
+ //transition: padding 1s;
+ //.open{
+ //		padding-top: 200px;
+ // }
 }
 
 .btn-cherry {

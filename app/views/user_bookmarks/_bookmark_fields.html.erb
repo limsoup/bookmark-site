@@ -26,6 +26,7 @@
 	</div>
 	<div class="detail_bookmark">
   	<div class="show_bookmark_detail">
+		<div class="sidebar-title">Detail</div>
   		<div class = "pull-right detail-action-links">
   			<%= link_to('<i class="icon-play icon-white"></i> watch'.html_safe, '#', class: 'watch_link btn btn-mini btn-success', "data-toggle" =>"button", "type"=>"button") if user_bookmark.bookmark_url.embed %>
 		  	<% if user_bookmark.playlist.user == current_user %>

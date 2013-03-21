@@ -1,0 +1,12 @@
+<div class = "cleanslate">
+	<div style="display:none"><%= csrf_meta_tags %></div>
+	<h3>Log In</h3>
+	<span class="errors"></span>
+	<%= form_tag sessions_url, :id=>"bookmarklet-login-form", :html => { "data-type" => :json, :method => :post} do |f| %> 
+		<%= text_field_tag :username, params[:username], :placeholder=>"Username" %>
+		<%#= hidden_field_tag 'bookmarklet_user_key', current_user.bookmarklet_user_key %>
+		<%= password_field_tag :password, '', :placeholder=>"Password" %><br />
+		<%= link_to 'Login', '#', class: 'submit_link' %>
+		<%= link_to 'Close', '#', class: 'floatright' %>
+	<% end %>
+</div>

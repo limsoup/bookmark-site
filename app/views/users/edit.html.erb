@@ -1,4 +1,5 @@
-<div class="span4 offset2">
+<div class="row-fluid">
+  <div class="span4 offset2">
 <h2>Edit Account: <%= current_user.username %></h2><br />
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
@@ -29,4 +30,5 @@
   <%# end %>
   <button type="submit" class="btn btn-primary btn-large">Submit Changes</button>
 <% end %>
+</div>
 </div>
