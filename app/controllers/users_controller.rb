@@ -179,7 +179,7 @@ class UsersController < ApplicationController
 			if @user
 				redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin or @user.access)
 			else
-				redirect_to usernotfound
+				redirect_to usernotfound_path
 			end
 		end
 

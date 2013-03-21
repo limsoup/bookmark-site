@@ -40,5 +40,15 @@ $(function() {
 	if($('#introduction').length != 0) {
 		$('.info-pane-button').first().delay(1500).trigger('click');
 	}
+
+	if($('.countdown').length != 0){
+		setInterval(function(){
+			if ($('.countdown').text() > '0'){
+				$('.countdown').text( (parseInt($('.countdown').text())-1).toString() );
+			} else {
+				window.location = '/welcome';
+			}
+		},1000);
+	}
 	
 });
