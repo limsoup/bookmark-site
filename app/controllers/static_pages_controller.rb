@@ -20,12 +20,12 @@ class StaticPagesController < ApplicationController
 			if (@user.save)
 				session[:remember_token] = @user.remember_token	
 				ub1 = @user.default_list.user_bookmarks.build
-				ub1.name = "Two Really Hot Italian Soccer Fans Wrestle and Scissor it out."
+				ub1.bookmark_name = "Two Really Hot Italian Soccer Fans Wrestle and Scissor it out."
 				bu1 = BookmarkUrl.find(62)
 				ub1.bookmark_url = bu1;
 				ub1.save
 				ub2 = @user.default_list.user_bookmarks.build
-				ub2.name = "Wholesome-looking Mormon girl gets it."
+				ub2.bookmark_name = "Wholesome-looking Mormon girl gets it."
 				bu2 = BookmarkUrl.find(63)
 				ub2.bookmark_url= bu2
 				ub2.save
