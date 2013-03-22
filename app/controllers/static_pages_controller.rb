@@ -30,6 +30,9 @@ class StaticPagesController < ApplicationController
 				ub2.bookmark_url= bu2
 				ub2.save
 				redirect_to username_path(@user)
+			else
+				@user = User.new
+				render 'welcome'
 			end
 		elsif (current_user)
 			if request.referer
@@ -39,6 +42,8 @@ class StaticPagesController < ApplicationController
 					@user_bookmark = @playlist.user_bookmarks.build
 					@bookmark_url = BookmarkUrl.new
 					render 'welcome'
+				else
+					redirect_to username_path(current_user)
 				end
 			else
 				redirect_to username_path(current_user)
