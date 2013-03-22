@@ -55,4 +55,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use debugger
 # gem 'debugger'
 
-gem 'newrelic_rpm', :group => :production
+#gem 'newrelic_rpm', :group => :production
