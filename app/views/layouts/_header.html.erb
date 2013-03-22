@@ -20,7 +20,7 @@
         	<% if current_user.nil? %>
           	<!-- <li><a href="#">1 Click Save</a></li> -->
             <%= form_tag sessions_path, class:"navbar-form pull-left" do %>
-              <%= text_field_tag :username, params[:username], :placeholder => 'Username' ,id:"navbar-input-1"%>
+              <%= text_field_tag :username, '', :placeholder => 'Username' ,id:"navbar-input-1"%>
               <%= password_field_tag :password,'', :placeholder=>'Password' ,id:"navbar-input-2"%>
               <button type="submit" class="btn btn-small" id="navbar-form-button">Sign in</button>
             <% end %>

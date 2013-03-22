@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_filter :instant_account_cleanup, :only => [:create,:destroy] 
+  before_filter :instant_account_cleanup, :only => [:create] 
 
   def new
   end

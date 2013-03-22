@@ -177,7 +177,15 @@ class UsersController < ApplicationController
 				@user = User.find_by_regularized_username(params[:username].gsub(/\s/,'').downcase)
 			end
 			if @user
-				redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin or @user.access)
+				if !@user.access
+					if current_user
+						if !((current_user.id.to_s == params[:id]) or current_user.admin)
+							redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin or @user.access)
+						end
+					else
+						redirect_to login_path, :notice => "You have to log in as that user to do that." unless ((current_user.id.to_s == params[:id]) or current_user.admin or @user.access)
+					end
+				end
 			else
 				redirect_to usernotfound_path
 			end
