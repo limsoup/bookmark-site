@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :logged_in, :except => [:new, :create]
+	before_filter :logged_in, :except => [:new, :create, :show]
 	before_filter :authorize, :only => [:edit, :update]
 	before_filter :authorize_or_accessible, :only => [:show]
 	before_filter :authorize_admin, :only => [:index]
