@@ -11,8 +11,11 @@ $bookmarklet(function (){
 	}
 	$bookmarklet('body').append('<div id="bookmarklet"><div>');
 	$bookmarklet('#bookmarklet').html("<%=j render 'bookmarklet_content' %>");
-	$bookmarklet('#bookmarklet').on('click', '#new_user_bookmark a.submit_link', function(){
+	$bookmarklet('#bookmarklet').on('click', '#new_user_bookmark a.submit_link', function(event){
+		event.preventDefault();
 		var postData = $bookmarklet('#bookmarklet form').serialize();
+		postData = postData+'&url='+window.location.href;
+		console.log(postData);
 		$bookmarklet.ajax({
 			url: $bookmarklet('#bookmarklet form').attr('action'),
 			type: 'POST',
@@ -32,7 +35,8 @@ $bookmarklet(function (){
 			crossDomain: true,
 		});
 	});
-	$bookmarklet('#bookmarklet').on('click', 'a.floatright', function(){
+	$bookmarklet('#bookmarklet').on('click', 'a.floatright', function(event){
+		event.preventDefault();
 		$bookmarklet(this).parents('#bookmarklet').remove();
 	});
 });

@@ -1,3 +1,4 @@
+require 'uri'
 class JsfilesController < ApplicationController
 	layout false
 	def bookmarklet
@@ -36,6 +37,9 @@ class JsfilesController < ApplicationController
 		end
 		# @user_bookmark.bookmark_name = params[:user_bookmark][:bookmark_name]
 		url = request.env["HTTP_REFERER"]	#something from request
+		if URI.split(url)[5..8].join() == "/"
+			url = params[:url]
+		end
 		@bookmark_url = BookmarkUrl.find_by_url(url)
 		#if bookmark_url doesn't exist submit new bookmark and bookmark url
 		#else if it does exist add connection
